@@ -1,7 +1,7 @@
 ﻿class Turret4Way extends Turret {
 	
-	private var hp:Number = 7;
-	private var scoreForKill:Number = 7;
+	private var hp:Number = 17;
+	private var scoreForKill:Number = 20;
 	
 	private function doFire (lTargetX:Number, distFromHero:Number):Boolean {
 		if(--this.clicksToFire <= 0) {

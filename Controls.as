@@ -8,6 +8,7 @@ function absDelete(item:MovieClip):Void {
 }
 
 function restart():Void {
+	// TODO
 	score = 0;
 	game.hero.init(true);
 	

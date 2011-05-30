@@ -89,7 +89,14 @@
 				_parent.BGMid._x  += lInertiaX;
 				_parent.BGTiles._x  += lInertiaX * 0.5;
 			} else {
-				this._x -= lInertiaX;
+				
+				if (lInertiaX > 0 && this._x < 10) {
+					lInertiaX = 0;
+				} else if (lInertiaX < 0 && this._x > 700) {
+					lInertiaX = 0;
+				} else {
+					this._x -= lInertiaX;
+				}
 			}
 		}
 

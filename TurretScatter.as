@@ -2,7 +2,7 @@
 	
 	private var rateOfFire:Number = 120;
 	private var clicksToFire:Number = 0;
-	private var hp:Number = 5;
+	private var hp:Number = 15;
 	private var scoreForKill:Number = 10;
 	public static var SHOTGUN_PELLETS:Number = 5;
 	public static var SCATTER_FACTOR:Number = 120;

@@ -22,7 +22,6 @@
 			_root.game.hero.takeHit(bul.bulletDamage);
 			_root.fcEnemies.applyBounceInner(bul, 1);
 			bul.gotoAndPlay("explode");
-			this.count--; // TODO remove count
 		}
 	},
 	
@@ -71,7 +70,6 @@
 			if(!item.triggered) {
 				item.triggered = true;
 				item.gotoAndPlay("explode");
-				this.count--; // TODO remove
 			}
 		}
 	}
