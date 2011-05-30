@@ -9,7 +9,6 @@
 		} else {
 			return false;
 		}
-		
 		_root.sfx.gotoAndPlay("enemyFireTurret" + this.fireType); // TODO bomber fire
 		
 		var mcTmp:MovieClip = this.getNextBullet(this._x, this._y, this.fireType);

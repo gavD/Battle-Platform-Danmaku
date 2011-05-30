@@ -210,7 +210,6 @@
 		var mcTmp:MovieClip = clip.duplicateMovieClip("bulletEnemy_" + ++Enemy.lBulletIndex, _root.game.BGMid.getNextHighestDepth());
 		mcTmp._x = sX;
 		mcTmp._y = sY;
-//		_root.fcBullets.regBullet(mcTmp);
 		return mcTmp;
 	}
 	

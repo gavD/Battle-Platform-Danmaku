@@ -3,32 +3,7 @@
 	killAll: false,
 	arBullets: new Array(),
 	bulPtr: 0,
-	/*
-	//MAX_NUMBER_BULLETS: 96,
 	
-	regBullet: function (bul:MovieClip):Void {
-		trace("REGISTER BULLET");
-		if (this.arBullets.length < this.MAX_NUMBER_BULLETS) {
-			this.arBullets.push(bul);
-			this.count++;
-//			trace("Bullet count " + this.count);
-		} else {
-			if(this.arBullets[this.bulPtr] != null) {
-				trace("*************************************");
-				trace("POSSIBLE BULLET CLASH?"  + this.arBullets[this.bulPtr]);
-				trace("*************************************");
-			}
-			this.count++;
-//			trace("Bullet count " + this.count);
-			this.arBullets[this.bulPtr] = bul;
-			//trace("registered " + bul + " at " + bulPtr);
-			if(++this.bulPtr > this.MAX_NUMBER_BULLETS){ 
-				this.bulPtr = 0;
-			}
-		}
-		//trace(arBullets);
-	},
-	*/
 	moveAll: function(amt:Number):Void {
 		for (var i = 0; i < this.arBullets.length; i++) {
 			if(this.arBullets[i] instanceof MovieClip) {
