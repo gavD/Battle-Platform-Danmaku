@@ -15,7 +15,7 @@
 	// ammo types
 	private static var AIMATHERO:Number =  0;
 	private static var BOMB:Number =  1;
-	private static var STRAIGHTUP:Number =  2;
+	private static var FOUR_WAY:Number =  2;
 	private static var SHOTGUN:Number =  3;
 	private static var STRAIGHTACROSS:Number =  4;
 	private static var BOMB_VERT:Number =  5; // TODO these 2 are dupes in bg play area
@@ -209,7 +209,7 @@
 	}
 	
 	private function targetBulletOnHero (mcTmp:MovieClip):Void {
-		_root.fcBullets.targetObjectOnPoint(mcTmp, _root.game.hero._x - _root.game.BGMid._x,  _root.game.hero._y);
+		_root.fcBullets.targetObjectOnDirection(mcTmp, _root.game.hero._x - _root.game.BGMid._x,  _root.game.hero._y);
 	}	
 	
 	private function muzzleFlash():Void {

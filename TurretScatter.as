@@ -4,8 +4,7 @@
 	private var clicksToFire:Number = 0;
 	private var hp:Number = 15;
 	private var scoreForKill:Number = 10;
-	public static var SHOTGUN_PELLETS:Number = 5;
-	public static var SCATTER_FACTOR:Number = 120;
+	public static var SCATTER_FACTOR:Number = 150;
 	
 	private var fireType:Number = Enemy.SHOTGUN;
 	
@@ -18,19 +17,25 @@
 		
 		_root.sfx.gotoAndPlay("enemyFireTurret" + this.fireType); // TODO bomber fire
 		
-		for (var i = 0; i < TurretScatter.SHOTGUN_PELLETS; i++) {
-			var bul:MovieClip = this.getNextBullet(this._x, this._y + this.shotOffset, this.fireType);
-			this.targetBulletOnHeroWithOffset(bul, (i - 2) * SCATTER_FACTOR);
-		}
+		var bul:MovieClip = this.getNextBullet(this._x, this._y + this.shotOffset, this.fireType);
+		this.targetBulletOnHero(bul);
+		var bul1:MovieClip = this.getNextBullet(this._x, this._y + this.shotOffset, this.fireType);
+		bul1.lTargetX = bul.lTargetX + 100;
+		bul1.lTargetY = bul.lTargetY + 100;
 		
-		return true;
+		var bul2:MovieClip = this.getNextBullet(this._x, this._y + this.shotOffset, this.fireType);
+		bul2.lTargetX = bul.lTargetX - 100;
+		bul2.lTargetY = bul.lTargetY - 100;
+		
+		var bul1:MovieClip = this.getNextBullet(this._x, this._y + this.shotOffset, this.fireType);
+		bul1.lTargetX = bul.lTargetX + 150;
+		bul1.lTargetY = bul.lTargetY - 150;
+		
+		var bul2:MovieClip = this.getNextBullet(this._x, this._y + this.shotOffset, this.fireType);
+		bul2.lTargetX = bul.lTargetX - 150;
+		bul2.lTargetY = bul.lTargetY + 150;
+		
+		return false;
 	}
 
-	private function targetBulletOnHeroWithOffset (mcTmp:MovieClip, offset:Number):Void {
-		_root.fcBullets.targetObjectOnPoint(
-			mcTmp,
-			_root.game.hero._x - _root.game.BGMid._x + offset,
-			_root.game.hero._y + offset
-		);
-	}	
 }

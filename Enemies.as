@@ -9,6 +9,7 @@
 		_root.fcBullets.killAll = true;
 		for(var i:Number = 0; i < this.arEnemies.length; i++) {
 			var tmp = this.arEnemies[i];
+			trace("KILL ENEMY " + tmp);
 			_root.absDelete(tmp);
 		}
 		this.arEnemies = new Array();
@@ -166,5 +167,6 @@ trace(" *** MOVEALL ***");
 			this.arEnemies[i].process();
 			this.applyBounce(this.arEnemies[i], this.arEnemies[i].xScaleFactor);
 		}
+		_root.fcBullets.killAll = false; // TODO?
 	}
 }

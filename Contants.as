@@ -8,7 +8,7 @@ trace("THERE ARE " + enemyTypes + " spawnable enemy types");
 
 var debugMode:Boolean = true;
 var ANGLED_SHOTS:Boolean = true;
-var rollingScrolling:Boolean = true; // false;		// "false" for conventional shooter
+var rollingScrolling:Boolean = false;		// "false" for conventional shooter
 var SCROLL_SPEED:Number = 1;
 
 // Hero details

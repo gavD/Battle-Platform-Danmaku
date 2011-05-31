@@ -20,7 +20,7 @@
 		this.moveItemTowards(bul, bul.lTargetX, bul.lTargetY, bul.lSpeed);
 
 		
-		if (!bul.triggered && bul.hitTest(_root.game.hero.hitZone)) {
+		if (!bul.triggered && bul.hitZone.hitTest(_root.game.hero.hitZone)) {
 			_root.game.hero.takeHit(bul.bulletDamage);
 			_root.fcEnemies.applyBounceInner(bul, 1);
 			bul.gotoAndPlay("explode");
@@ -28,6 +28,11 @@
 	},
 	
 	targetObjectOnPoint: function (mcTmp:MovieClip, tX:Number, tY:Number): Void {
+		mcTmp.lTargetX = tX;
+		mcTmp.lTargetY = tY;
+	},
+	
+	targetObjectOnDirection: function (mcTmp:MovieClip, tX:Number, tY:Number): Void {
 		var myRadians:Number = Math.atan2(mcTmp._y - tY, tX - mcTmp._x);
 		myRadians += Math.PI/2; // rotate round 90' - needs that for some reason
 		mcTmp.lTargetX = mcTmp._x + Math.sin(myRadians) * _root.lBulletFireDistance;

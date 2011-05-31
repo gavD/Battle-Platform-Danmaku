@@ -1,30 +1,31 @@
 ﻿class Hero extends MovieClip {
-	var OK:Number = 0;
-	var DYING:Number = 1;
-
-	var lAction:Number = OK;
+	public var power:Number = 1;
 	
-	var bInvincible:Boolean = false;
+	private var lAction:Number = OK;
+	private var OK:Number = 0;
+	private var DYING:Number = 1;
+
+	private var bInvincible:Boolean = false;
 	
 	// ************* //
-	var lMaxEnergy:Number = 1000; //90 + (_root.debugMode ? 1000 : 0); // 100;
+	private var lMaxEnergy:Number = 40; // 1000; //90 + (_root.debugMode ? 1000 : 0); // 100;
 		
-	var lInertiaX:Number = 0;
-	var lInertiaY:Number = 0;
-	var inertiaLimit:Number = 25;
-	var lTotalMvt:Number = 0;
+	private var lInertiaX:Number = 0;
+	private var lInertiaY:Number = 0;
+	private var inertiaLimit:Number = 25;
+	private var lTotalMvt:Number = 0;
 
-	var lEnergy:Number = 0;
+	public var lEnergy:Number = 0;
 
 	// inertia and speed
-	var lEngineSpeed:Number = 8;
-	var lRatioVertical:Number = 0.2;
-	var slowDownRatio:Number = 1.1; // used in inertia
-	var lEngineSpeedIncrement:Number = 1.0;
-	var oppositeRatio:Number = 2; // if you move in the opposite direction to current
+	private var lEngineSpeed:Number = 8;
+	private var lRatioVertical:Number = 0.2;
+	private var slowDownRatio:Number = 1.1; // used in inertia
+	private var lEngineSpeedIncrement:Number = 1.0;
+	private var oppositeRatio:Number = 2; // if you move in the opposite direction to current
 								  // inertia, how much should movement be modified by
 		
-	var facingRight:Boolean = true;
+	public var facingRight:Boolean = true;
 	
 	function applyMovement(lXDir:Number, lYDir:Number):Void {
 		if (_root.bGamePaused) {return;}

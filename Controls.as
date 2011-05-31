@@ -1,4 +1,6 @@
-﻿var bGamePaused:Boolean = false;
+﻿_quality = "LOW";
+
+var bGamePaused:Boolean = false;
 var spawningDisabled:Boolean = false; // TODO remove?
 infoPaused._visible = false;
 
@@ -32,12 +34,7 @@ var fireReady:Boolean = true;
 var myListener:Object = new Object();
 myListener.onKeyDown = function () {
 	var keyCode:Number = Key.getCode();
-	//trace("Key code " + keyCode);
-	if(keyCode == 77) {
-		_root.magicMask._visible = !_root.magicMask._visible;
-	}
 	if (keyCode == Key.SPACE) {
-		//trace("SPACE ");
 		 if (_root.fcGameOver.readyForRestart) {
 			trace("SPACE ; restart");
 			_root.game.hero.init(true);
@@ -50,8 +47,8 @@ myListener.onKeyDown = function () {
 		}
 	}	
 	else if (keyCode == 80) {
-		bGamePaused = !bGamePaused; // TODO fix
-		infoPaused._visible = bGamePaused; // TODO?
+		bGamePaused = !bGamePaused;
+		infoPaused._visible = bGamePaused;
 
 	} else if (keyCode == 48 || keyCode == 49 || keyCode == 50 || keyCode == 51
 			|| keyCode == 52 || keyCode == 53 || keyCode == 54
