@@ -36,23 +36,28 @@
 		}
 	},
 	
-	detectHits: function(bullet:MovieClip, bDestroyOnContact:Boolean):Void {
+	detectHits: function(bullet:MovieClip):Void {
 		for (var i:Number = 0; i < this.arEnemies.length; i++) {
 			var ptr:MovieClip = this.arEnemies[i];
 		
-			if (ptr == null) { continue; }
-			else if (ptr._x == undefined) { continue; }
-			else if ((ptr.lAction == this.DYING) || (ptr.lAction == this.DEAD)) {
+			/*
+			if (ptr == null) {
+				trace("## NULL at " + i);
+				continue;
+			}
+			else */
+			if (ptr._x == undefined) { 
+				continue;
+			}
+			else if (ptr.lAction == Enemy.DYING) {
 				continue;
 			}
 			
 			//trace("Hit zone test on " + bullet.hitZone + " vs " + ptr);
 			if (bullet.hitZone.hitTest(ptr)) {
 				_root.hud.mobileHud.scoreCounter.comboMeter.comboUp();
-				if (bDestroyOnContact) {
-					bullet.gotoAndPlay("explode");
-					bullet.triggered = true;
-				}
+				bullet.gotoAndPlay("explode");
+				bullet.triggered = true;
 				if(ptr.takeHit) {
 					ptr.takeHit();
 				} else {
@@ -63,7 +68,7 @@
 	},
 	
 	kill: function(ptr:MovieClip):Void {
-		ptr.lAction = this.DYING;
+		ptr.lAction = Enemy.DYING;
 		var scoreUp:Number = (ptr.scoreForKill * _root.hud.mobileHud.scoreCounter.comboMeter.multiplier);
 		_root.score += scoreUp;
 		var mcTmp:MovieClip = _root.game.BGMid.scoreFloaterTemplate.duplicateMovieClip("score" + this.scoreIndex, _root.game.BGMid.getNextHighestDepth());
@@ -151,7 +156,13 @@ trace(" *** MOVEALL ***");
 	
 	doFrame: function():Void {
 		if (_root.bGamePaused) { return; }
+		
 		for (var i:Number = 0; i < this.arEnemies.length; i++) {
+			var tmp:MovieClip = this.arEnemies[i];
+
+			if(this.arEnemies[i]._x == undefined) {
+				continue;
+			}
 			this.arEnemies[i].process();
 			this.applyBounce(this.arEnemies[i], this.arEnemies[i].xScaleFactor);
 		}

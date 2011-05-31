@@ -25,7 +25,6 @@
 	public static var NOTHING:Number = 0;
 	public static var HOMING:Number = 1;
 	public static var DYING:Number = 3;
-	public static var DEAD:Number = 4;
 	
 	// TODO refactor eof
 	
@@ -42,13 +41,9 @@
 			return;
 		}
 
-		if ((this == null) || (this.lAction == Enemy.DYING)) {
-			continue;
-		} else if (this.lAction == Enemy.DEAD) {
-			_root.absDelete(this);
-			continue;
+		if (this.lAction == Enemy.DYING) {
+			return;
 		}
-		
 		if (this.lAction == Enemy.NOTHING) { // TODO activation?
 			this.lAction = Enemy.HOMING;
 		}

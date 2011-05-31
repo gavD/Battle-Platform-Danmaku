@@ -18,6 +18,8 @@
 			_root.absDelete(bul);
 		}
 		this.moveItemTowards(bul, bul.lTargetX, bul.lTargetY, bul.lSpeed);
+
+		
 		if (!bul.triggered && bul.hitTest(_root.game.hero.hitZone)) {
 			_root.game.hero.takeHit(bul.bulletDamage);
 			_root.fcEnemies.applyBounceInner(bul, 1);
@@ -70,6 +72,11 @@
 			if(!item.triggered) {
 				item.triggered = true;
 				item.gotoAndPlay("explode");
+			}
+		} else {
+					
+			if (item._y > 520 || item._y < -30) {
+				_root.absDelete(item);
 			}
 		}
 	}

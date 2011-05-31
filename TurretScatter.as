@@ -1,6 +1,6 @@
 ﻿class TurretScatter extends Turret {
 	
-	private var rateOfFire:Number = 120;
+	private var rateOfFire:Number = 140;
 	private var clicksToFire:Number = 0;
 	private var hp:Number = 15;
 	private var scoreForKill:Number = 10;

@@ -8,7 +8,7 @@ trace("THERE ARE " + enemyTypes + " spawnable enemy types");
 
 var debugMode:Boolean = true;
 var ANGLED_SHOTS:Boolean = true;
-var rollingScrolling:Boolean = false;		// "false" for conventional shooter
+var rollingScrolling:Boolean = true; // false;		// "false" for conventional shooter
 var SCROLL_SPEED:Number = 1;
 
 // Hero details
@@ -23,7 +23,7 @@ var SCROLL_BOUNDS_Y_LOWER:Number =  470;
 var lLevelWidthMid:Number = 760;//1520;			// number of pixels the mid level is wide
 
 // Enemy details
-var lBulletSpeed:Number = 14;				// pixels a bullet travels per frame
+var lBulletSpeed:Number = 12;				// pixels a bullet travels per frame
 // NOTE - bullet speed and damage can be set per bullet type also
 var lBulletFireDistance:Number = 800;		// how many pixels a shot travels along its trajectory
 var lBulletDamage:Number = 10;				// how much power an enemy bullet has
