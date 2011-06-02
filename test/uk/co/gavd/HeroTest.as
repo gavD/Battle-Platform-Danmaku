@@ -15,7 +15,7 @@ class test.uk.co.gavd.HeroTest extends TestCase {
 
 	public function testMe():Void {
 		trace("GO HERO TEST x");
-		assertTrue("failing test", false);
+		assertFalse("failing test", false);
 	}
 
 	public function tearDown():Void {

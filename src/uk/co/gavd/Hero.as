@@ -12,16 +12,15 @@
 		
 	private var lInertiaX:Number = 0;
 	private var lInertiaY:Number = 0;
-	private var inertiaLimit:Number = 25;
+	private var inertiaLimit:Number = 5;
 	private var lTotalMvt:Number = 0;
 
 	public var lEnergy:Number = 0;
 
 	// inertia and speed
-	private var lEngineSpeed:Number = 8;
 	private var lRatioVertical:Number = 0.2;
-	private var slowDownRatio:Number = 1.1; // used in inertia
-	private var lEngineSpeedIncrement:Number = 1.0;
+	private var slowDownRatio:Number = 1.2; // used in inertia
+	private var lEngineSpeedIncrement:Number = 0.8;
 	private var oppositeRatio:Number = 2; // if you move in the opposite direction to current
 								  // inertia, how much should movement be modified by
 		
@@ -29,26 +28,26 @@
 	
 	public function applyMovement(lXDir:Number, lYDir:Number):Void {
 		if (_root.bGamePaused) {return;}
+		
+		this["thrusterRear"]._visible = false;
+		this["thrusterFront"]._visible = false;
+		this["thrusterTop"]._visible = false;
+		this["thrusterBottom"]._visible = false;
+		if (lXDir > 0) {
+			this["thrusterFront"]._visible = true;
+		} else if (lXDir < 0) {
+			this["thrusterRear"]._visible = true;
+		}
+		if (lYDir > 0) {
+			this["thrusterTop"]._visible = true;
+		} else if (lYDir < 0) {
+			this["thrusterBottom"]._visible = true;
+		}
 
 //		trace("lXDir = " + lXDir);
 		
 //		applyMovementDirection(lXDir);
 		  
-		// clear movement input if at max speed
-		if (lXDir > 0 && (lInertiaX > lEngineSpeed)) {
-			lXDir = 0;
-		}
-		else if (lXDir < 0 && (lInertiaX < (-1* lEngineSpeed))) {
-			lXDir = 0;
-		}
-		
-		if (lYDir > 0 && (lInertiaY > lEngineSpeed)) {
-			lYDir = 0;
-		}
-		else if (lYDir < 0 && (lInertiaY < (-1* lEngineSpeed))) {
-			lYDir = 0;
-		}
-
 		if (lXDir == 0) { // neutral
 			if (lInertiaX > 0) {
 				lInertiaX -= lEngineSpeedIncrement * slowDownRatio;
@@ -73,16 +72,6 @@
 			lInertiaX -= lEngineSpeedIncrement;
 		}
 		
-		
-		// cap the limits
-		if (lInertiaX > inertiaLimit) {
-			lInertiaX = inertiaLimit;
-			//trace("CAP HIT");
-		} else if (lInertiaX < -inertiaLimit) {
-			lInertiaX = -inertiaLimit;
-			//trace("CAP HIT");
-		}
-
 		// scrolling management
 		if (lInertiaX != 0)
 		{
@@ -96,6 +85,14 @@
 				} else if (lInertiaX < 0 && this._x > 700) {
 					lInertiaX = 0;
 				} else {
+					// cap the limits
+					if (lInertiaX > inertiaLimit) {
+						lInertiaX = inertiaLimit;
+						//trace("CAP HIT");
+					} else if (lInertiaX < -inertiaLimit) {
+						lInertiaX = -inertiaLimit;
+						//trace("CAP HIT");
+					}
 					this._x -= lInertiaX;
 				}
 			}
@@ -104,7 +101,6 @@
 //		trace(lInertiaX);
 		this._rotation = -lInertiaX;
 
-		lInertiaY += _root.lGravityPull;
 		if (lYDir > 0) {		// going down
 			if (lInertiaY < 0) { // double duty
 				lInertiaY += lEngineSpeedIncrement * slowDownRatio * oppositeRatio;
@@ -123,18 +119,7 @@
 			}
 		}
 		
-		// cap limits
-		/*if (lInertiaY > (lEngineSpeed * lRatioVertical)) {
-			trace("Inertia cap hit at 1 " + lInertiaY );
-			lInertiaY = (lEngineSpeed * lRatioVertical);
-		}
-		else if (lInertiaY < -(lEngineSpeed * lRatioVertical)) {
-			trace("Inertia cap hit at 2 " + lInertiaY );
-			lInertiaY = -(lEngineSpeed * lRatioVertical);
-		}*/
-		
-		
-		// calculate a predicted value for T
+
 		if (
 			(lInertiaY < 0 && (this._y < _root.SCROLL_BOUNDS_Y_UPPER))
 			||
@@ -143,6 +128,15 @@
 		{
 			lInertiaY = 0;
 		} else {
+			// cap the limits
+			if (lInertiaY > inertiaLimit) {
+				lInertiaY = inertiaLimit;
+				//trace("CAP HIT");
+			} else if (lInertiaY < -inertiaLimit) {
+				lInertiaY = -inertiaLimit;
+				//trace("CAP HIT");
+			}
+
 			//trace("Inertia : " + lInertiaX + "," + lInertiaY);
 			this._y += lInertiaY;
 			if (this._y > _root.SCROLL_BOUNDS_Y_LOWER) {
