@@ -1,12 +1,12 @@
 ﻿import asunit.framework.TestCase;
-import uk.co.gavd.Hero;
+//import uk.co.gavd.Hero;
 
 class test.uk.co.gavd.HeroTest extends TestCase {
 	private var className:String = "ExampleTest";
-	private var instance:Hero;
+//	private var instance:Hero;
 
 	public function setUp():Void {
-		instance = new Hero();
+//		instance = new Hero();
 	}
 	
 	public function HeroTest(testMethod:String) {
@@ -19,6 +19,6 @@ class test.uk.co.gavd.HeroTest extends TestCase {
 	}
 
 	public function tearDown():Void {
-		delete instance;
+//		delete instance;
  	}
 }

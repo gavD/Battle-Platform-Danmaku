@@ -1,4 +1,4 @@
-﻿class Reticle extends MovieClip {
+﻿class uk.co.gavd.Reticle extends MovieClip {
 	var lShotIndex:Number = 0;
 	var lMuzzleIndex:Number = 0;
 	var isMouseDown:Boolean = false;

@@ -1,4 +1,7 @@
-﻿class TurretScatter extends Turret {
+﻿import uk.co.gavd.Turret;
+import uk.co.gavd.Enemy;
+
+class uk.co.gavd.TurretScatter extends Turret {
 	
 	private var rateOfFire:Number = 140;
 	private var clicksToFire:Number = 0;

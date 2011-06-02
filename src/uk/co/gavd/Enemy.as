@@ -1,4 +1,4 @@
-﻿class Enemy extends MovieClip {
+﻿class uk.co.gavd.Enemy extends MovieClip {
 
 	private static var lBulletIndex:Number = 0; // TODO move to bullets?
 

@@ -1,4 +1,7 @@
-﻿class Turret4Way extends Turret {
+﻿import uk.co.gavd.Turret;
+import uk.co.gavd.Enemy;
+
+class uk.co.gavd.Turret4Way extends Turret {
 	
 	private var hp:Number = 17;
 	private var scoreForKill:Number = 20;

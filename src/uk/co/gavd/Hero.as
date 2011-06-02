@@ -1,4 +1,4 @@
-﻿class Hero extends MovieClip {
+﻿class uk.co.gavd.Hero extends MovieClip {
 	public var power:Number = 1;
 	
 	private var lAction:Number = OK;
@@ -27,7 +27,7 @@
 		
 	public var facingRight:Boolean = true;
 	
-	function applyMovement(lXDir:Number, lYDir:Number):Void {
+	public function applyMovement(lXDir:Number, lYDir:Number):Void {
 		if (_root.bGamePaused) {return;}
 
 //		trace("lXDir = " + lXDir);
@@ -152,7 +152,7 @@
 		}		
 	}
 	
-	function reset():Void {
+	public function reset():Void {
 		trace("*************RESET****************");
 		_root.game._rotation = 0;
 		
@@ -161,7 +161,7 @@
 		_root.fcGameOver.play();
 	}
 	
-	function init(bInvincibleThis:Boolean):Void {
+	public function init(bInvincibleThis:Boolean):Void {
 		this._visible = true;
 		lInertiaX = 0;
 		lInertiaY = 0;
@@ -176,7 +176,7 @@
 		}
 	}
 
-	function takeHit(lDamage:Number):Void {
+	public function takeHit(lDamage:Number):Void {
 		if (lAction == DYING) {
 			return;
 		} else if (bInvincible && lDamage < 1500) {

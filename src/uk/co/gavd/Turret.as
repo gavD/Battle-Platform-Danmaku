@@ -1,4 +1,4 @@
-﻿class Turret extends Enemy {
+﻿class uk.co.gavd.Turret extends uk.co.gavd.Enemy {
 	
 	private var rateOfFire:Number = 44;
 	private var clicksToFire:Number = 0;

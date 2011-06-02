@@ -1,13 +1,13 @@
 ﻿import asunit.textui.TestRunner;
 import AllTests;
 
-class ExampleTestRunner extends TestRunner {
+class BattlePlatformsTestRunner extends TestRunner {
 	public static function main():Void {
 		trace("MAIN");
-		var runner = new ExampleTestRunner();
+		var runner = new BattlePlatformsTestRunner();
 	}
 	
-	public function ExampleTestRunner() {
+	public function BattlePlatformsTestRunner() {
 		trace("CONST");
 		fscommand("fullscreen", "true");
 		
