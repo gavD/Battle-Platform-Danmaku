@@ -3,15 +3,19 @@ import AllTests;
 
 class BattlePlatformsTestRunner extends TestRunner {
 	public static function main():Void {
-		trace("MAIN");
 		var runner = new BattlePlatformsTestRunner();
 	}
 	
 	public function BattlePlatformsTestRunner() {
-		trace("CONST");
-		fscommand("fullscreen", "true");
+		trace("= Start testing =");
+		start(AllTests, null, true);
+		trace("= Done =");
 		
-		start(AllTests);
-		trace("DONE");
+		
+		
+		var endTime:Number = getTimer();
+		var runTime:Number = endTime - startTime;
+		trace("Test complete");
+		getPrinter().printResult(result, runTime);
 	}
 }
