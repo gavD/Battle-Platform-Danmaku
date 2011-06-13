@@ -1,4 +1,4 @@
-﻿class uk.co.gavd.Turret extends uk.co.gavd.Enemy {
+﻿class uk.co.gavd.enemies.Turret extends uk.co.gavd.enemies.Enemy {
 	
 	private var rateOfFire:Number = 44;
 	private var clicksToFire:Number = 0;
@@ -20,7 +20,8 @@
 		
 		_root.sfx.gotoAndPlay("enemyFireTurret" + this.fireType); // TODO bomber fire
 		
-		var mcTmp:MovieClip = this.getNextBullet(this._x, this._y, this.fireType);
+		var mcTmp:MovieClip = this.getNextBullet();
+		trace("Spawned a bullet " + mcTmp);
 		this.targetBulletOnHero(mcTmp);
 		
 		return true;

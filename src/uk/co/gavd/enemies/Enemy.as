@@ -1,4 +1,6 @@
-﻿class uk.co.gavd.Enemy extends MovieClip {
+﻿import uk.co.gavd.ballistics.Bullet;
+
+class uk.co.gavd.enemies.Enemy extends MovieClip {
 
 	private static var lBulletIndex:Number = 0; // TODO move to bullets?
 
@@ -56,11 +58,11 @@
 	private function handleMovementAndShooting():Void {
 		this.handleMovementY();
 		
-		var lTargetX:Number  = _root.game.hero._x - _root.game.BGMid._x;
+		var targetX:Number  = _root.game.hero._x - _root.game.BGMid._x;
 		
-		this.turnAndFace(lTargetX);
-		this.handleFiring(lTargetX);
-		this.handleMovementX(lTargetX);
+		this.turnAndFace(targetX);
+		this.handleFiring(targetX);
+		this.handleMovementX(targetX);
 		
 	}
 	
@@ -96,18 +98,18 @@
 		*/
 	}
 	
-	private function turnAndFace(lTargetX:Number):Void {
-		if (this.bFacingLeft && lTargetX > this._x) {
+	private function turnAndFace(targetX:Number):Void {
+		if (this.bFacingLeft && targetX > this._x) {
 			this.bFacingLeft = false;
 			this._xscale = -100;
-		} else if (!this.bFacingLeft && lTargetX < this._x) {
+		} else if (!this.bFacingLeft && targetX < this._x) {
 			this.bFacingLeft = true;
 			this._xscale = 100;
 		}
 	}
 	
-	private function handleFiring(lTargetX:Number):Void {
-		var distFromHero:Number = lTargetX - this._x;
+	private function handleFiring(targetX:Number):Void {
+		var distFromHero:Number = targetX - this._x;
 		var lDistX:Number = Math.abs(distFromHero);
 		//trace("Dist: " + lDistX + "; range : " +  _root.lEnemyFireRange);
 		if (lDistX <= this.fireRange) { // within firing range
@@ -120,7 +122,7 @@
 			} else {
 				doMove = false;
 				if (lDistX < this.prefDistToHero) { // TOO CLOSE
-					if (lTargetX < this._x) {
+					if (targetX < this._x) {
 						this._x+=this.speed;
 					} else {
 						this._x-=this.speed;
@@ -128,13 +130,13 @@
 				}
 			}
 			*/
-			if(this.doFire(lTargetX, distFromHero)) {
+			if(this.doFire(targetX, distFromHero)) {
 				this.muzzleFlash();
 			}
 		}
 	}
 	
-	private function handleMovementX(lTargetX:Number):Void { 
+	private function handleMovementX(targetX:Number):Void { 
 	/*
 		if (this.enemyType == this.BOMBER) {
 			this._x -= this.speed;
@@ -143,7 +145,7 @@
 			this._x += this.speed;
 		}
 		else {
-			if (lTargetX < this._x) {
+			if (targetX < this._x) {
 				this._x-=this.speed;
 			} else {
 				this._x+=this.speed;
@@ -153,7 +155,7 @@
 	}
 	
 	// TODO shred most of this
-	private function doFire (lTargetX:Number, distFromHero:Number):Boolean {
+	private function doFire (targetX:Number, distFromHero:Number):Boolean {
 		return false;
 		/*
 		var ptr:MovieClip = this; // TODO remove
@@ -200,16 +202,25 @@
 		*/
 	}
 	
-	private function getNextBullet (sX:Number,sY:Number, fireType:Number):MovieClip {
-		var clip:MovieClip = eval("_root.game.BGMid.bulletEnemy" + fireType);
+	private function getNextBullet():MovieClip {
+		trace("Dupe " + _root.game.BGMid.bulletEnemy0);
+		var clip:MovieClip = _root.game.BGMid.bulletEnemy0.duplicateMovieClip("bulletEnemy_" + ++Enemy.lBulletIndex, _root.game.BGMid.getNextHighestDepth());
+		clip._x = this._x; // TODO offsetting?
+		clip._y = this._y; // TODO offsetting?
+		/*
+		var clip:MovieClip = eval("_root.game.BGMid.bulletEnemy" + this.fireType);
 		var mcTmp:MovieClip = clip.duplicateMovieClip("bulletEnemy_" + ++Enemy.lBulletIndex, _root.game.BGMid.getNextHighestDepth());
-		mcTmp._x = sX;
-		mcTmp._y = sY;
+		mcTmp._x = this._x; // TODO offsetting?
+		mcTmp._y = this._y; // TODO offsetting?
 		return mcTmp;
+		*/
+		return clip;
 	}
 	
 	private function targetBulletOnHero (mcTmp:MovieClip):Void {
-		_root.fcBullets.targetObjectOnDirection(mcTmp, _root.game.hero._x - _root.game.BGMid._x,  _root.game.hero._y);
+		trace("Targeting bullet on hero " + mcTmp);
+		mcTmp.fire(_root.game.hero._x - _root.game.BGMid._x,  _root.game.hero._y);
+		//_root.fcBullets.targetObjectOnDirection(mcTmp, _root.game.hero._x - _root.game.BGMid._x,  _root.game.hero._y);
 	}	
 	
 	private function muzzleFlash():Void {

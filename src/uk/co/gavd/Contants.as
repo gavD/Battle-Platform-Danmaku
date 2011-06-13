@@ -12,7 +12,6 @@ var rollingScrolling:Boolean = false;		// "false" for conventional shooter
 var SCROLL_SPEED:Number = 1;
 
 // Hero details
-var lHeroBulletSpeed:Number = 32;
 var lHeroPulseFireAmount:Number = 20;		// how much is discharged by a pulse cannon blast
 var GROUND_ENEMY_Y:Number = 475;
 var SCROLL_BOUNDS_Y_UPPER:Number =  22;

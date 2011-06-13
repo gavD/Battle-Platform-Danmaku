@@ -4,6 +4,7 @@
 	arBullets: new Array(),
 	bulPtr: 0,
 	
+	/*
 	moveAll: function(amt:Number):Void {
 		for (var i = 0; i < this.arBullets.length; i++) {
 			if(this.arBullets[i] instanceof MovieClip) {
@@ -13,32 +14,36 @@
 		}
 	},
 	
+	*/
+	
 	handleBullet: function(bul:MovieClip):Void {
+		trace("Handle bullet " + bul + "...................");
 		if (this.killAll) {
 			_root.absDelete(bul);
 		}
 		this.moveItemTowards(bul, bul.lTargetX, bul.lTargetY, bul.lSpeed);
 
 		
-		if (!bul.triggered && bul.hitZone.hitTest(_root.game.hero.hitZone)) {
-			_root.game.hero.takeHit(bul.bulletDamage);
-			_root.fcEnemies.applyBounceInner(bul, 1);
-			bul.gotoAndPlay("explode");
-		}
+		
 	},
 	
 	targetObjectOnPoint: function (mcTmp:MovieClip, tX:Number, tY:Number): Void {
+		trace("########## targetObjectOnPoint");
 		mcTmp.lTargetX = tX;
 		mcTmp.lTargetY = tY;
 	},
 	
 	targetObjectOnDirection: function (mcTmp:MovieClip, tX:Number, tY:Number): Void {
+		trace("########## targetObjectOnDirection");
 		var myRadians:Number = Math.atan2(mcTmp._y - tY, tX - mcTmp._x);
 		myRadians += Math.PI/2; // rotate round 90' - needs that for some reason
 		mcTmp.lTargetX = mcTmp._x + Math.sin(myRadians) * _root.lBulletFireDistance;
 		mcTmp.lTargetY = mcTmp._y + Math.cos(myRadians) * _root.lBulletFireDistance;
-	},
+	}
 	
+	/*,
+	
+	// TODO remove this should be unused
 	moveItemTowards: function (item:MovieClip, targetX:Number,targetY:Number, speed:Number):Void {
 		if(item.triggered) {
 			item.lSpeed /= 2;
@@ -84,5 +89,5 @@
 				_root.absDelete(item);
 			}
 		}
-	}
+	}*/
 }
