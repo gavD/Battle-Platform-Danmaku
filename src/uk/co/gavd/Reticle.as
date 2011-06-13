@@ -29,13 +29,10 @@
 		//eval("_root.game.BGMid.bulletHero" + lShotIndex);
 		mcTmp._x = _root.game.hero._x - _root.game.BGMid._x + (_root.game.hero.facingRight ? 5 : -5);
 		mcTmp._y = _root.game.hero._y - 12;
-//		_root.fcBullets.regBullet(mcTmp);
 
 		if(_root.ANGLED_SHOTS && directional) {
 			var virtualCursorX:Number = this._x - _root.game._x - _root.game.BGMid._x;
 			mcTmp.fire(virtualCursorX, this._y);
-			//_root.fcBullets.targetObjectOnDirection(mcTmp, virtualCursorX, this._y);
-			// TODO pull into bullet?
 			var myRadians:Number = Math.atan2( mcTmp._y - mcTmp.targetY, mcTmp._x - mcTmp.targetX );
 			mcTmp._rotation = (myRadians * (180 / Math.PI)) + 180;
 		} else { // straight line fire

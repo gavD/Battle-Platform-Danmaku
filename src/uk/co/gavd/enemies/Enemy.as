@@ -157,49 +157,6 @@ class uk.co.gavd.enemies.Enemy extends MovieClip {
 	// TODO shred most of this
 	private function doFire (targetX:Number, distFromHero:Number):Boolean {
 		return false;
-		/*
-		var ptr:MovieClip = this; // TODO remove
-		_root.sfx.gotoAndPlay("enemyFire" + ptr.fireType); // TODO bomber fire
-		
-		var mcTmp:MovieClip = this.getNextBullet(ptr._x, ptr._y + ptr.shotOffset, ptr.fireType);
-		if (ptr.fireType == this.AMMO_ROTATING) {
-			var hyp:Number = 230;
-			var rads:Number = ptr.rot * (Math.PI/180);
-			switch( ptr.rot) {
-				case -90:	mcTmp._y -= 80; break;
-				case -45:	mcTmp._x += 60; mcTmp._y -= 60; break;
-				case 0:		mcTmp._x += 80; break;
-				case 45:	mcTmp._x += 60; mcTmp._y += 60; break;
-				case 90:	mcTmp._y += 80; break;
-				case 135:	mcTmp._x -= 60; mcTmp._y += 60; break;
-				case 180:	mcTmp._x -= 80; break;
-				case -135:	mcTmp._x -= 60; mcTmp._y -= 60; break;
-			}
-			trace("Rot from " + ptr.rot);
-			mcTmp.lTargetX = mcTmp._x + hyp * Math.cos(rads);
-			mcTmp.lTargetY = mcTmp._y + hyp * Math.sin(rads);
-		} 
-		else if (ptr.fireType == this.BOMB_VERT)  {
-			this.targetBulletOnHero(mcTmp);
-			mcTmp.lTargetY = 500;
-		}
-		else if (ptr.fireType == this.BOMB)  {
-			mcTmp.lTargetY = 500;
-			mcTmp.lTargetX = ptr._x;
-		}
-		else if (ptr.fireType == this.STRAIGHTUP) {
-			mcTmp.lTargetY = ptr._y - 500;
-			mcTmp.lTargetX = ptr._x;
-		} else if (ptr.fireType == this.STRAIGHTACROSS) {
-			mcTmp.lTargetX = mcTmp._x + (_root.lBulletFireDistance * ((distFromHero > 0) ? 1 : -1));
-			mcTmp.lTargetY = mcTmp._y;
-			//trace("bullet " + mcTmp + " targets " + mcTmp.lTargetX + "," + mcTmp.lTargetY);
-		} else {
-			trace("INVALID BULLET TYPE FOR " + ptr);
-		}
-
-		this.muzzleFlash();
-		*/
 	}
 	
 	private function getNextBullet():MovieClip {
@@ -207,20 +164,12 @@ class uk.co.gavd.enemies.Enemy extends MovieClip {
 		var clip:MovieClip = _root.game.BGMid.bulletEnemy0.duplicateMovieClip("bulletEnemy_" + ++Enemy.lBulletIndex, _root.game.BGMid.getNextHighestDepth());
 		clip._x = this._x; // TODO offsetting?
 		clip._y = this._y; // TODO offsetting?
-		/*
-		var clip:MovieClip = eval("_root.game.BGMid.bulletEnemy" + this.fireType);
-		var mcTmp:MovieClip = clip.duplicateMovieClip("bulletEnemy_" + ++Enemy.lBulletIndex, _root.game.BGMid.getNextHighestDepth());
-		mcTmp._x = this._x; // TODO offsetting?
-		mcTmp._y = this._y; // TODO offsetting?
-		return mcTmp;
-		*/
 		return clip;
 	}
 	
 	private function targetBulletOnHero (mcTmp:MovieClip):Void {
 		trace("Targeting bullet on hero " + mcTmp);
 		mcTmp.fire(_root.game.hero._x - _root.game.BGMid._x,  _root.game.hero._y);
-		//_root.fcBullets.targetObjectOnDirection(mcTmp, _root.game.hero._x - _root.game.BGMid._x,  _root.game.hero._y);
 	}	
 	
 	private function muzzleFlash():Void {
