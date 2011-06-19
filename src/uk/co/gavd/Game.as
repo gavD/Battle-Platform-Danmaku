@@ -64,7 +64,7 @@
 			}
 		} else {
 			this.BGMid._x -= _root.SCROLL_SPEED;
-			if(this.curLevel == 1 && this.BGMid._x < -2500) {
+			if(this.curLevel == 1 && this.BGMid._x < -4750) {
 				trace("LEVEL UP"); // TODO tidy this up
 				this.loadLevel(2);
 			}

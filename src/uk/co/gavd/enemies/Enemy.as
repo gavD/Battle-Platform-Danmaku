@@ -175,6 +175,7 @@ class uk.co.gavd.enemies.Enemy extends MovieClip {
 	}
 	
 	function onLoad():Void {
+		//trace("ONLOAD called for enemy");
 		this.loadHook();
 		this.stop();
 		

@@ -8,7 +8,7 @@ class uk.co.gavd.enemies.TurretSpinner extends Turret {
 	private var scoreForKill:Number = 30;
 	private var rateOfFire:Number = 5;
 	
-	private static var FIRE_DISTANCE:Number = 400;
+	private static var FIRE_DISTANCE:Number = 600;
 	
 	private function doFire (lTargetX:Number, distFromHero:Number):Boolean {
 		if(--this.clicksToFire <= 0) {

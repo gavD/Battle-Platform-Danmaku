@@ -24,7 +24,10 @@
 		lShotIndex++;
 		var tmp:String = "bulletHero" + lShotIndex;
 		var d:Number = _root.game.BGMid.getNextHighestDepth();
-		var mcTmp:MovieClip = _root.game.BGMid.bulletHero.duplicateMovieClip(tmp, d);
+		var mcTmp:MovieClip = _root.game.BGMid.attachMovie(
+				"BulletHero", tmp,
+				d);
+		
 		//duplicateMovieClip("_root.game.BGMid.bulletHero", tmp, d);
 		//eval("_root.game.BGMid.bulletHero" + lShotIndex);
 		mcTmp._x = _root.game.hero._x - _root.game.BGMid._x + (_root.game.hero.facingRight ? 5 : -5);
@@ -36,14 +39,12 @@
 			var myRadians:Number = Math.atan2( mcTmp._y - mcTmp.targetY, mcTmp._x - mcTmp.targetX );
 			mcTmp._rotation = (myRadians * (180 / Math.PI)) + 180;
 		} else { // straight line fire
-			mcTmp.fire(mcTmp._x + _root.lBulletFireDistance * (_root.game.hero.facingRight ? 1 : -1),
+			mcTmp.fire(mcTmp._x + 750 * (_root.game.hero.facingRight ? 1 : -1),
 						mcTmp._y);
 			if(!_root.game.hero.facingRight) {
 				mcTmp._rotation = 180;
 			}
 		}
-		_root.game.hero.lPulseAmmo -= _root.lHeroPulseFireAmount;
-		//_root.game.hero.shot.gotoAndPlay("start");
 
 		var muzzle:MovieClip = _root.game.BGMid.muzzleHero.duplicateMovieClip("muzzleHero" + lMuzzleIndex, _root.game.BGMid.getNextHighestDepth());
 		//eval("_root.game.BGMid.muzzleHero" + lMuzzleIndex++);
@@ -55,15 +56,15 @@
 		muzzle.gotoAndPlay(2);
 	}
 	
-	function onMouseDown() {
+	function onMouseDown():Void {
 		this.isMouseDown = true;
 	}
-	function onMouseUp() {
+	function onMouseUp():Void {
 		this.clicksToNextShot = 0;
 		this.isMouseDown = false;
 	}
 	
-	function onEnterFrame() {
+	function onEnterFrame():Void {
 		this._x = _root._xmouse;
 		this._y = _root._ymouse;
 		if(this.isMouseDown) {

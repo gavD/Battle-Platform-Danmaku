@@ -29,7 +29,6 @@
 	
 	public function fireAtAngle(degrees:Number):Void {
 		var radians:Number = degrees * Math.PI / 180;
-		trace("Firing at angle " + degrees + "[" + radians + "]"); 
 		var opp:Number = Math.sin(radians) * travel; // opp = h * s
 		var adj:Number = Math.cos(radians) * travel; // adj = h * c
 		this.fireAtPoint(this._x + opp, this._y + adj);

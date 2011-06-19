@@ -2,7 +2,7 @@
 
 var bGamePaused:Boolean = false;
 var spawningDisabled:Boolean = false; // TODO remove?
-infoPaused._visible = false;
+
 
 var fireReady:Boolean = true;
 var myListener:Object = new Object();
@@ -60,5 +60,8 @@ setListeners();
 
 _root.bGamePaused = false;
 _root.hud.gotoAndPlay(2);
+
+_root.absDelete(bulletHero);
+
 
 stop();
