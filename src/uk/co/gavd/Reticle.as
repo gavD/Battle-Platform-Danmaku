@@ -32,7 +32,7 @@
 
 		if(_root.ANGLED_SHOTS && directional) {
 			var virtualCursorX:Number = this._x - _root.game._x - _root.game.BGMid._x;
-			mcTmp.fire(virtualCursorX, this._y);
+			mcTmp.fireAtPoint(virtualCursorX, this._y);
 			var myRadians:Number = Math.atan2( mcTmp._y - mcTmp.targetY, mcTmp._x - mcTmp.targetX );
 			mcTmp._rotation = (myRadians * (180 / Math.PI)) + 180;
 		} else { // straight line fire

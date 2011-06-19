@@ -23,7 +23,7 @@ var lLevelWidthMid:Number = 760;//1520;			// number of pixels the mid level is w
 // Enemy details
 var lBulletSpeed:Number = 12;				// pixels a bullet travels per frame
 // NOTE - bullet speed and damage can be set per bullet type also
-var lBulletFireDistance:Number = 800;		// how many pixels a shot travels along its trajectory
+
 var lBulletDamage:Number = 10;				// how much power an enemy bullet has
 var lEnemyFireRange:Number = 300;	// just a default, some enemies do their own thing
 var initialFramesBetweenEnemySpawn:Number = 50;

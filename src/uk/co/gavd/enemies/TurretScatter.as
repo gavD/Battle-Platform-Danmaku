@@ -1,5 +1,6 @@
 ﻿import uk.co.gavd.enemies.Turret;
 import uk.co.gavd.enemies.Enemy;
+import uk.co.gavd.ballistics.Bullet;
 
 class uk.co.gavd.enemies.TurretScatter extends Turret {
 	
@@ -16,21 +17,22 @@ class uk.co.gavd.enemies.TurretScatter extends Turret {
 			return false;
 		}
 		
-		_root.sfx.gotoAndPlay("enemyFireTurret" + this.fireType); // TODO bomber fire
+//		_root.sfx.gotoAndPlay("enemyFireTurret" + this.fireType); // TODO bomber fire
 		
-		var bul:MovieClip = this.getNextBullet();
-		this.targetBulletOnHero(bul);
-		var bul1:MovieClip = this.getNextBullet();
-		bul1.fire(_root.game.hero._x - _root.game.BGMid._x + 100,  _root.game.hero._y + 100);
+		var bul:Bullet = this.getNextBullet();
+		bul.fireAtTarget(_root.game.hero);
 		
-		var bul2:MovieClip = this.getNextBullet();
-		bul2.fire(_root.game.hero._x - _root.game.BGMid._x - 100,  _root.game.hero._y - 100);
+		var bul1:Bullet = this.getNextBullet();
+		bul1.fireAtPoint(bul.targetX + 100,  bul.targetY + 100);
 		
-		var bul3:MovieClip = this.getNextBullet();
-		bul3.fire(_root.game.hero._x - _root.game.BGMid._x + 150,  _root.game.hero._y - 150);
+		var bul2:Bullet = this.getNextBullet();
+		bul2.fireAtPoint(bul.targetX - 100,  bul.targetY - 100);
 		
-		var bul4:MovieClip = this.getNextBullet();
-		bul4.fire(_root.game.hero._x - _root.game.BGMid._x - 150,  _root.game.hero._y + 150);
+		var bul3:Bullet = this.getNextBullet();
+		bul3.fireAtPoint(bul.targetX - 150,  bul.targetY - 150);
+		
+		var bul4:Bullet = this.getNextBullet();
+		bul4.fireAtPoint(bul.targetX + 150,  bul.targetY + 150);
 		
 		return false;
 	}

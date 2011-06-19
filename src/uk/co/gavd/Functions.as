@@ -1,6 +1,4 @@
 ﻿function absDelete(item:MovieClip):Void {
-	trace("Blam " + item);
-	
 	item.swapDepths(0);
 	item.removeMovieClip();
 	if(item) {

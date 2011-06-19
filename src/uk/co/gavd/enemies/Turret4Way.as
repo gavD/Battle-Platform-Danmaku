@@ -15,16 +15,12 @@ class uk.co.gavd.enemies.Turret4Way extends Turret {
 		} else {
 			return false;
 		}
-		_root.sfx.gotoAndPlay("enemyFireTurret" + this.fireType); // TODO bomber fire
+		//_root.sfx.gotoAndPlay("enemyFireTurret" + this.fireType); // TODO bomber fire
 		
-		var mcTmp:MovieClip = this.getNextBullet();
-		mcTmp.fire(this._x, this._y - FIRE_DISTANCE );
-		mcTmp = this.getNextBullet();
-		mcTmp.fire(this._x, this._y + FIRE_DISTANCE );
-		mcTmp = this.getNextBullet();
-		mcTmp.fire(this._x - FIRE_DISTANCE , this._y);
-		mcTmp = this.getNextBullet();
-		mcTmp.fire(this._x + FIRE_DISTANCE , this._y);
+		this.getNextBullet().fireAtPoint(this._x, this._y - FIRE_DISTANCE );
+		this.getNextBullet().fireAtPoint(this._x, this._y + FIRE_DISTANCE );
+		this.getNextBullet().fireAtPoint(this._x + FIRE_DISTANCE, this._y );
+		this.getNextBullet().fireAtPoint(this._x - FIRE_DISTANCE, this._y );
 		
 		return true;
 	}	

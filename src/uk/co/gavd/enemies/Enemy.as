@@ -6,7 +6,6 @@ class uk.co.gavd.enemies.Enemy extends MovieClip {
 
 	// TODO refactor sof
 	private var prefDistToHero:Number = 120;
-	private var fireType:Number = 0; // TODO _root.fcEnemies.AIMATHERO;
 	private var shotOffset:Number = 0; // adjust where the bullet spawns from
 	private var scoreForKill:Number = 5;
 	private var fireRange:Number = 300;
@@ -63,7 +62,6 @@ class uk.co.gavd.enemies.Enemy extends MovieClip {
 		this.turnAndFace(targetX);
 		this.handleFiring(targetX);
 		this.handleMovementX(targetX);
-		
 	}
 	
 	private function handleMovementY():Void {
@@ -154,33 +152,33 @@ class uk.co.gavd.enemies.Enemy extends MovieClip {
 		*/
 	}
 	
-	// TODO shred most of this
 	private function doFire (targetX:Number, distFromHero:Number):Boolean {
 		return false;
 	}
 	
-	private function getNextBullet():MovieClip {
-		trace("Dupe " + _root.game.BGMid.bulletEnemy0);
-		var clip:MovieClip = _root.game.BGMid.bulletEnemy0.duplicateMovieClip("bulletEnemy_" + ++Enemy.lBulletIndex, _root.game.BGMid.getNextHighestDepth());
+	private function getNextBullet():Bullet {
+		var clip:Bullet = _root.game.BGMid.bulletEnemy.duplicateMovieClip("bulletEnemy_" + ++Enemy.lBulletIndex, _root.game.BGMid.getNextHighestDepth());
 		clip._x = this._x; // TODO offsetting?
 		clip._y = this._y; // TODO offsetting?
 		return clip;
 	}
-	
-	private function targetBulletOnHero (mcTmp:MovieClip):Void {
-		trace("Targeting bullet on hero " + mcTmp);
-		mcTmp.fire(_root.game.hero._x - _root.game.BGMid._x,  _root.game.hero._y);
-	}	
-	
+		
 	private function muzzleFlash():Void {
-		var bulletPrototype:MovieClip = eval("_root.game.BGMid.flasher" + this.fireType);
-		var flasher:MovieClip = bulletPrototype.duplicateMovieClip("bulletEnemy_" + ++Enemy.lBulletIndex, _root.game.BGMid.getNextHighestDepth());
+		var flasher:MovieClip = _root.game.BGMid.flasher0.duplicateMovieClip("bulletEnemy_" + ++Enemy.lBulletIndex, _root.game.BGMid.getNextHighestDepth());
 		
 		flasher._x = this._x;
 		flasher._y = this._y;
 	}
 	
-	function onLoad() {
-		this.stop();
+	private function loadHook():Void {
+		// for extensibility
 	}
+	
+	function onLoad():Void {
+		this.loadHook();
+		this.stop();
+		
+	}
+	
+	
 }

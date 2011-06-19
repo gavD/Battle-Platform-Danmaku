@@ -1,4 +1,6 @@
-﻿class uk.co.gavd.enemies.Turret extends uk.co.gavd.enemies.Enemy {
+﻿import uk.co.gavd.ballistics.Bullet;
+
+class uk.co.gavd.enemies.Turret extends uk.co.gavd.enemies.Enemy {
 	
 	private var rateOfFire:Number = 44;
 	private var clicksToFire:Number = 0;
@@ -18,11 +20,9 @@
 			return false;
 		}
 		
-		_root.sfx.gotoAndPlay("enemyFireTurret" + this.fireType); // TODO bomber fire
+//		_root.sfx.gotoAndPlay("enemyFireTurret" + this.fireType); // TODO bomber fire
 		
-		var mcTmp:MovieClip = this.getNextBullet();
-		trace("Spawned a bullet " + mcTmp);
-		this.targetBulletOnHero(mcTmp);
+		this.getNextBullet().fireAtTarget(_root.game.hero);
 		
 		return true;
 	}

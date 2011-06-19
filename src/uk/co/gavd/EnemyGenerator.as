@@ -17,6 +17,7 @@
 		
 		this.enemyIndex++;
 		_root.fcEnemies.registerEnemy(mcTmp);
+		// TODO remove sOf?
 		if (et == 14 || et == 0) { 
 			mcTmp._y = _root.GROUND_ENEMY_Y;
 		} else if (et == 3) {
@@ -25,7 +26,9 @@
 		else {
 			mcTmp._y = random(400) + 10;
 		}
+		// TODO remove eOf?
 		teleportIn(mcTmp);
+		
 		mcTmp._alpha = initialAlpha;
 		mcTmp.xScaleFactor = 1;
 		return mcTmp;
