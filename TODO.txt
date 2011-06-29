@@ -1,0 +1,3 @@
+Refactor out all duplicateMovieClip to attachMovie? Will mean a few less symbols on the stage
+
+Targeting code for reticle should just use the bullet code?
