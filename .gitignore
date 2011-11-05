@@ -2,3 +2,5 @@
 *.html
 graphics
 *.fla
+.nbproject
+nbproject
