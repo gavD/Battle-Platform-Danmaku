@@ -1,77 +1,80 @@
-﻿class uk.co.gavd.Reticle extends MovieClip {
-	var lShotIndex:Number = 0;
-	var lMuzzleIndex:Number = 0;
-	var isMouseDown:Boolean = false;
-	var framesBetweenShots:Number = 7;
-	var clicksToNextShot:Number = 0;
-	
-	function fireShot(directional:Boolean):Void {
-		
-		if(directional == undefined) {
-			directional = false;
-		}
-		
-		//trace("Fire shot");
-		if (_root.bGamePaused) {
-			trace("GAME PAUSED - CAN'T FIRE");
-			return;
-		} else if (_root.game.hero.lAction != _root.game.hero.OK) {
-			trace("HERO NOT OK - CAN'T FIRE");
-			return;
-		}
-		
-		// fire a bullet
-		lShotIndex++;
-		var tmp:String = "bulletHero" + lShotIndex;
-		var d:Number = _root.game.BGMid.getNextHighestDepth();
-		var mcTmp:MovieClip = _root.game.BGMid.attachMovie(
-				"BulletHero", tmp,
-				d);
-		
-		//duplicateMovieClip("_root.game.BGMid.bulletHero", tmp, d);
-		//eval("_root.game.BGMid.bulletHero" + lShotIndex);
-		mcTmp._x = _root.game.hero._x - _root.game.BGMid._x + (_root.game.hero.facingRight ? 5 : -5);
-		mcTmp._y = _root.game.hero._y - 12;
-
-		if(_root.ANGLED_SHOTS && directional) {
-			var virtualCursorX:Number = this._x - _root.game._x - _root.game.BGMid._x;
-			mcTmp.fireAtPoint(virtualCursorX, this._y);
-			var myRadians:Number = Math.atan2( mcTmp._y - mcTmp.targetY, mcTmp._x - mcTmp.targetX );
-			mcTmp._rotation = (myRadians * (180 / Math.PI)) + 180;
-		} else { // straight line fire
-			mcTmp.fire(mcTmp._x + 750 * (_root.game.hero.facingRight ? 1 : -1),
-						mcTmp._y);
-			if(!_root.game.hero.facingRight) {
-				mcTmp._rotation = 180;
-			}
-		}
-
-		var muzzle:MovieClip = _root.game.BGMid.muzzleHero.duplicateMovieClip("muzzleHero" + lMuzzleIndex, _root.game.BGMid.getNextHighestDepth());
-		//eval("_root.game.BGMid.muzzleHero" + lMuzzleIndex++);
-		muzzle._x = mcTmp._x;
-		muzzle._y = mcTmp._y;
-		if(!_root.game.hero.facingRight) {
-			muzzle._rotation = 180;
-		}
-		muzzle.gotoAndPlay(2);
-	}
-	
-	function onMouseDown():Void {
-		this.isMouseDown = true;
-	}
-	function onMouseUp():Void {
-		this.clicksToNextShot = 0;
-		this.isMouseDown = false;
-	}
-	
-	function onEnterFrame():Void {
-		this._x = _root._xmouse;
-		this._y = _root._ymouse;
-		if(this.isMouseDown) {
-			if(--this.clicksToNextShot <= 0) {
-				this.fireShot(true);
-				this.clicksToNextShot = this.framesBetweenShots;
-			}
-		}	
-	}
+﻿package uk.co.gavd {
+    import flash.display.*;
+    import flash.events.*;
+	import uk.co.gavd.ballistics.*;
+    
+    public class Reticle extends MovieClip {
+        private var lShotIndex:Number = 0;
+        private var lMuzzleIndex:Number = 0;
+        private var isMouseDown:Boolean = false;
+        private var framesBetweenShots:Number = 7;
+        private var clicksToNextShot:Number = 0;
+        
+        protected var theRoot:MovieClip = MovieClip(root);
+        
+        public function fireShot(directional:Boolean):void {
+            if (theRoot.bGamePaused) {
+                trace("GAME PAUSED - CAN'T FIRE");
+                return;
+            } else if (theRoot.game.hero.lAction != theRoot.game.hero.OK) {
+                trace("HERO NOT OK - CAN'T FIRE");
+                return;
+            }
+            
+            // fire a bullet
+            lShotIndex++;
+			
+			var b:BulletHero = new BulletHero();
+			
+            b.x = theRoot.game.hero.x - theRoot.game.BGMid.x + 55;
+            b.y = theRoot.game.hero.y + 12;
+			theRoot.game.BGMid.addChild(b);    
+            if(theRoot.ANGLED_SHOTS && directional) {
+                var virtualCursorX:Number = this.x - theRoot.game.x - theRoot.game.BGMid.x;
+                b.fireAtPoint(virtualCursorX, this.y);
+                var myRadians:Number = Math.atan2( b.y - b.targetY, b.x - b.targetX );
+                b.rotation = (myRadians * (180 / Math.PI)) + 180;
+            } else { // straight line fire
+                b.fireAtPoint(b.x + 750 * (theRoot.game.hero.facingRight ? 1 : -1), b.y);
+                if(!theRoot.game.hero.facingRight) {
+                    b.rotation = 180;
+                }
+            }
+			
+            b.addEventListener(Event.ENTER_FRAME, b.doFrame, false, 0, true);
+			
+    /*
+            var muzzle:MovieClip = theRoot.game.BGMid.muzzleHero.duplicateMovieClip("muzzleHero" + lMuzzleIndex, theRoot.game.BGMid.getNextHighestDepth());
+            //eval("theRoot.game.BGMid.muzzleHero" + lMuzzleIndex++);
+            muzzle.x = b.x;
+            muzzle.y = b.y;
+            if(!theRoot.game.hero.facingRight) {
+                muzzle.rotation = 180;
+            }
+            muzzle.gotoAndPlay(2);
+*/
+        }
+        
+        public function doMouseDown(event:MouseEvent):void {
+            this.isMouseDown = true;
+            trace("MOUSE DOWN");
+        }
+        public function doMouseUp(event:MouseEvent):void {
+            trace("MOUSE UP");
+            this.clicksToNextShot = 0;
+            this.isMouseDown = false;
+        }
+        
+        public function doFrame(e:Event):void {
+            this.x = theRoot.mouseX;
+            this.y = theRoot.mouseY;
+            
+            if(this.isMouseDown) {
+                if(--this.clicksToNextShot <= 0) {
+                    this.fireShot(true);
+                    this.clicksToNextShot = this.framesBetweenShots;
+                }
+            }
+        }
+    }
 }

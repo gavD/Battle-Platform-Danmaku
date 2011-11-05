@@ -1,44 +1,50 @@
-﻿var enemyGenerator:Object = {
-	clicks: 10,
-	enemyIndex: 0,
+﻿package uk.co.gavd {
+	import flash.display.*;
+	import uk.co.gavd.enemies.*;
+    
 	
-	spawnSpecificEnemyFromPoint:function (et:Number, spawnPoint:MovieClip):MovieClip {
-		var mc:MovieClip = this.spawnSpecificEnemy(et, 100);
-		mc._x = spawnPoint._x;
-		mc._y = spawnPoint._y;
-		_root.absDelete(spawnPoint);
-		return mc;
-	},
-	
-	spawnSpecificEnemy: function (et:Number, initialAlpha:Number):MovieClip {
-		duplicateMovieClip("_root.game.BGMid.enemyTemplate" + et, "enemy" + this.enemyIndex, _root.game.BGMid.getNextHighestDepth());
-		var mcTmp:MovieClip = eval("_root.game.BGMid.enemy" + this.enemyIndex);
-		//var mcTmp = eval("_root.game.BGMid.enemy" + this.enemyIndex);
+    public class EnemyGenerator {
+		private var game:Game;
 		
-		this.enemyIndex++;
-		_root.fcEnemies.registerEnemy(mcTmp);
-		// TODO remove sOf?
-		if (et == 14 || et == 0) { 
-			mcTmp._y = _root.GROUND_ENEMY_Y;
-		} else if (et == 3) {
-			mcTmp._y = 30;
-		}
-		else {
-			mcTmp._y = random(400) + 10;
-		}
-		// TODO remove eOf?
-		teleportIn(mcTmp);
 		
-		mcTmp._alpha = initialAlpha;
-		mcTmp.xScaleFactor = 1;
-		return mcTmp;
-	},
-	
-	teleportIn: function(o:MovieClip):Void {
-		o._alpha = 0;
-		o._x = _root.game.hero._x - _root.game.BGMid._x
-			+ (2 * random(_root.lLevelWidthMid))
-			- _root.lLevelWidthMid
-		;
-	}
+		public function EnemyGenerator(game:Game):void {
+			this.game = game;
+			trace("CONSTRUCT ENEMY GENERATOR");
+		}
+		
+		public function spawnSpecificEnemyFromPoint(et:Number, spawnPoint:MovieClip):Enemy {
+        
+			var mc:Enemy = this.spawnSpecificEnemy(et, 100);
+			
+			mc.x = spawnPoint.x;
+			mc.y = spawnPoint.y;
+			//game.parent.absDelete(spawnPoint); // TODO
+			 
+			 trace("::1 Blowing away spawn point " + spawnPoint);
+			 trace("::2 Remove");
+			 game.BGMid.removeChild(spawnPoint);
+			 trace("::3 done " + spawnPoint);
+			 spawnPoint = null;
+			 trace("::4 done " + spawnPoint);
+			 //trace("::4 ENEMY " + mc + " spawned");
+			return mc;
+		}
+    
+		public function spawnSpecificEnemy (et:Number, initialAlpha:Number):Enemy {
+			trace("Add to " + game.BGMid);
+			var t:Enemy = new Turret();
+			trace("ADDED " + t);
+			game.BGMid.addChild(t);
+			t.alpha = initialAlpha;
+			t.stop();
+			//t.xScaleFactor = 1;
+			// todo (MovieClip)root.fcEnemies.registerEnemy(t);
+			
+			return t;
+			
+		}
+    }
 }
+
+    	//private clicks:int = 10;
+		

@@ -1,3 +1,29 @@
 Refactor out all duplicateMovieClip to attachMovie? Will mean a few less symbols on the stage
 
 Targeting code for reticle should just use the bullet code?
+
+Make sure the energy bar works
+
+Reimplement loading bar
+
+flasher0 should stop on spawn
+
+reimplement blinker
+
+combo meter needs re-implementing
+
+re-implement game over
+
+take hit animation
+
+mobile hud flying ship in
+
+movie clip deletion
+
+multiplierText
+
+scoreText
+
+scoreFloaterText
+
+multiplierFloater[2]

@@ -2,7 +2,7 @@
 import AllTests;
 
 class BattlePlatformsTestRunner extends TestRunner {
-	public static function main():Void {
+	public static function main():void {
 		var runner = new BattlePlatformsTestRunner();
 	}
 	
