@@ -1,13 +1,13 @@
 ﻿package uk.co.gavd.ballistics {
     import flash.display.*
+    import uk.co.gavd.Game;
 	
     public class BulletHero extends Bullet {
 
 		private var fireDistance:int = 800;
 		
-		public function BulletHero() {
-			this.lSpeed = 30;
-			this.stop();
+		public function BulletHero(game:Game) {
+			super(game);
 		}
 		
 		public function targetOn(targetX:Number, targetY:Number):void {
@@ -19,7 +19,13 @@
         }
 		
         override protected function checkForHits():void {
-// TODO            theRoot.fcEnemies.detectHits(this);
+//			trace("Check for hits");
+			var theRootx:MovieClip = MovieClip(root); // TODO DI this?
+//			trace(" # " + theRootx);
+//			trace(" ## " + theRootx.fcEnemies);
+			
+			theRootx.fcEnemies.detectHits(this);
+
         }
     }
 }

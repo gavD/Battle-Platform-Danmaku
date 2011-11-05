@@ -1,6 +1,7 @@
 ﻿package uk.co.gavd.ballistics {
     import flash.display.*
     import flash.events.*;
+    import uk.co.gavd.Game;
     
     public class Bullet extends MovieClip {
 		public var hitZone:MovieClip;
@@ -18,14 +19,16 @@
         protected var damage:Number = 5;
         protected var travel:Number = 750; // how many px this bullet can fly
 		
-		protected var theRoot:MovieClip = MovieClip(root);
+		protected var game:Game;
 		
-		public function Bullet() {
+		public function Bullet(game:Game) {
+			this.game = game;
 			this.stop();
 		}
         
         public function fireAtPoint(targetX:Number, targetY:Number):void {
-            this.targetX = targetX ; this.targetY = targetY;// TODO remove
+            this.targetX = targetX;
+			this.targetY = targetY;// TODO remove
             var angle:Number = this.getAngleTo(targetX, targetY);
             
             var opp:Number = Math.sin(angle) * travel; // opp = h * s
@@ -43,8 +46,8 @@
         }
         
         public function fireAtTarget(target:MovieClip):void {
-            this.fireAtPoint(target.x - theRoot.game.BGMid.x, target.y);
-        }
+            this.fireAtPoint(target.x - game.BGMid.x, target.y);
+		}
         
         private function getAngleTo(x2:Number, y2:Number):Number {
             return Math.atan2(y2 - this.y, x2 - this.x);
@@ -109,5 +112,20 @@
             }
 			*/
         }
+		
+		public function blam() {
+			if(this.parent === null ) {
+				// TODO why does this still come up?!?!?! // trace("Already blammed");
+				return;
+			}
+			// TODO remove the event listener
+			this.parent.removeChild(this);
+			this.dispose();
+			trace("Removed");
+		}
+		
+		public function dispose() {
+			this.stop();
+		}
     }
 }

@@ -5,10 +5,11 @@
 	
     public class EnemyGenerator {
 		private var game:Game;
+		private var fcEnemies:EnemyCollection;
 		
-		
-		public function EnemyGenerator(game:Game):void {
+		public function EnemyGenerator(game:Game, fcEnemies:EnemyCollection):void {
 			this.game = game;
+			this.fcEnemies = fcEnemies;
 			trace("CONSTRUCT ENEMY GENERATOR");
 		}
 		
@@ -20,25 +21,28 @@
 			mc.y = spawnPoint.y;
 			//game.parent.absDelete(spawnPoint); // TODO
 			 
-			 trace("::1 Blowing away spawn point " + spawnPoint);
-			 trace("::2 Remove");
+			 //trace("::1 Blowing away spawn point " + spawnPoint);
+			 //trace("::2 Remove");
 			 game.BGMid.removeChild(spawnPoint);
-			 trace("::3 done " + spawnPoint);
+			 spawnPoint.dispose();
 			 spawnPoint = null;
-			 trace("::4 done " + spawnPoint);
+			 
+			 //trace("::3 done " + spawnPoint);
+			 //spawnPoint = null;
+			 //trace("::4 done " + spawnPoint);
 			 //trace("::4 ENEMY " + mc + " spawned");
 			return mc;
 		}
     
 		public function spawnSpecificEnemy (et:Number, initialAlpha:Number):Enemy {
 			trace("Add to " + game.BGMid);
-			var t:Enemy = new Turret();
+			var t:Enemy = new Turret(this.game);
 			trace("ADDED " + t);
 			game.BGMid.addChild(t);
 			t.alpha = initialAlpha;
 			t.stop();
 			//t.xScaleFactor = 1;
-			// todo (MovieClip)root.fcEnemies.registerEnemy(t);
+			fcEnemies.registerEnemy(t);
 			
 			return t;
 			

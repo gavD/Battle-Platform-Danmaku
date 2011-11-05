@@ -1,6 +1,8 @@
 ﻿package uk.co.gavd.enemies {
+	import uk.co.gavd.Game;
 	import uk.co.gavd.ballistics.Bullet;
 	import flash.display.*;
+	import flash.events.Event;
 
     public class Turret extends Enemy {
 		
@@ -11,33 +13,38 @@
 		
 		private var hp:Number = 5;
 		
-		// stub out methods that don't apply to turrets
-		private function handleMovementY():void {}
-		private function handleMovementX():void {}
+		public function Turret(game:Game) {
+			super(game);
+		}
 		
-			protected var theRoot:MovieClip = MovieClip(root); // todo - factor out?
-			protected var hitFlash:MovieClip;
-		private function doFire (lTargetX:Number, distFromHero:Number):Boolean {
+		// stub out methods that don't apply to turrets
+		protected function handleMovementY():void {}
+		protected function handleMovementX():void {}
+		
+		override protected function doFire (lTargetX:Number, distFromHero:Number):Boolean {
 			if(--this.clicksToFire <= 0) {
 				this.clicksToFire = this.rateOfFire;
 			} else {
 				return false;
 			}
 			
-	//        theRoot.sfx.gotoAndPlay("enemyFireTurret" + this.fireType); // TODO bomber fire
-			
-			// TODO this.getNextBullet().fireAtTarget(theRoot.game.hero);
+	//		_root.sfx.gotoAndPlay("enemyFireTurret" + this.fireType); // TODO bomber fire
+			trace("FIRE BULLET AT TARGET");
+			var bul:Bullet = this.getNextBullet()
+			bul.addEventListener ( Event.ENTER_FRAME, bul.doFrame, false, 0, true);
+			bul.fireAtTarget(game.hero);
 			
 			return true;
 		}
 		
 		public function takeHit():void {
-			this.hp -= theRoot.game.hero.power;
+			var theRootx:MovieClip = MovieClip(root); // TODO DI this?
+			this.hp -= theRootx.game.hero.power;
 			if(this.hp <= 0) {
-				theRoot.fcEnemies.kill(this);
+				theRootx.fcEnemies.kill(this);
 			} else {
 				//this["hitFlash"].gotoAndPlay(1);
-				theRoot.sfxEnemyExplosions.gotoAndPlay("hit");
+				theRootx.sfxEnemyExplosions.gotoAndPlay("hit");
 			}
 		}
     }

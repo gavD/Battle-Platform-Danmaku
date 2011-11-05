@@ -10,13 +10,18 @@
         private var framesBetweenShots:Number = 7;
         private var clicksToNextShot:Number = 0;
         
-        protected var theRoot:MovieClip = MovieClip(root);
+		private var game:Game;
+		
+		public function Reticle(game:Game) {
+			this.game = game;
+		}
         
         public function fireShot(directional:Boolean):void {
-            if (theRoot.bGamePaused) {
-                trace("GAME PAUSED - CAN'T FIRE");
-                return;
-            } else if (theRoot.game.hero.lAction != theRoot.game.hero.OK) {
+            //if (bGamePaused) {
+              //  trace("GAME PAUSED - CAN'T FIRE");
+                //return;
+            //} else // TODO
+			if (game.hero.lAction != game.hero.OK) {
                 trace("HERO NOT OK - CAN'T FIRE");
                 return;
             }
@@ -24,31 +29,28 @@
             // fire a bullet
             lShotIndex++;
 			
-			var b:BulletHero = new BulletHero();
+			var b:BulletHero = new BulletHero(game);
 			
-            b.x = theRoot.game.hero.x - theRoot.game.BGMid.x + 55;
-            b.y = theRoot.game.hero.y + 12;
-			theRoot.game.BGMid.addChild(b);    
-            if(theRoot.ANGLED_SHOTS && directional) {
-                var virtualCursorX:Number = this.x - theRoot.game.x - theRoot.game.BGMid.x;
+            b.x = game.hero.x - game.BGMid.x + 55;
+            b.y = game.hero.y + 12;
+			game.BGMid.addChild(b);    
+            if(directional) {
+                var virtualCursorX:Number = this.x - game.x - game.BGMid.x;
                 b.fireAtPoint(virtualCursorX, this.y);
                 var myRadians:Number = Math.atan2( b.y - b.targetY, b.x - b.targetX );
                 b.rotation = (myRadians * (180 / Math.PI)) + 180;
             } else { // straight line fire
-                b.fireAtPoint(b.x + 750 * (theRoot.game.hero.facingRight ? 1 : -1), b.y);
-                if(!theRoot.game.hero.facingRight) {
-                    b.rotation = 180;
-                }
+                b.fireAtPoint(b.x + 750, b.y);
             }
 			
             b.addEventListener(Event.ENTER_FRAME, b.doFrame, false, 0, true);
 			
     /*
-            var muzzle:MovieClip = theRoot.game.BGMid.muzzleHero.duplicateMovieClip("muzzleHero" + lMuzzleIndex, theRoot.game.BGMid.getNextHighestDepth());
-            //eval("theRoot.game.BGMid.muzzleHero" + lMuzzleIndex++);
+            var muzzle:MovieClip = game.BGMid.muzzleHero.duplicateMovieClip("muzzleHero" + lMuzzleIndex, game.BGMid.getNextHighestDepth());
+            //eval("game.BGMid.muzzleHero" + lMuzzleIndex++);
             muzzle.x = b.x;
             muzzle.y = b.y;
-            if(!theRoot.game.hero.facingRight) {
+            if(!game.hero.facingRight) {
                 muzzle.rotation = 180;
             }
             muzzle.gotoAndPlay(2);
@@ -66,9 +68,11 @@
         }
         
         public function doFrame(e:Event):void {
-            this.x = theRoot.mouseX;
-            this.y = theRoot.mouseY;
-            
+			/*
+			trace("e " + e.toString());
+            this.x = mouseX;
+            this.y = mouseY;
+            */
             if(this.isMouseDown) {
                 if(--this.clicksToNextShot <= 0) {
                     this.fireShot(true);
