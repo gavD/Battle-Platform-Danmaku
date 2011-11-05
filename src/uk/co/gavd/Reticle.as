@@ -11,9 +11,11 @@
         private var clicksToNextShot:Number = 0;
         
 		private var game:Game;
+		private var config:Config;
 		
-		public function Reticle(game:Game) {
+		public function Reticle(game:Game, config:Config) {
 			this.game = game;
+			this.config = config;
 		}
         
         public function fireShot(directional:Boolean):void {

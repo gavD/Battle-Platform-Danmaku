@@ -103,14 +103,12 @@
         }
         
         protected function checkForHits():void {
-			/*
-			TODO
-            if (this.hitZone.hitTest(theRoot.game.hero.hitZone)) {
-                theRoot.game.hero.takeHit(this.damage);
+            if (this.hitZone.hitTestObject(game.hero.hitZone)) {
+                game.hero.takeHit(this.damage);
                 //theRoot.fcEnemies.applyBounceInner(bul, 1); // TODO
                 this.gotoAndPlay("explode");
             }
-			*/
+			
         }
 		
 		public function blam() {

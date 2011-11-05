@@ -2,6 +2,7 @@
 	import uk.co.gavd.ballistics.*;
 	import flash.display.*;
     import flash.events.*;
+    import uk.co.gavd.Config;
     
     public class EnemyCollection {
 		
@@ -10,9 +11,12 @@
 		
 		protected var theRoot:MovieClip;
 		
-		public function EnemyCollection(theRoot:MovieClip) {
+		protected var config:Config;
+		
+		public function EnemyCollection(theRoot:MovieClip, config:Config) {
 			this.arEnemies = new Array();
 			this.theRoot = theRoot;
+			this.config = config;
 		}
 		
 		public function killAll():void {
@@ -103,9 +107,8 @@ var mcTmp:MovieClip = theRoot.game.BGMid.scoreFloaterTemplate.duplicateMovieClip
 			return Math.abs(this.getDistanceFromHeroRaw(ptr));
 		}
 	
-		public function doFrame():void {
-			
-			if (theRoot.bGamePaused) { return; }
+		public function doFrame(e:Event):void {
+			trace("DOFRAME" + this.arEnemies.length);
 			
 			for (var i:Number = 0; i < this.arEnemies.length; i++) {
 				var tmp:Enemy = this.arEnemies[i];

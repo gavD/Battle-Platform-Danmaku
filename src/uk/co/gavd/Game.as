@@ -12,10 +12,16 @@
 		public var BGTiles:MovieClip;
 		public var BGMid:MovieClip;
 		
+		private var config:Config;
+		
 		public function Game() {
 			this.initBGTiles = this.BGTiles.x;
 			this.initBGMidX = this.BGMid.x;
 			this.loadLevel(1);
+		}
+		
+		public function setConfig(config:Config) {
+			this.config = config;
 		}
 		
 		public function loadLevel(level:Number):void {
@@ -29,15 +35,34 @@
 		}
 		
 		public function doFrame(event:Event):void {
-			if(theRoot.bGamePaused) {
-				return;
-			}
-			this.BGMid.x -= theRoot.SCROLL_SPEED;
-			if(this.curLevel == 1 && this.BGMid.x < -4750) {
+			trace("GDOFRAME");
+//			if(theRoot.bGamePaused) {
+//				return;
+//			}
+			this.BGMid.x -= Config.SCROLL_SPEED;
+/*
+if(this.curLevel == 1 && this.BGMid.x < -4750) {
 				trace("LEVEL UP"); // TODO tidy this up
 				this.loadLevel(2);
 			}
-			this.BGTiles.x -= theRoot.SCROLL_SPEED * 0.2;
+			*/
+			this.BGTiles.x -= Config.SCROLL_SPEED * 0.2;
 		}
+		
+		/*
+		function restart(config:Config, fcBullets: ):void {
+    // TODO
+    config.score = 0;
+// TODO    game.hero.init(true);
+    
+    // reset music if necessary
+    //confi.sfxMusic.gotoAndPlay("maybeInMay");
+    config.bGamePaused = false;
+    fcBullets.killAll = false;
+    //trace("RESTART");
+    //theRoot.fcGameOver.gotoAndStop(1);
+    //theRoot.fcGameOver._visible = false;
+}
+*/
     }
 }

@@ -18,10 +18,11 @@
 		}
 		
 		// stub out methods that don't apply to turrets
-		protected function handleMovementY():void {}
-		protected function handleMovementX():void {}
+		override protected function handleMovementY():void {}
+		override protected function handleMovementX():void {}
 		
 		override protected function doFire (lTargetX:Number, distFromHero:Number):Boolean {
+			trace("FIRE BULLET AT TARGET");
 			if(--this.clicksToFire <= 0) {
 				this.clicksToFire = this.rateOfFire;
 			} else {
@@ -29,7 +30,7 @@
 			}
 			
 	//		_root.sfx.gotoAndPlay("enemyFireTurret" + this.fireType); // TODO bomber fire
-			trace("FIRE BULLET AT TARGET");
+			
 			var bul:Bullet = this.getNextBullet()
 			bul.addEventListener ( Event.ENTER_FRAME, bul.doFrame, false, 0, true);
 			bul.fireAtTarget(game.hero);

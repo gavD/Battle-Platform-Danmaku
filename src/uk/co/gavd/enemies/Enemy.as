@@ -52,6 +52,7 @@
 //				return;
 //			}
 
+
 			if (this.lAction == Enemy.DYING) {
 				return;
 			}
@@ -75,38 +76,9 @@
 //			this.handleMovementX(targetX);
 		}
 		
-		private function handleMovementY():void {
-			/*
-			// TODO move into flying class
-			if (this.enemyType == this.FLYING) {
-				if (Math.abs(this.y - game.hero.y) > this.prefYFromHero) {
-					// default to being OK with being within 20 pixels
-					// of the hero on the Y axis
-					var desiredYMin:Number = game.hero.y - 10;
-					var desiredYMax:Number = desiredYMin + 20;
-					
-	// TODO?            //if (this.prefDistToHeroYMax) {
-	//                        desiredYMin += this.prefDistToHeroYMin;
-	//                        desiredYMax += this.prefDistToHeroYMax;
-	//                    }
-					
-					if (this.y < desiredYMin) {
-						this.y += this.speed;
-					} else if (this.y > 10 && this.y > desiredYMax) {
-						this.y -= this.speed;
-					}
-				}
-				
-				// fix scroll bounds
-				if (this.y < theRoot.SCROLL_BOUNDS_Y_UPPER) {
-					this.y = theRoot.SCROLL_BOUNDS_Y_UPPER;
-				} else if (this.y > theRoot.SCROLL_BOUNDS_Y_LOWER){
-					this.y = theRoot.SCROLL_BOUNDS_Y_LOWER;
-				}
-			}
-			// */
-		}
-
+		protected function handleMovementX():void {} // TODO
+		protected function handleMovementY():void {} // TODO
+		
 		private function turnAndFace(targetX:Number):void {
 			if (this.bFacingLeft && targetX > this.x) {
 				trace("LOOK RIGHT");
@@ -124,6 +96,7 @@
 			var lDistX:Number = Math.abs(distFromHero);
 			//trace("Dist: " + lDistX + "; range : " +  theRoot.lEnemyFireRange);
 			if (lDistX <= this.fireRange) { // within firing range
+			trace("Do fire");
 				// bombers and ground movers don't stop
 				//trace("CHECK FOR STOP");
 	//            if (this.enemyType == this.BOMBER || this.enemyType == this.GROUND_WALK_RIGHT)   {
@@ -144,24 +117,6 @@
 					this.muzzleFlash();
 				}
 			}
-		}
-		
-		private function handleMovementX(targetX:Number):void { 
-		/*
-			if (this.enemyType == this.BOMBER) {
-				this.x -= this.speed;
-			}
-			else if (this.enemyType == this.GROUND_WALK_RIGHT) {
-				this.x += this.speed;
-			}
-			else {
-				if (targetX < this.x) {
-					this.x-=this.speed;
-				} else {
-					this.x+=this.speed;
-				}
-			}
-			*/
 		}
 		
 		protected function doFire (targetX:Number, distFromHero:Number):Boolean {

@@ -27,7 +27,7 @@
                                       // inertia, how much should movement be modified by
             
 		public var lEnergy:Number = 0;
-		private var lMaxEnergy:Number = 40 + (theRoot.DEBUG_MODE ? 1000 : 0); // 100;
+		private var lMaxEnergy:Number = 40;
 		
 		public var thrusterRear:MovieClip;
 		public var thrusterFront:MovieClip;
@@ -173,7 +173,7 @@
                 theRoot.fcBlinker.doInvincible();
             }
         }
-    
+    */
         public function takeHit(lDamage:Number):void {
             if (lAction == DYING) {
                 return;
@@ -181,26 +181,25 @@
                 return;
             }
             
-            theRoot.takeHit.gotoAndPlay(2);
-            
-            theRoot.fcBlinker.gotoAndStop(1);
+//            theRoot.takeHit.gotoAndPlay(2);
+//			  theRoot.fcBlinker.gotoAndStop(1);
             this.visible = true;
             lEnergy -= lDamage;
             
             if (lEnergy <= 0) {
                 lAction = DYING;
-                gotoAndPlay("die");
+                this.gotoAndPlay("die");
             } else {
                 this.gotoAndPlay("takeHit");
-                theRoot.sfxEnemyExplosions.gotoAndPlay("heroTakeHit");
+//                theRoot.sfxEnemyExplosions.gotoAndPlay("heroTakeHit");
             }
-            
         }
-        */
+		
+        /*
     // TODO    public function onLoad() {
     //         this.init(true);    
     //     }
-        
+        */
         public function doFrame(event:Event) {
             //if (theRoot.bGamePaused) { return; } // TODO
             //else if (lAction == DYING) { return; }
@@ -220,5 +219,6 @@
             }
             this.applyMovement(lXDir,lYDir);
         }
+		
     }
 }
