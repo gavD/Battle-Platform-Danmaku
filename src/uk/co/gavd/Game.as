@@ -35,7 +35,7 @@
 		}
 		
 		public function doFrame(event:Event):void {
-			trace("GDOFRAME");
+			
 //			if(theRoot.bGamePaused) {
 //				return;
 //			}

@@ -11,12 +11,12 @@
 		}
 		
 		 
-			public function dispose():void
-			{
-				// clean up after ourself!
-				trace("SHRED spawn point");
-				stop();
-			}
+		public function dispose():void
+		{
+			// clean up after ourself!
+			trace("SHRED spawn point");
+			stop();
+		}
 	}
 	
 }

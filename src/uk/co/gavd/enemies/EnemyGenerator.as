@@ -22,33 +22,32 @@
 			
 			mc.x = spawnPoint.x;
 			mc.y = spawnPoint.y;
-			//game.parent.absDelete(spawnPoint); // TODO
 			 
-			 //trace("::1 Blowing away spawn point " + spawnPoint);
-			 //trace("::2 Remove");
-			 game.BGMid.removeChild(spawnPoint);
-			 spawnPoint.dispose();
-			 spawnPoint = null;
+			game.BGMid.removeChild(spawnPoint);
+			spawnPoint.dispose();
+			spawnPoint = null;
 			 
-			 //trace("::3 done " + spawnPoint);
-			 //spawnPoint = null;
-			 //trace("::4 done " + spawnPoint);
-			 //trace("::4 ENEMY " + mc + " spawned");
 			return mc;
 		}
     
 		public function spawnSpecificEnemy (et:Number, initialAlpha:Number):Enemy {
 			trace("Add to " + game.BGMid);
-			var t:Enemy = new Turret(this.game);
-			trace("ADDED " + t);
+			var t:Enemy
+			switch(et) {
+				case 4:
+					t = new Turret4Way(this.game);
+					break;
+				default:
+					t = new Turret(this.game);
+					break;
+			}
+			
 			game.BGMid.addChild(t);
 			t.alpha = initialAlpha;
 			t.stop();
-			//t.xScaleFactor = 1;
 			fcEnemies.registerEnemy(t);
 			
 			return t;
-			
 		}
     }
 }

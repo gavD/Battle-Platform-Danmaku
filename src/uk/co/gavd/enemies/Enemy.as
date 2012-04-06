@@ -7,13 +7,15 @@
 	    private static var lBulletIndex:Number = 0; // TODO move to bullets?
 
 		// TODO refactor sof
-		private var prefDistToHero:Number = 120;
-		private var shotOffset:Number = 0; // adjust where the bullet spawns from
-		private var scoreForKill:Number = 5;
-		private var fireRange:Number = 300;
+		protected var prefDistToHero:Number = 120;
+		protected var shotOffset:Number = 0; // adjust where the bullet spawns from
+		protected var scoreForKill:Number = 5;
+		protected var fireRange:Number = 300;
 		
-		private var enemyFadeInRate:Number = 10;
-		private var prefYFromHero:Number = 20; // how far a clip should try to get in line with the hero
+		protected var hp:Number = 5;
+		
+		protected var enemyFadeInRate:Number = 10;
+		protected var prefYFromHero:Number = 20; // how far a clip should try to get in line with the hero
 		
 		// ammo types
 		public static var AIMATHERO:Number =  0;
@@ -96,7 +98,7 @@
 			var lDistX:Number = Math.abs(distFromHero);
 			//trace("Dist: " + lDistX + "; range : " +  theRoot.lEnemyFireRange);
 			if (lDistX <= this.fireRange) { // within firing range
-			trace("Do fire");
+			//trace("Do fire");
 				// bombers and ground movers don't stop
 				//trace("CHECK FOR STOP");
 	//            if (this.enemyType == this.BOMBER || this.enemyType == this.GROUND_WALK_RIGHT)   {
@@ -131,9 +133,8 @@
 			game.BGMid.addChild(clip);
 			return clip;
 		}
-			
 		
-		private function muzzleFlash():void {
+		protected function muzzleFlash():void {
 			/*
 			var flasher:MovieClip = game.BGMid.flasher0.duplicateMovieClip("bulletEnemy_" + +
 	
@@ -144,7 +145,7 @@
 			*/
 		}
 		
-		private function loadHook():void {
+		protected function loadHook():void {
 			// for extensibility
 		}
 		/*

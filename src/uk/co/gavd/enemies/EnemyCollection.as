@@ -32,7 +32,7 @@
 		}
 		
 		public function registerEnemy(ptr:Enemy):void {
-			trace("Register " + ptr);
+//			trace("Register " + ptr);
 			// let's see if we can put it in an existing place
 			var spaceFound:Boolean = false;
 			for(var i:Number = 0; i < this.arEnemies.length; i++) {
@@ -57,7 +57,6 @@
 		}
 		
 		public function detectHits(bullet:MovieClip):void {
-			trace("Loog for hits in " + this.arEnemies + "...");
 			for (var i:Number = 0; i < this.arEnemies.length; i++) {
 				var ptr:MovieClip = this.arEnemies[i];
 			
@@ -108,7 +107,7 @@ var mcTmp:MovieClip = theRoot.game.BGMid.scoreFloaterTemplate.duplicateMovieClip
 		}
 	
 		public function doFrame(e:Event):void {
-			trace("DOFRAME" + this.arEnemies.length);
+			//trace("DOFRAME" + this.arEnemies.length);
 			
 			for (var i:Number = 0; i < this.arEnemies.length; i++) {
 				var tmp:Enemy = this.arEnemies[i];

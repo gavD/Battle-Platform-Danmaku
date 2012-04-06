@@ -15,11 +15,14 @@
         public var targetY:Number = 0; // TODO lock down?
         
         // info about this bullet
-        protected var lSpeed:Number = 5;
         protected var damage:Number = 5;
         protected var travel:Number = 750; // how many px this bullet can fly
 		
 		protected var game:Game;
+		
+		public function getSpeed():int {
+			return 5;
+		}
 		
 		public function Bullet(game:Game) {
 			this.game = game;
@@ -27,6 +30,7 @@
 		}
         
         public function fireAtPoint(targetX:Number, targetY:Number):void {
+			trace("Firing at " + targetX + ", " + targetY);
             this.targetX = targetX;
 			this.targetY = targetY;// TODO remove
             var angle:Number = this.getAngleTo(targetX, targetY);
@@ -54,14 +58,15 @@
         }
         
         private function calculateTravelPerFrame(xRem:Number, yRem:Number):void {
+			trace("Calculating speed from " + this.getSpeed());
             // calculate speed of movement per frame
-            this.xTravel = this.lSpeed * (xRem / (Math.abs(xRem) + Math.abs(yRem)));
-            this.yTravel = this.lSpeed - Math.abs(xTravel);
+            this.xTravel = this.getSpeed() * (xRem / (Math.abs(xRem) + Math.abs(yRem)));
+            this.yTravel = this.getSpeed() - Math.abs(xTravel);
         }
         
         private function calculateFramesToLive(xRem:Number, yRem:Number):void {
             // work out how long this bullet has to live
-            var defaultFramesToLive:Number = Math.round(this.travel / this.lSpeed);
+            var defaultFramesToLive:Number = Math.round(this.travel / this.getSpeed());
             var ticksToOutOfY:Number = defaultFramesToLive;
     
             if (targetY < y) {
@@ -73,7 +78,7 @@
             
             this.framesToLive = (ticksToOutOfY < defaultFramesToLive) ? ticksToOutOfY : defaultFramesToLive;
             
-            //trace("ticksToOutOfY=" + ticksToOutOfY + ", default=" + Math.round(this.travel / this.lSpeed) + " : Final ticks are " + framesToLive);
+            //trace("ticksToOutOfY=" + ticksToOutOfY + ", default=" + Math.round(this.travel / this.getSpeed()) + " : Final ticks are " + framesToLive);
         }
         
         private function moveTowardsTarget():void {
@@ -103,12 +108,25 @@
         }
         
         protected function checkForHits():void {
+			if( game.hero.lAction != game.hero.OK ) {
+				trace("hero is currently being hit");
+				return;
+			}
+			
+			if(!game || !game.hero || !game.hero.hitZone) {
+				trace("### BULLET?");
+				trace("### game              " + game);
+				trace("### game.hero         " + game.hero);
+				trace("### game.hero.action  " + game.hero.lAction);
+				trace("### game.hero.hitZone " + game.hero.hitZone);
+			}
+			
             if (this.hitZone.hitTestObject(game.hero.hitZone)) {
                 game.hero.takeHit(this.damage);
                 //theRoot.fcEnemies.applyBounceInner(bul, 1); // TODO
                 this.gotoAndPlay("explode");
             }
-			
+		
         }
 		
 		public function blam() {

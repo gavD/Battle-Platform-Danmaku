@@ -6,14 +6,12 @@
 
     public class Turret extends Enemy {
 		
-		private var rateOfFire:Number = 44;
-		private var clicksToFire:Number = 0;
-		private var fireRange:Number = 600;
-		private var scoreForKill:Number = 4;
-		
-		private var hp:Number = 5;
+		protected var rateOfFire:Number = 44;
+		protected var clicksToFire:Number = 0;
 		
 		public function Turret(game:Game) {
+			this.fireRange = 600;
+			this.scoreForKill = 4;
 			super(game);
 		}
 		
@@ -22,7 +20,7 @@
 		override protected function handleMovementX():void {}
 		
 		override protected function doFire (lTargetX:Number, distFromHero:Number):Boolean {
-			trace("FIRE BULLET AT TARGET");
+			//trace("FIRE BULLET AT TARGET");
 			if(--this.clicksToFire <= 0) {
 				this.clicksToFire = this.rateOfFire;
 			} else {
@@ -40,6 +38,7 @@
 		
 		public function takeHit():void {
 			var theRootx:MovieClip = MovieClip(root); // TODO DI this?
+			trace("HIT! hp is " + this.hp + " ; decrement by " + theRootx.game.hero.power);
 			this.hp -= theRootx.game.hero.power;
 			if(this.hp <= 0) {
 				theRootx.fcEnemies.kill(this);

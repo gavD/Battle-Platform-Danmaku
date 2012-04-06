@@ -7,7 +7,7 @@
         private var lShotIndex:Number = 0;
         private var lMuzzleIndex:Number = 0;
         private var isMouseDown:Boolean = false;
-        private var framesBetweenShots:Number = 7;
+        private var framesBetweenShots:Number = 3;
         private var clicksToNextShot:Number = 0;
         
 		private var game:Game;
@@ -37,8 +37,14 @@
             b.y = game.hero.y + 12;
 			game.BGMid.addChild(b);    
             if(directional) {
+				
                 var virtualCursorX:Number = this.x - game.x - game.BGMid.x;
-                b.fireAtPoint(virtualCursorX, this.y);
+				var virtualCursorY:Number = this.y;
+				
+				virtualCursorX += (Math.floor(Math.random() * 50) - 25);
+				virtualCursorY += (Math.floor(Math.random() * 50) - 25);
+				
+                b.fireAtPoint(virtualCursorX, virtualCursorY);
                 var myRadians:Number = Math.atan2( b.y - b.targetY, b.x - b.targetX );
                 b.rotation = (myRadians * (180 / Math.PI)) + 180;
             } else { // straight line fire
@@ -70,11 +76,9 @@
         }
         
         public function doFrame(e:Event):void {
-			/*
-			trace("e " + e.toString());
-            this.x = mouseX;
-            this.y = mouseY;
-            */
+			this.x = game.parent.mouseX;
+            this.y = game.parent.mouseY;
+            
             if(this.isMouseDown) {
                 if(--this.clicksToNextShot <= 0) {
                     this.fireShot(true);

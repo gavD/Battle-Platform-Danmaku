@@ -6,6 +6,10 @@
 
 		private var fireDistance:int = 800;
 		
+		public override function getSpeed():int {
+			return 22;
+		}
+		
 		public function BulletHero(game:Game) {
 			super(game);
 		}
