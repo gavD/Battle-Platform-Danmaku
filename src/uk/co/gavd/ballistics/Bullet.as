@@ -2,6 +2,7 @@
     import flash.display.MovieClip;
     import flash.events.Event;
     import uk.co.gavd.Game;
+	import uk.co.gavd.Hero;
     
     public class Bullet extends MovieClip {
 		public var hitZone:MovieClip;
@@ -30,7 +31,6 @@
 		}
         
         public function fireAtPoint(targetX:Number, targetY:Number):void {
-			trace("Firing at " + targetX + ", " + targetY);
             this.targetX = targetX;
 			this.targetY = targetY;// TODO remove
             var angle:Number = this.getAngleTo(targetX, targetY);
@@ -58,7 +58,6 @@
         }
         
         private function calculateTravelPerFrame(xRem:Number, yRem:Number):void {
-			trace("Calculating speed from " + this.lSpeed);
             // calculate speed of movement per frame
             this.xTravel = this.lSpeed * (xRem / (Math.abs(xRem) + Math.abs(yRem)));
             this.yTravel = this.lSpeed - Math.abs(xTravel);
@@ -108,7 +107,7 @@
         }
         
         protected function checkForHits():void {
-			if( game.hero.lAction != game.hero.OK ) {
+			if( game.hero.lAction != Hero.OK ) {
 				return;
 			}
 			

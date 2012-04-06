@@ -35,17 +35,6 @@
 			
 			return true;
 		}
-		
-		public function takeHit():void {
-			var theRootx:MovieClip = MovieClip(root); // TODO DI this?
-			trace("HIT! hp is " + this.hp + " ; decrement by " + theRootx.game.hero.power);
-			this.hp -= theRootx.game.hero.power;
-			if(this.hp <= 0) {
-				theRootx.fcEnemies.kill(this);
-			} else {
-				//this["hitFlash"].gotoAndPlay(1);
-				theRootx.sfxEnemyExplosions.gotoAndPlay("hit");
-			}
-		}
+
     }
 }

@@ -3,9 +3,12 @@
 	import uk.co.gavd.ballistics.*;
     import uk.co.gavd.Game;
 	import flash.events.Event;
+	import flash.filters.GlowFilter;
 
     public class Enemy extends MovieClip {
 	    private static var lBulletIndex:Number = 0; // TODO move to bullets?
+		
+		public var flasher:MovieClip;
 
 		// TODO refactor sof
 		protected var prefDistToHero:Number = 120;
@@ -17,14 +20,14 @@
 		protected var prefYFromHero:Number = 20; // how far a clip should try to get in line with the hero
 		
 		// ammo types
-		public static var AIMATHERO:int =  0;
-		public static var BOMB:int =  1;
-		public static var FOUR_WAY:int =  2;
-		public static var SHOTGUN:int =  3;
-		public static var STRAIGHTACROSS:int =  4;
-		public static var BOMB_VERT:int =  5; // TODO these 2 are dupes in bg play area
-		public static var AMMO_ROTATING:int =  6;  // TODO these 2 are dupes in bg play area
-		public static var CLOUD:int = 7;
+		public static const AIMATHERO:int =  0;
+		public static const BOMB:int =  1;
+		public static const FOUR_WAY:int =  2;
+		public static const SHOTGUN:int =  3;
+		public static const STRAIGHTACROSS:int =  4;
+		public static const BOMB_VERT:int =  5; // TODO these 2 are dupes in bg play area
+		public static const AMMO_ROTATING:int =  6;  // TODO these 2 are dupes in bg play area
+		public static const CLOUD:int = 7;
 		
 		public static const NOTHING:int = 0;
 		public static const HOMING:int = 1;
@@ -35,7 +38,6 @@
 		public var lAction:int = 0;
 		public var bFacingLeft:Boolean = true;
 		
-				
 		protected var game:Game;
 		
 		public function Enemy(game:Game) {
@@ -44,10 +46,10 @@
 
 		public function process():void {
 			
-//			if (game.hero.lAction != 0) {
-//				//trace("game not in play");
-//				return;
-//			}
+			if (game.hero.lAction != 0) {
+				//trace("game not in play");
+				return;
+			}
 
 			if (this.lAction == Enemy.DYING) {
 				return;
@@ -58,22 +60,20 @@
 			else if (this.lAction == Enemy.HOMING) {
 				this.handleMovementAndShooting();
 			}
-				
 		}
 		
 		private function handleMovementAndShooting():void {
+			this.handleMovementX();
 			this.handleMovementY();
 			
-			
-			var targetX:Number  = game.hero.x - game.BGMid.x;
+			var targetX:Number = game.hero.x - game.BGMid.x;
 			
 			this.turnAndFace(targetX);
 			this.handleFiring(targetX);
-//			this.handleMovementX(targetX);
 		}
 		
-		protected function handleMovementX():void {} // TODO
-		protected function handleMovementY():void {} // TODO
+		protected function handleMovementX():void {}
+		protected function handleMovementY():void {}
 		
 		private function turnAndFace(targetX:Number):void {
 			if (this.bFacingLeft && targetX > this.x) {
@@ -90,25 +90,7 @@
 		private function handleFiring(targetX:Number):void {
 			var distFromHero:Number = targetX - this.x;
 			var lDistX:Number = Math.abs(distFromHero);
-			//trace("Dist: " + lDistX + "; range : " +  theRoot.lEnemyFireRange);
 			if (lDistX <= this.fireRange) { // within firing range
-			//trace("Do fire");
-				// bombers and ground movers don't stop
-				//trace("CHECK FOR STOP");
-	//            if (this.enemyType == this.BOMBER || this.enemyType == this.GROUND_WALK_RIGHT)   {
-	//                //trace("################DO MOVE");
-	//                doMove = true;
-	//            } else {
-	//                doMove = false;
-	//                if (lDistX < this.prefDistToHero) { // TOO CLOSE
-	//                    if (targetX < this.x) {
-	//                        this.x+=this.speed;
-	//                    } else {
-	//                        this.x-=this.speed;
-	//                    }
-	//                }
-	//            }
-				
 				if(this.doFire(targetX, distFromHero)) {
 					this.muzzleFlash();
 				}
@@ -125,9 +107,8 @@
 		
 		protected function getNextBullet():Bullet {
 			var clip:Bullet = this.getNewBullet();
-			//var clip:Bullet = theRoot.game.BGMid.bulletEnemy.duplicateMovieClip("bulletEnemy_" + ++Enemy.lBulletIndex, theRoot.game.BGMid.getNextHighestDepth());
-			clip.x = this.x; // TODO offsetting?
-			clip.y = this.y; // TODO offsetting?
+			clip.x = this.x;
+			clip.y = this.y;
 			game.BGMid.addChild(clip);
 			clip.addEventListener ( Event.ENTER_FRAME, clip.doFrame, false, 0, true);
 			return clip;
@@ -144,16 +125,23 @@
 			*/
 		}
 		
-		protected function loadHook():void {
-			// for extensibility
-		}
-		/*
-		function onLoad():void {
-			//trace("ONLOAD called for enemy");
-			this.loadHook();
-			this.stop();
+		public function takeHit():void {
+			trace("PLAY FLASHER");
 			
+			var theRootx:MovieClip = MovieClip(root); // TODO DI this?
+			this.hp -= theRootx.game.hero.power;
+			if(this.hp <= 0) {
+				theRootx.fcEnemies.kill(this);
+			} else {
+				var filter = new flash.filters.GlowFilter; 
+				var myTempFilters:Array = this.filters; 
+				myTempFilters.push(filter);
+				this.filters = myTempFilters;
+				//this.flasher.gotoAndPlay(1);
+				// TODO boom
+				//this["hitFlash"].gotoAndPlay(1);
+				//theRootx.sfxEnemyExplosions.gotoAndPlay("hit");
+			}
 		}
-*/
     }
 }

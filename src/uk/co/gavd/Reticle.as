@@ -1,6 +1,7 @@
 ﻿package uk.co.gavd {
     import flash.display.*;
     import flash.events.*;
+	import uk.co.gavd.Hero;
 	import uk.co.gavd.ballistics.*;
     
     public class Reticle extends MovieClip {
@@ -23,7 +24,7 @@
               //  trace("GAME PAUSED - CAN'T FIRE");
                 //return;
             //} else // TODO
-			if (game.hero.lAction != game.hero.OK) {
+			if (game.hero.lAction != Hero.OK) {
                 trace("HERO NOT OK - CAN'T FIRE");
                 return;
             }

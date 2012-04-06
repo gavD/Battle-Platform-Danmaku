@@ -25,10 +25,15 @@
 			
 	//        theRoot.sfx.gotoAndPlay("enemyFireTurret" + this.fireType); // TODO bomber fire
 			
-			var bul:Bullet = this.getNextBullet();
-			bul.fireAtTarget(game.hero);
+			this.getNextBullet().fireAtAngle(-90);
+			this.getNextBullet().fireAtAngle(-110);
+			this.getNextBullet().fireAtAngle(-135);
+			this.getNextBullet().fireAtAngle(-160);
+			this.getNextBullet().fireAtAngle(-180);
 			
+			/*
 			var bul1:Bullet = this.getNextBullet();
+			
 			bul1.fireAtPoint(bul.targetX + 100,  bul.targetY + 100);
 			
 			var bul2:Bullet = this.getNextBullet();
@@ -39,7 +44,7 @@
 			
 			var bul4:Bullet = this.getNextBullet();
 			bul4.fireAtPoint(bul.targetX + 150,  bul.targetY + 150);
-			
+			*/
 			return false;
 		}
 		

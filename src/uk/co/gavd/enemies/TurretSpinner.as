@@ -10,7 +10,7 @@
 			super(game);
 			
 			this.fireRange = 300;
-			this.rateOfFire = 5;
+			this.rateOfFire = 12;
 			this.scoreForKill = 5;
 			this.hp = 20;
 			
