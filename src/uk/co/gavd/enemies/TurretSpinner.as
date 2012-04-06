@@ -18,7 +18,6 @@
 		}
 		
 		private function doFrame(e:Event) {
-			trace("Rotate");
 			this.rotation++;
 		}
 		
