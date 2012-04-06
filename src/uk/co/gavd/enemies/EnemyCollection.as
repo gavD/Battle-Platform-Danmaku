@@ -1,7 +1,6 @@
 ﻿package uk.co.gavd.enemies {
-	import uk.co.gavd.ballistics.*;
-	import flash.display.*;
-    import flash.events.*;
+	import flash.display.MovieClip;
+    import flash.events.Event;
     import uk.co.gavd.Config;
     
     public class EnemyCollection {

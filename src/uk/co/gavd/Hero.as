@@ -1,6 +1,6 @@
 ﻿package uk.co.gavd {
-    import flash.display.*;
-    import flash.events.*;
+    import flash.display.MovieClip;
+    import flash.events.Event;
     
     public class Hero extends MovieClip {
         

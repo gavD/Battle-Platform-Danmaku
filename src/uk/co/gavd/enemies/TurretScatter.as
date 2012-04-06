@@ -3,7 +3,6 @@
 	import uk.co.gavd.enemies.Turret;
 	import uk.co.gavd.ballistics.Bullet;
 	import uk.co.gavd.ballistics.BulletSlow;
-	import flash.display.*;
 	import flash.events.Event;
 
     public class TurretScatter extends Turret  {

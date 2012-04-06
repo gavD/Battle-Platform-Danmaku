@@ -1,5 +1,5 @@
 ﻿package uk.co.gavd.enemies {
-	import flash.display.*;
+	import flash.display.MovieClip;
 	import uk.co.gavd.Game;
 	import uk.co.gavd.Config;
 

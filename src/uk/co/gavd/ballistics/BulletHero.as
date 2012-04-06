@@ -1,5 +1,5 @@
 ﻿package uk.co.gavd.ballistics {
-    import flash.display.*
+    import flash.display.MovieClip;
     import uk.co.gavd.Game;
 	
     public class BulletHero extends Bullet {
