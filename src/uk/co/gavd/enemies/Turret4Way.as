@@ -27,22 +27,22 @@
             //theRoot.sfx.gotoAndPlay("enemyFireTurret" + this.fireType); // TODO bomber fire
 			
 			var bul:Bullet = this.getNextBullet();
-			bul.addEventListener ( Event.ENTER_FRAME, bul.doFrame, false, 0, true);
+			// bul.addEventListener ( Event.ENTER_FRAME, bul.doFrame, false, 0, true);
 			bul.fireAtPoint(this.x, this.y - this.fireRange );
 			bul.y += Turret4Way.BARREL_LENGTH;
 			
 			var bul2:Bullet = this.getNextBullet();
-			bul2.addEventListener ( Event.ENTER_FRAME, bul2.doFrame, false, 0, true);
+			// bul2.addEventListener ( Event.ENTER_FRAME, bul2.doFrame, false, 0, true);
 			bul2.fireAtPoint(this.x, this.y + this.fireRange );
 			bul.y -= Turret4Way.BARREL_LENGTH;
 			
 			var bul3:Bullet = this.getNextBullet();
-			bul3.addEventListener ( Event.ENTER_FRAME, bul3.doFrame, false, 0, true);
+			// bul3.addEventListener ( Event.ENTER_FRAME, bul3.doFrame, false, 0, true);
 			bul3.fireAtPoint(this.x + this.fireRange, this.y );
 			bul.x += Turret4Way.BARREL_LENGTH;
 			
 			var bul4:Bullet = this.getNextBullet();
-			bul4.addEventListener ( Event.ENTER_FRAME, bul4.doFrame, false, 0, true);
+			//bul4.addEventListener ( Event.ENTER_FRAME, bul4.doFrame, false, 0, true);
 			bul4.fireAtPoint(this.x - this.fireRange, this.y );
 			bul.x -= Turret4Way.BARREL_LENGTH;
             

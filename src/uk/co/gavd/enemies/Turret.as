@@ -6,8 +6,8 @@
 
     public class Turret extends Enemy {
 		
-		protected var rateOfFire:Number = 44;
-		protected var clicksToFire:Number = 0;
+		protected var rateOfFire:int = 44;
+		protected var clicksToFire:int = 0;
 		
 		public function Turret(game:Game) {
 			this.fireRange = 600;

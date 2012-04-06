@@ -2,6 +2,7 @@
 	import flash.display.*;
 	import uk.co.gavd.ballistics.*;
     import uk.co.gavd.Game;
+	import flash.events.Event;
 
     public class Enemy extends MovieClip {
 	    private static var lBulletIndex:Number = 0; // TODO move to bullets?
@@ -9,31 +10,29 @@
 		// TODO refactor sof
 		protected var prefDistToHero:Number = 120;
 		protected var shotOffset:Number = 0; // adjust where the bullet spawns from
-		protected var scoreForKill:Number = 5;
+		protected var scoreForKill:int = 5;
 		protected var fireRange:Number = 300;
 		
 		protected var hp:Number = 5;
-		
-		protected var enemyFadeInRate:Number = 10;
 		protected var prefYFromHero:Number = 20; // how far a clip should try to get in line with the hero
 		
 		// ammo types
-		public static var AIMATHERO:Number =  0;
-		public static var BOMB:Number =  1;
-		public static var FOUR_WAY:Number =  2;
-		public static var SHOTGUN:Number =  3;
-		public static var STRAIGHTACROSS:Number =  4;
-		public static var BOMB_VERT:Number =  5; // TODO these 2 are dupes in bg play area
-		public static var AMMO_ROTATING:Number =  6;  // TODO these 2 are dupes in bg play area
-		public static var CLOUD:Number = 7;
+		public static var AIMATHERO:int =  0;
+		public static var BOMB:int =  1;
+		public static var FOUR_WAY:int =  2;
+		public static var SHOTGUN:int =  3;
+		public static var STRAIGHTACROSS:int =  4;
+		public static var BOMB_VERT:int =  5; // TODO these 2 are dupes in bg play area
+		public static var AMMO_ROTATING:int =  6;  // TODO these 2 are dupes in bg play area
+		public static var CLOUD:int = 7;
 		
-		public static const NOTHING:Number = 0;
-		public static const HOMING:Number = 1;
-		public static const DYING:Number = 3;
+		public static const NOTHING:int = 0;
+		public static const HOMING:int = 1;
+		public static const DYING:int = 3;
 		
 		// TODO refactor eof
 		
-		public var lAction:Number = 0;
+		public var lAction:int = 0;
 		public var bFacingLeft:Boolean = true;
 		
 				
@@ -49,11 +48,6 @@
 //				//trace("game not in play");
 //				return;
 //			}
-//			if (this.alpha < 100) {
-//				this.alpha += this.enemyFadeInRate;
-//				return;
-//			}
-
 
 			if (this.lAction == Enemy.DYING) {
 				return;
@@ -131,6 +125,7 @@
 			clip.x = this.x; // TODO offsetting?
 			clip.y = this.y; // TODO offsetting?
 			game.BGMid.addChild(clip);
+			clip.addEventListener ( Event.ENTER_FRAME, clip.doFrame, false, 0, true);
 			return clip;
 		}
 		

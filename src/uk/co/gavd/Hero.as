@@ -16,7 +16,7 @@
 
 		private var lInertiaX:Number = 0;
         private var lInertiaY:Number = 0;
-        private var inertiaLimit:Number = 5;
+        private var inertiaLimit:Number = 5; // TODO can these switch 
         private var lTotalMvt:Number = 0;
     
         // inertia and speed

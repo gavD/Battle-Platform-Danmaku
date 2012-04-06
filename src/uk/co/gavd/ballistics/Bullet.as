@@ -8,7 +8,7 @@
 		
         // dynamically calculated stuff
         public var triggered:Boolean = false;
-        protected var framesToLive:Number = 10000;
+        protected var framesToLive:int = 10000;
         protected var xTravel:Number = 0;
         protected var yTravel:Number = 0;
         public var targetX:Number = 0; // TODO lock down?
@@ -109,16 +109,7 @@
         
         protected function checkForHits():void {
 			if( game.hero.lAction != game.hero.OK ) {
-				trace("hero is currently being hit");
 				return;
-			}
-			
-			if(!game || !game.hero || !game.hero.hitZone) {
-				trace("### BULLET?");
-				trace("### game              " + game);
-				trace("### game.hero         " + game.hero);
-				trace("### game.hero.action  " + game.hero.lAction);
-				trace("### game.hero.hitZone " + game.hero.hitZone);
 			}
 			
             if (this.hitZone.hitTestObject(game.hero.hitZone)) {
@@ -137,7 +128,6 @@
 			// TODO remove the event listener
 			this.parent.removeChild(this);
 			this.dispose();
-			trace("Removed");
 		}
 		
 		public function dispose() {

@@ -34,8 +34,14 @@
 			trace("Add to " + game.BGMid);
 			var t:Enemy
 			switch(et) {
-				case 4:
+				case 2:
+					t = new TurretScatter(this.game);
+					break;
+				case 3:
 					t = new Turret4Way(this.game);
+					break;
+				case 4:
+					t = new TurretSpinner(this.game);
 					break;
 				default:
 					t = new Turret(this.game);
