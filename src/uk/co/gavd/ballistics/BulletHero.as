@@ -4,14 +4,12 @@
 	
     public class BulletHero extends Bullet {
 
-		private var fireDistance:int = 800;
-		
-		public override function getSpeed():int {
-			return 22;
-		}
+		protected var fireDistance:int = 800;
 		
 		public function BulletHero(game:Game) {
 			super(game);
+			
+			this.lSpeed = 22;
 		}
 		
 		public function targetOn(targetX:Number, targetY:Number):void {
@@ -23,11 +21,7 @@
         }
 		
         override protected function checkForHits():void {
-//			trace("Check for hits");
 			var theRootx:MovieClip = MovieClip(root); // TODO DI this?
-//			trace(" # " + theRootx);
-//			trace(" ## " + theRootx.fcEnemies);
-			
 			theRootx.fcEnemies.detectHits(this);
 
         }

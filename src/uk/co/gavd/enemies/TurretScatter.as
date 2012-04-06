@@ -2,6 +2,7 @@
 	import uk.co.gavd.Game;
 	import uk.co.gavd.enemies.Turret;
 	import uk.co.gavd.ballistics.Bullet;
+	import uk.co.gavd.ballistics.BulletSlow;
 	import flash.display.*;
 	import flash.events.Event;
 
@@ -41,6 +42,10 @@
 			bul4.fireAtPoint(bul.targetX + 150,  bul.targetY + 150);
 			
 			return false;
+		}
+		
+		override protected function getNewBullet():Bullet {
+			return new BulletSlow(game);
 		}
     }
 }

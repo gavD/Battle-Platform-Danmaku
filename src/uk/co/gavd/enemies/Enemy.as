@@ -119,8 +119,12 @@
 			return false;
 		}
 		
+		protected function getNewBullet():Bullet {
+			return new Bullet(game);
+		}
+		
 		protected function getNextBullet():Bullet {
-			var clip:Bullet = new Bullet(game);
+			var clip:Bullet = this.getNewBullet();
 			//var clip:Bullet = theRoot.game.BGMid.bulletEnemy.duplicateMovieClip("bulletEnemy_" + ++Enemy.lBulletIndex, theRoot.game.BGMid.getNextHighestDepth());
 			clip.x = this.x; // TODO offsetting?
 			clip.y = this.y; // TODO offsetting?

@@ -1,7 +1,12 @@
-package uk.co.gavd.ballistics {
+﻿package uk.co.gavd.ballistics {
+	import uk.co.gavd.Game;
+	
     public class BulletSlow extends Bullet {
-    protected var lSpeed:Number = 2;
-    protected var damage:Number = 3;
-    protected var travel:Number = 300; // how many px this bullet can fly
+    	public function BulletSlow(game:Game) {
+			super(game);
+			
+			this.lSpeed = 1.5;
+			this.damage = 5;
+		}
     }
 }

@@ -16,9 +16,9 @@
 			this.config = config;
 		}
 		
-		public function spawnSpecificEnemyFromPoint(et:Number, spawnPoint:MovieClip):Enemy {
+		public function spawnSpecificEnemyFromPoint(et:int, spawnPoint:MovieClip):Enemy {
         
-			var mc:Enemy = this.spawnSpecificEnemy(et, 100);
+			var mc:Enemy = this.spawnSpecificEnemy(et);
 			
 			mc.x = spawnPoint.x;
 			mc.y = spawnPoint.y;
@@ -30,7 +30,7 @@
 			return mc;
 		}
     
-		public function spawnSpecificEnemy (et:Number, initialAlpha:Number):Enemy {
+		public function spawnSpecificEnemy (et:Number):Enemy {
 			trace("Add to " + game.BGMid);
 			var t:Enemy
 			switch(et) {
@@ -49,7 +49,6 @@
 			}
 			
 			game.BGMid.addChild(t);
-			t.alpha = initialAlpha;
 			t.stop();
 			fcEnemies.registerEnemy(t);
 			

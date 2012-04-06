@@ -15,14 +15,13 @@
         public var targetY:Number = 0; // TODO lock down?
         
         // info about this bullet
-        protected var damage:Number = 5;
+        protected var damage:Number = 4;
         protected var travel:Number = 750; // how many px this bullet can fly
+		
+		protected var lSpeed:Number = 4;
 		
 		protected var game:Game;
 		
-		public function getSpeed():int {
-			return 5;
-		}
 		
 		public function Bullet(game:Game) {
 			this.game = game;
@@ -58,15 +57,15 @@
         }
         
         private function calculateTravelPerFrame(xRem:Number, yRem:Number):void {
-			trace("Calculating speed from " + this.getSpeed());
+			trace("Calculating speed from " + this.lSpeed);
             // calculate speed of movement per frame
-            this.xTravel = this.getSpeed() * (xRem / (Math.abs(xRem) + Math.abs(yRem)));
-            this.yTravel = this.getSpeed() - Math.abs(xTravel);
+            this.xTravel = this.lSpeed * (xRem / (Math.abs(xRem) + Math.abs(yRem)));
+            this.yTravel = this.lSpeed - Math.abs(xTravel);
         }
         
         private function calculateFramesToLive(xRem:Number, yRem:Number):void {
             // work out how long this bullet has to live
-            var defaultFramesToLive:Number = Math.round(this.travel / this.getSpeed());
+            var defaultFramesToLive:Number = Math.round(this.travel / this.lSpeed);
             var ticksToOutOfY:Number = defaultFramesToLive;
     
             if (targetY < y) {
