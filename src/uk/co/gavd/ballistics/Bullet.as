@@ -24,8 +24,9 @@
 		
 		
 		public function Bullet(game:Game) {
-			this.game = game;
 			this.stop();
+			this.game = game;
+			this.hitZone.visible = false;
 		}
         
         public function fireAtPoint(targetX:Number, targetY:Number):void {

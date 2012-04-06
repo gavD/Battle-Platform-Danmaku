@@ -5,7 +5,7 @@
     	public function BulletSlow(game:Game) {
 			super(game);
 			
-			this.lSpeed = 1.5;
+			this.lSpeed = 2;
 			this.damage = 5;
 		}
     }
