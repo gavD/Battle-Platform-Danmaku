@@ -128,11 +128,11 @@
             } else if (theRoot.isKeyPressed(83)) { //s
                 lYDir = 1;
             }
-			if(theRoot.isKeyPressed(16)) { // shift
+			if(!theRoot.isKeyPressed(16)) { // shift
 				lXDir *= 3;
 				lYDir *= 3;
 			}
             this.applyMovement(lXDir,lYDir);
         }
-    }
+w    }
 }

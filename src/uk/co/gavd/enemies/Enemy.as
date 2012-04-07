@@ -4,6 +4,8 @@
     import uk.co.gavd.Game;
 	import flash.events.Event;
 	import flash.filters.GlowFilter;
+	import flash.filters.ColorMatrixFilter;
+	import flash.media.Sound;
 
     public class Enemy extends MovieClip {
 	    private static var lBulletIndex:Number = 0; // TODO move to bullets?
@@ -40,8 +42,11 @@
 		
 		protected var game:Game;
 		
+		private var takeHitWav:Sound;
+		
 		public function Enemy(game:Game) {
 			this.game = game;
+			this.takeHitWav = new TakehitWav();
 		}
 
 		public function process():void {
@@ -133,10 +138,12 @@
 			if(this.hp <= 0) {
 				theRootx.fcEnemies.kill(this);
 			} else {
-				var filter = new flash.filters.GlowFilter; 
-				var myTempFilters:Array = this.filters; 
-				myTempFilters.push(filter);
-				this.filters = myTempFilters;
+				flasher.play();
+				this.takeHitWav.play();
+				//var filter = new flash.filters.ColorMatrixFilter; 
+				//var myTempFilters:Array = this.filters; 
+				//myTempFilters.push(filter);
+				//this.filters = myTempFilters;
 				//this.flasher.gotoAndPlay(1);
 				// TODO boom
 				//this["hitFlash"].gotoAndPlay(1);

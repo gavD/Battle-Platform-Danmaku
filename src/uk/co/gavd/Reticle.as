@@ -3,6 +3,7 @@
     import flash.events.*;
 	import uk.co.gavd.Hero;
 	import uk.co.gavd.ballistics.*;
+	import flash.media.Sound;
     
     public class Reticle extends MovieClip {
         private var lShotIndex:Number = 0;
@@ -14,9 +15,12 @@
 		private var game:Game;
 		private var config:Config;
 		
+		private var cannonWav:Sound;
+		
 		public function Reticle(game:Game, config:Config) {
 			this.game = game;
 			this.config = config;
+			this.cannonWav = new CannonWav;
 		}
         
         public function fireShot(directional:Boolean):void {
@@ -53,7 +57,7 @@
             }
 			
             b.addEventListener(Event.ENTER_FRAME, b.doFrame, false, 0, true);
-			
+			cannonWav.play();
     /*
             var muzzle:MovieClip = game.BGMid.muzzleHero.duplicateMovieClip("muzzleHero" + lMuzzleIndex, game.BGMid.getNextHighestDepth());
             //eval("game.BGMid.muzzleHero" + lMuzzleIndex++);
@@ -68,10 +72,8 @@
         
         public function doMouseDown(event:MouseEvent):void {
             this.isMouseDown = true;
-            trace("MOUSE DOWN");
         }
         public function doMouseUp(event:MouseEvent):void {
-            trace("MOUSE UP");
             this.clicksToNextShot = 0;
             this.isMouseDown = false;
         }
