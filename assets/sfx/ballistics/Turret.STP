@@ -1,0 +1,25 @@
+[Common]
+SampleFrequency=22050
+Oscillators=1
+[Oscillator 0]
+Enabled=1
+Filter=0
+WaveForm=3
+WavFile=
+Comment=
+LoopWav=0
+StartF=1778.293506
+EndF=0.000000
+StartA=0.950000
+EndA=0.000000
+StartT=0.000000
+EndT=99.668558
+AMModFac=0.000000
+AMModBy=-1
+FMModFac=0.000000
+FMModBy=0
+CurveShape0=0.189560
+CurveShape1=1.211500
+CurveShape2=6.918310
+NoiseBW=1.000000
+NoiseChangeRate=5

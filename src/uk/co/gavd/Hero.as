@@ -8,6 +8,8 @@
         protected var theRoot:MovieClip = MovieClip(root);
         
         public var power:Number = 1;
+		
+		public var isFiring:Boolean = false;
         
         public var lAction:Number = OK;
 		public static const OK:Number = 0;
@@ -128,11 +130,12 @@
             } else if (theRoot.isKeyPressed(83)) { //s
                 lYDir = 1;
             }
-			if(!theRoot.isKeyPressed(16)) { // shift
+			//if(!theRoot.isKeyPressed(16)) { // shift
+			if(!this.isFiring) { // shift
 				lXDir *= 3;
 				lYDir *= 3;
 			}
             this.applyMovement(lXDir,lYDir);
         }
-w    }
+    }
 }

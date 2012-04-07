@@ -13,7 +13,9 @@
 			this.fireRange = 600;
 			this.rateOfFire = 110;
 			this.scoreForKill = 10;
-			this.hp = 10;
+			this.hp = 11;
+			
+			this.fireSound = new ShotgunWav();
 		}
     
 		override protected function doFire (lTargetX:Number, distFromHero:Number):Boolean {
@@ -23,7 +25,7 @@
 				return false;
 			}
 			
-	//        theRoot.sfx.gotoAndPlay("enemyFireTurret" + this.fireType); // TODO bomber fire
+			this.fireSound.play();
 			
 			this.getNextBullet().fireAtAngle(-90);
 			this.getNextBullet().fireAtAngle(-110);
@@ -31,21 +33,7 @@
 			this.getNextBullet().fireAtAngle(-160);
 			this.getNextBullet().fireAtAngle(-180);
 			
-			/*
-			var bul1:Bullet = this.getNextBullet();
-			
-			bul1.fireAtPoint(bul.targetX + 100,  bul.targetY + 100);
-			
-			var bul2:Bullet = this.getNextBullet();
-			bul2.fireAtPoint(bul.targetX - 100,  bul.targetY - 100);
-			
-			var bul3:Bullet = this.getNextBullet();
-			bul3.fireAtPoint(bul.targetX - 150,  bul.targetY - 150);
-			
-			var bul4:Bullet = this.getNextBullet();
-			bul4.fireAtPoint(bul.targetX + 150,  bul.targetY + 150);
-			*/
-			return false;
+			return false; // TODO why?sd
 		}
 		
 		override protected function getNewBullet():Bullet {

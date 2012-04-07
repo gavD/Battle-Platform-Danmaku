@@ -81,6 +81,8 @@
         public function doFrame(e:Event):void {
 			this.x = game.parent.mouseX;
             this.y = game.parent.mouseY;
+			
+			game.hero.isFiring = this.isMouseDown;
             
             if(this.isMouseDown) {
                 if(--this.clicksToNextShot <= 0) {

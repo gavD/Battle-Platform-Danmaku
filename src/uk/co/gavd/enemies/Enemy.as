@@ -137,17 +137,14 @@
 			this.hp -= theRootx.game.hero.power;
 			if(this.hp <= 0) {
 				theRootx.fcEnemies.kill(this);
+				// TODO boom
 			} else {
-				flasher.play();
+				flasher.gotoAndPlay(1);
 				this.takeHitWav.play();
 				//var filter = new flash.filters.ColorMatrixFilter; 
 				//var myTempFilters:Array = this.filters; 
 				//myTempFilters.push(filter);
-				//this.filters = myTempFilters;
-				//this.flasher.gotoAndPlay(1);
-				// TODO boom
-				//this["hitFlash"].gotoAndPlay(1);
-				//theRootx.sfxEnemyExplosions.gotoAndPlay("hit");
+				//this.filters = myTempFilters;s
 			}
 		}
     }

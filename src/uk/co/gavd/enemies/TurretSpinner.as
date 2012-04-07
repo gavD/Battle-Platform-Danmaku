@@ -12,7 +12,7 @@
 			this.fireRange = 300;
 			this.rateOfFire = 12;
 			this.scoreForKill = 5;
-			this.hp = 20;
+			this.hp = 25;
 			
 			this.addEventListener ( Event.ENTER_FRAME, this.doFrame);
 		}
@@ -22,17 +22,15 @@
 		}
 		
 		override protected function doFire (lTargetX:Number, distFromHero:Number):Boolean {
-			//trace("FIRE BULLET AT TARGET");
 			if(--this.clicksToFire <= 0) {
 				this.clicksToFire = this.rateOfFire;
 			} else {
 				return false;
 			}
 			
-	//		_root.sfx.gotoAndPlay("enemyFireTurret" + this.fireType); // TODO bomber fire
+			this.fireSound.play();
 			
 			var bul:Bullet = this.getNextBullet()
-			// TODO rmove bul.addEventListener ( Event.ENTER_FRAME, bul.doFrame, false, 0, true);
 			bul.fireAtAngle(this.rotation*-1 );
 			
 			return true;

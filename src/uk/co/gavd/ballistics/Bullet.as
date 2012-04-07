@@ -19,7 +19,7 @@
         protected var damage:Number = 4;
         protected var travel:Number = 750; // how many px this bullet can fly
 		
-		protected var lSpeed:Number = 4;
+		protected var lSpeed:Number = 3;
 		
 		protected var game:Game;
 		
