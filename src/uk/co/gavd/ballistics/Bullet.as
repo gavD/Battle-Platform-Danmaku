@@ -111,11 +111,11 @@
 				return;
 			}
 			
-            if (this.hitZone.hitTestObject(game.hero.hitZone)) {
+			if (this.hitZone.hitTestObject(game.hero.hitZone)) {
+				this.triggered = true;
                 game.hero.takeHit(this.damage);
                 this.gotoAndPlay("explode");
             }
-		
         }
 		
 		public function blam() {

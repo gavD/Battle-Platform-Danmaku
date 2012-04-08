@@ -2,6 +2,7 @@
     import flash.display.MovieClip;
     import flash.events.Event;
     import flash.media.Sound;
+	import uk.co.gavd.Hero;
     
     public class PowerupROF extends MovieClip {
 		
@@ -13,6 +14,9 @@
 		}
         
 		public function doFrame(e:Event) {
+			if(MovieClip(root).game.hero.lAction !== Hero.OK) {
+				return;
+			}
             if (this.hitTestObject(MovieClip(root).game.hero.hitZone)) {
 				this.powerupWav.play();
 				this.removeEventListener(Event.ENTER_FRAME, this.doFrame, false);

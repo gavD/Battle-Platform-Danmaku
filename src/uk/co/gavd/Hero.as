@@ -13,16 +13,18 @@
         
         public var lAction:Number = OK;
 		public static const OK:Number = 0;
-        public static const DYING:Number = 1;
+        public static const TAKING_HIT:Number = 1;
+		public static const DYING:Number = 2;
+		
     
         private var bInvincible:Boolean = false;
 
-        private var inertiaLimit:Number = 7; // TODO can these switch 
+        private var inertiaLimit:Number = 9; // TODO can these switch 
     
         // inertia and speed
         private var lRatioVertical:Number = 0.2;
-        public var lEnergy:Number = 0;
-		private var lMaxEnergy:Number = 40;
+        private var lMaxEnergy:Number = 40;
+		public var lEnergy:Number = lMaxEnergy;
 		
 		public var thrusterRear:MovieClip;
 		public var thrusterFront:MovieClip;
@@ -42,6 +44,10 @@
 				this.y = stage.stageWidth-10;
 			}
         }
+		
+		public function setAction(a:int) {
+			this.lAction = a;
+		}
         
         private function setThrusters(lXDir:Number, lYDir:Number):void {
             // TDODO if (theRoot.bGamePaused) {return;}
@@ -61,54 +67,35 @@
             }
         }
         
-        /*
-        public function reset():void {
-            trace("*************RESET****************");
-            theRoot.game.rotation = 0;
-            
-            theRoot.bGamePaused = true;
-            theRoot.fcGameOver.visible = true;
-            theRoot.fcGameOver.play();
-        }
         
-        public function init(bInvincibleThis:Boolean):void {
-            this.visible = true;
-            lInertiaX = 0;
-            lInertiaY = 0;
-            this.lEnergy = this.lMaxEnergy;
-            
-            this.lAction = OK;
-            this.x = 250;
-            this.y = 180;
-            bInvincible = bInvincibleThis;
-            if (bInvincible) {
-                theRoot.fcBlinker.doInvincible();
-            }
+        public function reset():void {
+			trace("INSIDE HERO RESET");
+			this.lAction = Hero.OK;
+			theRoot.fcBlinker.doInvincible();
+			this.lEnergy = this.lMaxEnergy;
+			this.gotoAndStop("ready");
         }
-    */
-        public function takeHit(lDamage:Number):void {
-            if (lAction == DYING) {
+
+		public function takeHit(lDamage:Number):void {
+            if (lAction == DYING || lAction == TAKING_HIT) {
                 return;
             } else if (bInvincible && lDamage < 1500) {
                 return;
             }
             
-//            theRoot.takeHit.gotoAndPlay(2);
-//			  theRoot.fcBlinker.gotoAndStop(1);
-            this.visible = true;
-            lEnergy -= lDamage;
+            this.lEnergy -= lDamage;
             
             if (lEnergy <= 0) {
-                lAction = DYING;
+                this.lAction = Hero.DYING;
                 this.gotoAndPlay("die");
             } else {
+				this.lAction = Hero.TAKING_HIT;
                 this.gotoAndPlay("takeHit");
-//                theRoot.sfxEnemyExplosions.gotoAndPlay("heroTakeHit");
             }
         }
 		
-        public function doFrame(event:Event) {
-			if(this.lAction != OK) {
+        public function doFrame(event:Event):void {
+			if(this.lAction >= DYING) {
 				return;
 			}
             //if (theRoot.bGamePaused) { return; } // TODO
@@ -129,8 +116,8 @@
             }
 			//if(!theRoot.isKeyPressed(16)) { // shift
 			if(!this.isFiring) { // shift
-				lXDir *= 3;
-				lYDir *= 3;
+				lXDir *= 2;
+				lYDir *= 2;
 			}
             this.applyMovement(lXDir,lYDir);
         }

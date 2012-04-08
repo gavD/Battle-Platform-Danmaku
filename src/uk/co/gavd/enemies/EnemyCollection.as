@@ -63,6 +63,8 @@
 		public function detectHits(bullet:MovieClip):void {
 			for (var i:Number = 0; i < this.arEnemies.length; i++) {
 				var ptr:MovieClip = this.arEnemies[i];
+				
+				//trace("Before check ptr.lACtion");
 			
 				/*if (ptr.x == undefined) { 
 					continue;
@@ -70,6 +72,8 @@
 				else */if (ptr.lAction == Enemy.DYING) {
 					continue;
 				}
+				
+				//trace("After check ptr.lACtion");
 				
 				//trace("Hit zone test on " + bullet.hitZone + " vs " + ptr);
 				var tmp:MovieClip;
