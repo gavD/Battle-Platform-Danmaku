@@ -14,7 +14,7 @@
 			this.scoreForKill = 5;
 			this.hp = 25;
 			
-			this.addEventListener ( Event.ENTER_FRAME, this.doFrame);
+			this.addEventListener ( Event.ENTER_FRAME, this.doFrame, false, 0, true);
 		}
 		
 		private function doFrame(e:Event) {
