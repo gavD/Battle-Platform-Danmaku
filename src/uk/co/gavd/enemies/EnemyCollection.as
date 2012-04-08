@@ -2,6 +2,7 @@
 	import flash.display.MovieClip;
     import flash.events.Event;
     import uk.co.gavd.Config;
+    import flash.media.Sound;
     
     public class EnemyCollection {
 		
@@ -12,10 +13,14 @@
 		
 		protected var config:Config;
 		
+		private var explodeWav:Sound;		
+		
+		
 		public function EnemyCollection(theRoot:MovieClip, config:Config) {
 			this.arEnemies = new Array();
 			this.theRoot = theRoot;
 			this.config = config;
+			this.explodeWav = new ExplodeWav();
 		}
 		
 		public function killAll():void {
@@ -81,6 +86,8 @@
 		}
 		
 		public function kill(ptr:MovieClip):void {
+			this.explodeWav.play();
+
 			ptr.lAction = Enemy.DYING;
 //			var scoreUp:Number = (ptr.scoreForKill * theRoot.hud.mobileHud.scoreCounter.comboMeter.multiplier);
 //			theRoot.score += scoreUp;

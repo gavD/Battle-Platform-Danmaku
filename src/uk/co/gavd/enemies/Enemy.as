@@ -137,7 +137,6 @@
 			this.hp -= theRootx.game.hero.power;
 			if(this.hp <= 0) {
 				theRootx.fcEnemies.kill(this);
-				// TODO boom
 			} else {
 				flasher.gotoAndPlay(1);
 				this.takeHitWav.play();
