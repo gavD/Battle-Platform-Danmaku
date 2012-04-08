@@ -41,9 +41,6 @@
 			} else if (this.y > (stage.stageWidth-10)) {
 				this.y = stage.stageWidth-10;
 			}
-			
-			
-			
         }
         
         private function setThrusters(lXDir:Number, lYDir:Number):void {

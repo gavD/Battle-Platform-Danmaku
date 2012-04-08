@@ -9,18 +9,27 @@
         private var lShotIndex:Number = 0;
         private var lMuzzleIndex:Number = 0;
         private var isMouseDown:Boolean = false;
-        private var framesBetweenShots:Number = 3;
+        private var framesBetweenShots:Number = 9;
         private var clicksToNextShot:Number = 0;
         
 		private var game:Game;
 		private var config:Config;
 		
 		private var cannonWav:Sound;
-		
+
 		public function Reticle(game:Game, config:Config) {
 			this.game = game;
 			this.config = config;
 			this.cannonWav = new CannonWav;
+		}
+		
+		public function powerupROF():void {
+			trace("POWER UP ROF was " + this.framesBetweenShots);
+			this.framesBetweenShots -= 3;
+			if(this.framesBetweenShots < 3) {
+				this.framesBetweenShots = 3;
+			}
+			trace("POWER UP ROF now " + this.framesBetweenShots);
 		}
         
         public function fireShot(directional:Boolean):void {

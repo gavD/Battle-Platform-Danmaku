@@ -19,7 +19,7 @@
         protected var damage:Number = 4;
         protected var travel:Number = 750; // how many px this bullet can fly
 		
-		protected var lSpeed:Number = 3;
+		protected var lSpeed:Number = 2.5;
 		
 		protected var game:Game;
 		
@@ -113,7 +113,6 @@
 			
             if (this.hitZone.hitTestObject(game.hero.hitZone)) {
                 game.hero.takeHit(this.damage);
-                //theRoot.fcEnemies.applyBounceInner(bul, 1); // TODO
                 this.gotoAndPlay("explode");
             }
 		

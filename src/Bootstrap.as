@@ -10,14 +10,29 @@ var conf:Config = new Config();
 game.setConfig(conf);
 var fcEnemies:EnemyCollection = new EnemyCollection(theRoot, conf);
 var enemyGenerator:EnemyGenerator = new EnemyGenerator(game, fcEnemies, conf);
-var clickTarget:Reticle = new Reticle(game, conf);
-stage.addChild(clickTarget);
+var reticle:Reticle = new Reticle(game, conf);
+stage.addChild(reticle);
 
-stage.addEventListener ( MouseEvent.MOUSE_DOWN, clickTarget.doMouseDown, false, 0, true);
-stage.addEventListener ( MouseEvent.MOUSE_UP, clickTarget.doMouseUp, false, 0, true);
-clickTarget.addEventListener ( Event.ENTER_FRAME, clickTarget.doFrame, false, 0, true);
+stage.addEventListener ( MouseEvent.MOUSE_DOWN, reticle.doMouseDown, false, 0, true);
+stage.addEventListener ( MouseEvent.MOUSE_UP, reticle.doMouseUp, false, 0, true);
+reticle.addEventListener ( Event.ENTER_FRAME, reticle.doFrame, false, 0, true);
 game.addEventListener ( Event.ENTER_FRAME, game.doFrame, false, 0, true);
 game.hero.addEventListener(Event.ENTER_FRAME,game.hero.doFrame, false, 0, true);
 stage.addEventListener(Event.ENTER_FRAME, fcEnemies.doFrame, false, 0, true);
+
+
+
+
+// sof
+import flash.system.System;
+// check our memory every 1 second:
+function checkMemoryUsage():void {
+	trace("MEM: " + System.totalMemory);
+}
+var checkMemoryIntervalID:uint = setInterval(checkMemoryUsage,1000);
+// eof
+
+
+
 
 stop();

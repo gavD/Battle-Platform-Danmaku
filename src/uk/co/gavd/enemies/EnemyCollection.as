@@ -69,8 +69,6 @@
 				//trace("Hit zone test on " + bullet.hitZone + " vs " + ptr);
 				var tmp:MovieClip;
 				if (bullet.hitZone.hitTestObject(ptr)) {
-					trace("HIT!!!!!!!!!!!!!!!!!!!!!!");
-//					theRoot.hud.mobileHud.scoreCounter.comboMeter.comboUp();
 					bullet.gotoAndPlay("explode");
 					bullet.triggered = true;
 					if(ptr.takeHit) {
