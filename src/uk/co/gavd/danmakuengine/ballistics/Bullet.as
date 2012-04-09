@@ -1,8 +1,8 @@
-﻿package uk.co.gavd.ballistics {
+﻿package uk.co.gavd.danmakuengine.ballistics {
     import flash.display.MovieClip;
     import flash.events.Event;
-    import uk.co.gavd.Game;
-	import uk.co.gavd.Hero;
+    import uk.co.gavd.danmakuengine.Game;
+	import uk.co.gavd.danmakuengine.Hero;
     
     public class Bullet extends MovieClip {
 		public var hitZone:MovieClip;

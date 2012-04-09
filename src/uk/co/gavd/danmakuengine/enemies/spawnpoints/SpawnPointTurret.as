@@ -1,4 +1,4 @@
-﻿package uk.co.gavd {
+﻿package uk.co.gavd.danmakuengine {
 	import flash.display.MovieClip;
 	
 	public class SpawnPointTurret extends MovieClip {

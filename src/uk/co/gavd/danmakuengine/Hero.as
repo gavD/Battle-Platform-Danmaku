@@ -1,4 +1,4 @@
-﻿package uk.co.gavd {
+﻿package uk.co.gavd.danmakuengine {
     import flash.display.MovieClip;
 	import flash.display.Stage;
     import flash.events.Event;
@@ -32,16 +32,26 @@
 		public var thrusterBottom:MovieClip;
 		
 		public var hitZone:MovieClip;
+		
+		// the area the ship can't fly into around the sides
+		// of the screen
+		private static const SCREEN_BORDER = 15;
         
         public function applyMovement(lXDir:Number, lYDir:Number):void {
             this.setThrusters(lXDir, lYDir);
 			this.x += lXDir * inertiaLimit * lRatioVertical; 
 			this.y += lYDir * inertiaLimit * lRatioVertical;
 			
-			if(this.y < 10) {
-				this.y = 10;
-			} else if (this.y > (stage.stageWidth-10)) {
-				this.y = stage.stageWidth-10;
+			if(this.y < SCREEN_BORDER) {
+				this.y = SCREEN_BORDER;
+			} else if (this.y > (stage.stageHeight-SCREEN_BORDER)) {
+				this.y = stage.stageHeight-SCREEN_BORDER;
+			}
+			
+			if(this.x < SCREEN_BORDER + 20) {
+				this.x = SCREEN_BORDER + 20;
+			} else if (this.x > (stage.stageWidth-SCREEN_BORDER - 30)) {
+				this.x = stage.stageWidth - SCREEN_BORDER - 30;
 			}
         }
 		

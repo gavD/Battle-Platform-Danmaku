@@ -1,6 +1,6 @@
-﻿package uk.co.gavd.enemies {
-	import uk.co.gavd.Game;
-	import uk.co.gavd.ballistics.Bullet;
+﻿package uk.co.gavd.danmakuengine.enemies {
+	import uk.co.gavd.danmakuengine.Game;
+	import uk.co.gavd.danmakuengine.ballistics.Bullet;
 	import flash.display.*;
 	import flash.events.Event;
 

@@ -1,8 +1,8 @@
-﻿package uk.co.gavd {
+﻿package uk.co.gavd.danmakuengine {
     import flash.display.*;
     import flash.events.*;
-	import uk.co.gavd.Hero;
-	import uk.co.gavd.ballistics.*;
+	import uk.co.gavd.danmakuengine.Hero;
+	import uk.co.gavd.danmakuengine.ballistics.*;
 	import flash.media.Sound;
     
     public class Reticle extends MovieClip {
@@ -31,12 +31,8 @@
 		}
         
         public function fireShot(directional:Boolean):void {
-            //if (bGamePaused) {
-              //  trace("GAME PAUSED - CAN'T FIRE");
-                //return;
-            //} else // TODO
 			if (game.hero.lAction != Hero.OK) {
-                trace("HERO NOT OK - CAN'T FIRE");
+                // trace("HERO NOT OK - CAN'T FIRE");
                 return;
             }
             

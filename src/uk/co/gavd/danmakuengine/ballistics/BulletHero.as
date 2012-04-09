@@ -1,6 +1,6 @@
-﻿package uk.co.gavd.ballistics {
+﻿package uk.co.gavd.danmakuengine.ballistics {
     import flash.display.MovieClip;
-    import uk.co.gavd.Game;
+    import uk.co.gavd.danmakuengine.Game;
 	
     public class BulletHero extends Bullet {
 

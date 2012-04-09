@@ -1,4 +1,4 @@
-﻿package uk.co.gavd {
+﻿package uk.co.gavd.danmakuengine {
 	public class Config {
 		// game tweaks
 		public static const DEBUG_MODE:Boolean = true;

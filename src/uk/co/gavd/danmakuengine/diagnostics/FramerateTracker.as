@@ -1,4 +1,4 @@
-﻿package 
+﻿package uk.co.gavd.danmakuengine.diagnostics
 {
     import flash.utils.getTimer;
     import flash.events.Event;

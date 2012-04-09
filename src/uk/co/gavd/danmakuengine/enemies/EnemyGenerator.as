@@ -1,7 +1,7 @@
-﻿package uk.co.gavd.enemies {
+﻿package uk.co.gavd.danmakuengine.enemies {
 	import flash.display.MovieClip;
-	import uk.co.gavd.Game;
-	import uk.co.gavd.Config;
+	import uk.co.gavd.danmakuengine.Game;
+	import uk.co.gavd.danmakuengine.Config;
 
     public class EnemyGenerator {
 		
@@ -24,6 +24,7 @@
 			mc.y = spawnPoint.y;
 			 
 			game.BGMid.removeChild(spawnPoint);
+			trace("Before dispose " + spawnPoint);
 			spawnPoint.dispose();
 			spawnPoint = null;
 			 

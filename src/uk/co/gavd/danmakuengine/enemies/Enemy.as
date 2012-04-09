@@ -1,9 +1,9 @@
-﻿package uk.co.gavd.enemies {
+﻿package uk.co.gavd.danmakuengine.enemies {
 	import flash.filters.ColorMatrixFilter;
 	import fl.motion.AdjustColor;
 	import flash.display.MovieClip;
-	import uk.co.gavd.ballistics.*;
-    import uk.co.gavd.Game;
+	import uk.co.gavd.danmakuengine.ballistics.*;
+    import uk.co.gavd.danmakuengine.Game;
 	import flash.events.Event;
 	import flash.media.Sound;
 

@@ -1,9 +1,9 @@
-﻿package uk.co.gavd.enemies {
+﻿package uk.co.gavd.danmakuengine.enemies {
 	import flash.display.MovieClip;
     import flash.events.Event;
-    import uk.co.gavd.Config;
+    import uk.co.gavd.danmakuengine.Config;
     import flash.media.Sound;
-    import uk.co.gavd.ballistics.BulletHero;
+    import uk.co.gavd.danmakuengine.ballistics.BulletHero;
     
     public class EnemyCollection {
 		
@@ -26,8 +26,6 @@
 		
 		public function killAll():void {
 			theRoot.fcGameOver.readyForRestart = true;
-			trace("*** REMOVE ALL AMMO " + theRoot.fcBullets); 
-			theRoot.fcBullets.killAll = true;
 			for(var i:Number = 0; i < this.arEnemies.length; i++) {
 				var tmp = this.arEnemies[i];
 				trace("KILL ENEMY " + tmp);

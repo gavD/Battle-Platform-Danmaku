@@ -1,4 +1,4 @@
-﻿package uk.co.gavd {
+﻿package uk.co.gavd.danmakuengine {
 	import flash.display.*;
     import flash.events.*;
 	
@@ -35,10 +35,6 @@
 		}
 		
 		public function doFrame(event:Event):void {
-			
-//			if(theRoot.bGamePaused) {
-//				return;
-//			}
 			this.BGMid.x -= Config.SCROLL_SPEED;
 /*
 if(this.curLevel == 1 && this.BGMid.x < -4750) {
@@ -48,21 +44,5 @@ if(this.curLevel == 1 && this.BGMid.x < -4750) {
 			*/
 			this.BGTiles.x -= Config.SCROLL_SPEED * 0.2;
 		}
-		
-		/*
-		function restart(config:Config, fcBullets: ):void {
-    // TODO
-    config.score = 0;
-// TODO    game.hero.init(true);
-    
-    // reset music if necessary
-    //confi.sfxMusic.gotoAndPlay("maybeInMay");
-    config.bGamePaused = false;
-    fcBullets.killAll = false;
-    //trace("RESTART");
-    //theRoot.fcGameOver.gotoAndStop(1);
-    //theRoot.fcGameOver._visible = false;
-}
-*/
-    }
+	}
 }

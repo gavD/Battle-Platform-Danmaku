@@ -1,5 +1,6 @@
-﻿import uk.co.gavd.*;
-import uk.co.gavd.enemies.*;
+﻿import uk.co.gavd.danmakuengine.*;
+import uk.co.gavd.danmakuengine.enemies.*;
+import uk.co.gavd.danmakuengine.diagnostics.FramerateTracker;
 
 include "Controls.as"
 		
