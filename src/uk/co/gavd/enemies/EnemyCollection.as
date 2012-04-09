@@ -3,6 +3,7 @@
     import flash.events.Event;
     import uk.co.gavd.Config;
     import flash.media.Sound;
+    import uk.co.gavd.ballistics.BulletHero;
     
     public class EnemyCollection {
 		
@@ -60,31 +61,41 @@
 			
 		}
 		
-		public function detectHits(bullet:MovieClip):void {
+		public function detectHits(bullet:BulletHero):void {
+			//trace(bullet + " triggered? " + bullet.triggered);
+//			trace("*** Frame " + bullet.currentFrame);
+			// bullet.triggered
+			   // ||
+			if(bullet.currentFrame > 1) {
+				trace("Bullet is triggered - move on");
+				return;
+			}
+//			trace("*** ABOUT TO LOOP");
+			
 			for (var i:Number = 0; i < this.arEnemies.length; i++) {
-				var ptr:MovieClip = this.arEnemies[i];
 				
+				var ptr:Enemy = this.arEnemies[i];
+				
+			
 				//trace("Before check ptr.lACtion");
 			
 				/*if (ptr.x == undefined) { 
 					continue;
 				}
-				else */if (ptr.lAction == Enemy.DYING) {
+				else */
+				
+				if (ptr.lAction == Enemy.DYING) {
 					continue;
 				}
-				
-				//trace("After check ptr.lACtion");
-				
-				//trace("Hit zone test on " + bullet.hitZone + " vs " + ptr);
-				var tmp:MovieClip;
+//				trace("*** 11 bullet [" + bullet + "] hitzone [" + bullet.hitZone + "] ptr [" + ptr + "]");
+//				trace("*** Frame " + bullet.currentFrame);
 				if (bullet.hitZone.hitTestObject(ptr)) {
-					bullet.gotoAndPlay("explode");
 					bullet.triggered = true;
-					if(ptr.takeHit) {
-						ptr.takeHit();
-					} else {
-						this.kill(ptr);
-					}
+					
+					bullet.gotoAndPlay("explode");
+					
+					ptr.takeHit();
+//					trace("*** 55");
 				}
 			}
 		}
@@ -97,7 +108,7 @@
 //			theRoot.score += scoreUp;
 /*
 var mcTmp:MovieClip = theRoot.game.BGMid.scoreFloaterTemplate.duplicateMovieClip("score" + this.scoreIndex, theRoot.game.BGMid.getNextHighestDepth());
-			//var mcTmp:MovieClip = eval("theRoot.game.BGMid.score" + this.scoreIndex);
+			//var mc :MovieClip = eval("theRoot.game.BGMid.score" + this.scoreIndex);
 			this.scoreIndex++; // TODO can remove?
 			mcTmp.x = ptr.x;
 			mcTmp.y = ptr.y;

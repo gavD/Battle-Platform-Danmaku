@@ -1,25 +1,18 @@
 ﻿package uk.co.gavd.enemies {
+	import flash.filters.ColorMatrixFilter;
+	import fl.motion.AdjustColor;
 	import flash.display.MovieClip;
 	import uk.co.gavd.ballistics.*;
     import uk.co.gavd.Game;
 	import flash.events.Event;
-	import flash.filters.GlowFilter;
-	import flash.filters.ColorMatrixFilter;
 	import flash.media.Sound;
 
     public class Enemy extends MovieClip {
-	    private static var lBulletIndex:Number = 0; // TODO move to bullets?
-		
-		public var flasher:MovieClip;
-
 		// TODO refactor sof
-		protected var prefDistToHero:Number = 120;
-		protected var shotOffset:Number = 0; // adjust where the bullet spawns from
 		protected var scoreForKill:int = 5;
 		protected var fireRange:Number = 300;
 		
 		protected var hp:Number = 5;
-		protected var prefYFromHero:Number = 20; // how far a clip should try to get in line with the hero
 		
 		// ammo types
 		public static const AIMATHERO:int =  0;
@@ -34,7 +27,6 @@
 		public static const NOTHING:int = 0;
 		public static const HOMING:int = 1;
 		public static const DYING:int = 3;
-		
 		// TODO refactor eof
 		
 		public var lAction:int = 0;
@@ -44,9 +36,31 @@
 		
 		private var takeHitWav:Sound;
 		
+		// filter for flash on hit
+		private var filterBW:Array;
+		private var resetFilterCountdown:int = 0;
+		
 		public function Enemy(game:Game) {
 			this.game = game;
 			this.takeHitWav = new TakehitWav();
+			this.loadFilter();
+		}
+		
+		private function loadFilter():void {
+			var color : AdjustColor;
+			var colorMatrix : ColorMatrixFilter;
+			var matrix : Array;
+			var filterBW : Array;
+			 
+			color = new AdjustColor();
+			color.brightness = 100;
+			color.contrast = 20;
+			color.hue = 0;
+			color.saturation = -100;
+			 
+			matrix = color.CalculateFinalFlatArray();
+			colorMatrix = new ColorMatrixFilter(matrix);
+			this.filterBW = [colorMatrix];
 		}
 
 		public function process():void {
@@ -65,6 +79,13 @@
 			else if (this.lAction == Enemy.HOMING) {
 				this.handleMovementAndShooting();
 			}
+			
+			if(resetFilterCountdown > 0) {
+				if(--resetFilterCountdown == 0) {
+					this.filters = [];
+				}
+			}
+			
 		}
 		
 		private function handleMovementAndShooting():void {
@@ -122,28 +143,20 @@
 		protected function muzzleFlash():void {
 			/*
 			var flasher:MovieClip = game.BGMid.flasher0.duplicateMovieClip("bulletEnemy_" + +
-	
-	+Enemy.lBulletIndex, game.BGMid.getNextHighestDepth());
-			
 			flasher.x = this.x;
 			flasher.y = this.y;
 			*/
 		}
 		
 		public function takeHit():void {
-			trace("PLAY FLASHER");
-			
 			var theRootx:MovieClip = MovieClip(root); // TODO DI this?
 			this.hp -= theRootx.game.hero.power;
 			if(this.hp <= 0) {
 				theRootx.fcEnemies.kill(this);
 			} else {
-				flasher.gotoAndPlay(1);
+				this.filters = this.filterBW;
+				this.resetFilterCountdown = 3;
 				this.takeHitWav.play();
-				//var filter = new flash.filters.ColorMatrixFilter; 
-				//var myTempFilters:Array = this.filters; 
-				//myTempFilters.push(filter);
-				//this.filters = myTempFilters;s
 			}
 		}
     }

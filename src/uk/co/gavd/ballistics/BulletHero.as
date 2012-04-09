@@ -21,7 +21,13 @@
         }
 		
         override protected function checkForHits():void {
+//			trace("£££ Check for hits trig [" + this.triggered + "] frame " + this.currentFrame);
+			if(this.triggered) {
+//				trace("#### TRIGGERED ### bail");
+				return;
+			}
 			var theRootx:MovieClip = MovieClip(root); // TODO DI this?
+			
 			theRootx.fcEnemies.detectHits(this);
 
         }

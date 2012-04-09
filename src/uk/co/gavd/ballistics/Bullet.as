@@ -98,11 +98,10 @@
         
         public function doFrame(e:Event):void {
             this.moveTowardsTarget();
-            
             if(this.triggered) {
+//				trace("BULLET TRIGGERED ; returning");
                 return;
             }
-            
             this.checkForHits();
         }
         
@@ -118,7 +117,7 @@
             }
         }
 		
-		public function blam() {
+		public function blam():void {
 			if(this.parent === null ) {
 				// TODO why does this still come up?!?!?! // trace("Already blammed");
 				return;
