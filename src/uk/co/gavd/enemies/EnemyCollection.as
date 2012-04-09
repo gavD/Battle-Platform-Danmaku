@@ -62,40 +62,23 @@
 		}
 		
 		public function detectHits(bullet:BulletHero):void {
-			//trace(bullet + " triggered? " + bullet.triggered);
-//			trace("*** Frame " + bullet.currentFrame);
-			// bullet.triggered
-			   // ||
-			if(bullet.currentFrame > 1) {
-				trace("Bullet is triggered - move on");
-				return;
-			}
-//			trace("*** ABOUT TO LOOP");
-			
 			for (var i:Number = 0; i < this.arEnemies.length; i++) {
-				
 				var ptr:Enemy = this.arEnemies[i];
-				
-			
-				//trace("Before check ptr.lACtion");
-			
 				/*if (ptr.x == undefined) { 
 					continue;
-				}
-				else */
+				}*/
 				
 				if (ptr.lAction == Enemy.DYING) {
 					continue;
 				}
-//				trace("*** 11 bullet [" + bullet + "] hitzone [" + bullet.hitZone + "] ptr [" + ptr + "]");
-//				trace("*** Frame " + bullet.currentFrame);
+				
 				if (bullet.hitZone.hitTestObject(ptr)) {
 					bullet.triggered = true;
 					
 					bullet.gotoAndPlay("explode");
 					
 					ptr.takeHit();
-//					trace("*** 55");
+					return; // no point in staying in the loop if we hit something!
 				}
 			}
 		}

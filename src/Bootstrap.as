@@ -54,7 +54,7 @@ function dispTree(sym, indent) {
 }
 
 function checkMemoryUsage():void {
-	trace("== MEM: " + System.totalMemory + "==");
+	//trace("== MEM: " + System.totalMemory + "==");
 	//trace("== OBJECTS: ==");dispTree(game, 0);
 }
 var checkMemoryIntervalID:uint = setInterval(checkMemoryUsage,1000);

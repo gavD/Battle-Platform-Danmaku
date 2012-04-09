@@ -14,7 +14,7 @@
 			
 			this.fireRange = 400;
 			this.scoreForKill = 20;
-			this.hp = 30;
+			this.hp = 20;
 			this.rateOfFire = 200;
 			
 			this.fireSound = new FourWayWav();
