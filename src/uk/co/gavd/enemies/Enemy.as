@@ -104,11 +104,9 @@
 		
 		private function turnAndFace(targetX:Number):void {
 			if (this.bFacingLeft && targetX > this.x) {
-				trace("LOOK RIGHT");
 				this.bFacingLeft = false;
 				this.scaleX = -1;
 			} else if (!this.bFacingLeft && targetX < this.x) {
-				trace("LOOK LEFT");
 				this.bFacingLeft = true;
 				this.scaleX= 1;
 			}
