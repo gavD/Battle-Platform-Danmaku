@@ -1,6 +1,9 @@
-﻿import uk.co.gavd.danmakuengine.*;
+﻿import flash.system.System;
+import flash.display.MovieClip;
+import flash.display.DisplayObject;
+import uk.co.gavd.danmakuengine.*;
 import uk.co.gavd.danmakuengine.enemies.*;
-import uk.co.gavd.danmakuengine.diagnostics.FramerateTracker;
+import uk.co.gavd.danmakuengine.diagnostics.*;
 
 include "Controls.as"
 		
@@ -22,43 +25,15 @@ game.hero.addEventListener(Event.ENTER_FRAME,game.hero.doFrame, false, 0, true);
 stage.addEventListener(Event.ENTER_FRAME, fcEnemies.doFrame, false, 0, true);
 
 // sof diagnostics
-import flash.system.System;
-import flash.display.MovieClip;
-import flash.display.DisplayObject;
-
 var frt:FramerateTracker = new FramerateTracker();
 this.addChild(frt);
-frt.visible = true;
-frt.x = 1;
-frt.y = 1;
-
-// check our memory every 1 second:
-function getClass(obj:Object):Class {
-	return Class(getDefinitionByName(getQualifiedClassName(obj)));
-}
-
-function dispTree(sym, indent) {
-	var len:int = sym.numChildren;  
-	for (var i:int = 0; i < len; i++) {  
-		var display:DisplayObject = sym.getChildAt(i);  
-		
-		var s:String = "";
-		for(var n:int = 0; n <= indent; n++) {
-			s += " ";
-		}
-		
-		trace(s + display.name + "[" + getClass(display) + "]");  
-		if(display is flash.display.MovieClip) {
-			dispTree(display, indent + 1);
-		}
-	}  
-}
 
 function checkMemoryUsage():void {
-	//trace("== MEM: " + System.totalMemory + "==");
-	//trace("== OBJECTS: ==");dispTree(game, 0);
+	trace("== MEM: " + System.totalMemory + "==");
+	trace("== OBJECTS: ==");TimelineUtils.dispTree(game, 0);
 }
-var checkMemoryIntervalID:uint = setInterval(checkMemoryUsage,1000);
+// enable the next line to track memory usage
+//var checkMemoryIntervalID:uint = setInterval(checkMemoryUsage,1000);
 // eof
 
 stop();

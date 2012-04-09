@@ -28,7 +28,6 @@
 			theRoot.fcGameOver.readyForRestart = true;
 			for(var i:Number = 0; i < this.arEnemies.length; i++) {
 				var tmp = this.arEnemies[i];
-				trace("KILL ENEMY " + tmp);
 				theRoot.absDelete(tmp);
 			}
 			this.arEnemies = new Array();

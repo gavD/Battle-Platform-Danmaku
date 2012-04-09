@@ -2,6 +2,7 @@
 	import flash.display.MovieClip;
 	import uk.co.gavd.danmakuengine.Game;
 	import uk.co.gavd.danmakuengine.Config;
+	import uk.co.gavd.danmakuengine.diagnostics.ClassUtils;
 
     public class EnemyGenerator {
 		
@@ -24,7 +25,12 @@
 			mc.y = spawnPoint.y;
 			 
 			game.BGMid.removeChild(spawnPoint);
-			trace("Before dispose " + spawnPoint);
+			trace("Before dispose "
+				  + spawnPoint
+				  + " class ["
+				  +  uk.co.gavd.danmakuengine.diagnostics.ClassUtils.getClass(spawnPoint)
+				  + "]");
+			
 			spawnPoint.dispose();
 			spawnPoint = null;
 			 
