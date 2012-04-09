@@ -26,7 +26,8 @@
 		
 		public static const NOTHING:int = 0;
 		public static const HOMING:int = 1;
-		public static const DYING:int = 3;
+		public static const DYING:int = 2;
+		public static const DEAD:int = 3;
 		// TODO refactor eof
 		
 		public var lAction:int = 0;

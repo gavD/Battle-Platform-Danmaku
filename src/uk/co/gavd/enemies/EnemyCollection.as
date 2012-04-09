@@ -36,14 +36,14 @@
 			this.arEnemies = new Array();
 		}
 		
-		public function registerEnemy(ptr:Enemy):void {
-//			trace("Register " + ptr);
+		public function registerEnemy(enemy:Enemy):void {
+//			trace("Register " + enemy);
 			// let's see if we can put it in an existing place
 			var spaceFound:Boolean = false;
 			for(var i:Number = 0; i < this.arEnemies.length; i++) {
 				if (this.arEnemies[i].x == undefined) {
 					trace("Put in at " + i);
-					this.arEnemies[i] = ptr;
+					this.arEnemies[i] = enemy;
 					spaceFound = true;
 					break;
 				}
@@ -53,75 +53,82 @@
 			if (!spaceFound) {
 				if (this.arEnemies.length >= theRoot.MAX_ENEMIES) {
 					trace("ALREADY HAVE " + theRoot.MAX_ENEMIES + " enemies, BLAMMING");
-					//theRoot.absDelete(ptr);
+					//theRoot.absDelete(enemy);
 				} else {
-					this.arEnemies.push(ptr);
+					this.arEnemies.push(enemy);
 				}
 			}
-			
 		}
 		
 		public function detectHits(bullet:BulletHero):void {
 			for (var i:Number = 0; i < this.arEnemies.length; i++) {
-				var ptr:Enemy = this.arEnemies[i];
-				/*if (ptr.x == undefined) { 
-					continue;
-				}*/
 				
-				if (ptr.lAction == Enemy.DYING) {
+				if (this.arEnemies[i] == null) { 
 					continue;
 				}
 				
-				if (bullet.hitZone.hitTestObject(ptr)) {
+				var enemy:Enemy = this.arEnemies[i];
+				
+				if (enemy.lAction == Enemy.DYING) {
+					continue;
+				}
+				
+				if (bullet.hitZone.hitTestObject(enemy)) {
 					bullet.triggered = true;
 					
 					bullet.gotoAndPlay("explode");
 					
-					ptr.takeHit();
+					enemy.takeHit();
 					return; // no point in staying in the loop if we hit something!
 				}
 			}
 		}
 		
-		public function kill(ptr:MovieClip):void {
+		public function kill(enemy:MovieClip):void {
 			this.explodeWav.play();
 
-			ptr.lAction = Enemy.DYING;
-//			var scoreUp:Number = (ptr.scoreForKill * theRoot.hud.mobileHud.scoreCounter.comboMeter.multiplier);
+			enemy.lAction = Enemy.DYING;
+//			var scoreUp:Number = (enemy.scoreForKill * theRoot.hud.mobileHud.scoreCounter.comboMeter.multiplier);
 //			theRoot.score += scoreUp;
 /*
 var mcTmp:MovieClip = theRoot.game.BGMid.scoreFloaterTemplate.duplicateMovieClip("score" + this.scoreIndex, theRoot.game.BGMid.getNextHighestDepth());
 			//var mc :MovieClip = eval("theRoot.game.BGMid.score" + this.scoreIndex);
 			this.scoreIndex++; // TODO can remove?
-			mcTmp.x = ptr.x;
-			mcTmp.y = ptr.y;
+			mcTmp.x = enemy.x;
+			mcTmp.y = enemy.y;
 			mcTmp.score = scoreUp;
 */
-			ptr.gotoAndPlay("die");
+			enemy.gotoAndPlay("die");
 		}
 		
-		public function getDistanceFromHeroRaw(ptr:MovieClip):Number {
-			return (theRoot.game.hero.x - theRoot.game.BGMid.x) - ptr.x
+		public function getDistanceFromHeroRaw(enemy:MovieClip):Number {
+			return (theRoot.game.hero.x - theRoot.game.BGMid.x) - enemy.x
 		}
 		
-		public function getDistanceFromHero(ptr:MovieClip):Number {
-			return Math.abs(this.getDistanceFromHeroRaw(ptr));
+		public function getDistanceFromHero(enemy:MovieClip):Number {
+			return Math.abs(this.getDistanceFromHeroRaw(enemy));
 		}
 	
 		public function doFrame(e:Event):void {
 			//trace("DOFRAME" + this.arEnemies.length);
-			
+		
 			for (var i:Number = 0; i < this.arEnemies.length; i++) {
-				var tmp:Enemy = this.arEnemies[i];
-
-				if(this.arEnemies[i].x == undefined) {
+				if(this.arEnemies[i] == null) {
+					// TODO shrink array?
 					continue;
 				}
-				this.arEnemies[i].process();
-
+				
+				var enemy:Enemy = this.arEnemies[i];
+				
+				if(enemy.lAction == Enemy.DEAD) {
+					enemy.parent.removeChild(enemy);
+					enemy = null;
+					this.arEnemies[i] = null;
+					continue;
+				}
+				
+				enemy.process();
 			}
-			//theRoot.fcBullets.killAll = false; // TODO?
-			
 		}
     }
 }

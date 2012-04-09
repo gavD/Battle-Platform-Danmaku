@@ -24,12 +24,10 @@
 		}
 		
 		public function powerupROF():void {
-			trace("POWER UP ROF was " + this.framesBetweenShots);
 			this.framesBetweenShots -= 3;
 			if(this.framesBetweenShots < 3) {
 				this.framesBetweenShots = 3;
 			}
-			trace("POWER UP ROF now " + this.framesBetweenShots);
 		}
         
         public function fireShot(directional:Boolean):void {
