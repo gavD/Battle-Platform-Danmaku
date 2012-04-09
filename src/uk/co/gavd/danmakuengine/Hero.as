@@ -55,7 +55,7 @@
 			}
         }
 		
-		public function setAction(a:int) {
+		public function setAction(a:int):void {
 			this.lAction = a;
 		}
         
