@@ -1,4 +1,4 @@
-﻿package uk.co.gavd.danmakuengine.diagnostics
+﻿package uk.co.gavd.diagnostics
 {
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;

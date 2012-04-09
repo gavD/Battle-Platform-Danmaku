@@ -3,7 +3,7 @@ import flash.display.MovieClip;
 import flash.display.DisplayObject;
 import uk.co.gavd.danmakuengine.*;
 import uk.co.gavd.danmakuengine.enemies.*;
-import uk.co.gavd.danmakuengine.diagnostics.*;
+import uk.co.gavd.diagnostics.*;
 
 include "Controls.as"
 		

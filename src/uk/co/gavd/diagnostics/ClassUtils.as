@@ -1,4 +1,4 @@
-﻿package uk.co.gavd.danmakuengine.diagnostics
+﻿package uk.co.gavd.diagnostics
 {
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
