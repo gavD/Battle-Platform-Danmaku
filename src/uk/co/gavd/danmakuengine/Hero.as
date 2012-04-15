@@ -23,7 +23,7 @@
     
         // inertia and speed
         private var lRatioVertical:Number = 0.2;
-        private var lMaxEnergy:Number = 40;
+        private var lMaxEnergy:int = 40;
 		public var lEnergy:Number = lMaxEnergy;
 		
 		public var thrusterRear:MovieClip;
@@ -32,6 +32,14 @@
 		public var thrusterBottom:MovieClip;
 		
 		public var hitZone:MovieClip;
+		
+		public function getMaxEnergy():int {
+			return this.lMaxEnergy;
+		}
+		
+		public function getEnergy():int {
+			return this.lEnergy;
+		}
 		
 		// the area the ship can't fly into around the sides
 		// of the screen
@@ -81,7 +89,7 @@
         public function reset():void {
 			trace("INSIDE HERO RESET");
 			this.lAction = Hero.OK;
-			theRoot.fcBlinker.doInvincible();
+			//theRoot.fcBlinker.doInvincible();
 			this.lEnergy = this.lMaxEnergy;
 			this.gotoAndStop("ready");
         }
@@ -131,5 +139,9 @@
 			}
             this.applyMovement(lXDir,lYDir);
         }
+		
+		public function repairArmor():void {
+			this.lEnergy = this.lMaxEnergy;
+		}
     }
 }

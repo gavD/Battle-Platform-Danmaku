@@ -17,6 +17,11 @@ var enemyGenerator:EnemyGenerator = new EnemyGenerator(game, fcEnemies, conf);
 var reticle:Reticle = new Reticle(game, conf);
 stage.addChild(reticle);
 
+var healthBar:HealthBar = new HealthBar(game.hero, Config.HEALTH_BAR_WIDTH);
+healthBar.x = 550;
+healthBar.y = 10;
+this.addChild(healthBar);
+
 stage.addEventListener ( MouseEvent.MOUSE_DOWN, reticle.doMouseDown, false, 0, true);
 stage.addEventListener ( MouseEvent.MOUSE_UP, reticle.doMouseUp, false, 0, true);
 reticle.addEventListener ( Event.ENTER_FRAME, reticle.doFrame, false, 0, true);

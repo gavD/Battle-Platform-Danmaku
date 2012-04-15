@@ -10,6 +10,8 @@
 		public static const SCROLL_BOUNDS_Y_UPPER:int = 22;
 		public static const SCROLL_BOUNDS_Y_LOWER:int = 470;
 		
+		public static const HEALTH_BAR_WIDTH:int = 200;
+		
 		// global variables
 		public var score:int = 0;
 		public var bGamePaused:Boolean = false;

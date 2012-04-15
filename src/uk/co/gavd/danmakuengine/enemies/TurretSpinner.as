@@ -10,14 +10,14 @@
 			super(game);
 			
 			this.fireRange = 300;
-			this.rateOfFire = 12;
+			this.rateOfFire = 14;
 			this.scoreForKill = 5;
 			this.hp = 25;
 			
 			this.addEventListener ( Event.ENTER_FRAME, this.doFrame, false, 0, true);
 		}
 		
-		private function doFrame(e:Event) {
+		private function doFrame(e:Event):void {
 			this.rotation++;
 		}
 		

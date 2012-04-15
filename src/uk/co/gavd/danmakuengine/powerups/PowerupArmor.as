@@ -4,14 +4,15 @@
     import flash.media.Sound;
 	import uk.co.gavd.danmakuengine.Hero;
     
-    public class PowerupROF extends Powerup {
+    public class PowerupArmor extends Powerup {
 		
-		public function PowerupROF() {
+		public function PowerupArmor() {
 			super();
 		}
-		
+        
 		protected override function upgrade():void {
-			MovieClip(root).reticle.powerupROF();
+			trace("REPAIR ARMOR");
+			MovieClip(root).game.hero.repairArmor();
 		}
     }
 }
