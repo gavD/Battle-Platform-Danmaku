@@ -37,7 +37,6 @@
 			this.fireSound.play();
 			
 			var bul:Bullet = this.getNextBullet()
-			bul.addEventListener ( Event.ENTER_FRAME, bul.doFrame, false, 0, true);
 			bul.fireAtTarget(game.hero);
 			
 			return true;
