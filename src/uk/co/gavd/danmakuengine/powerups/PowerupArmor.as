@@ -11,7 +11,6 @@
 		}
         
 		protected override function upgrade():void {
-			trace("REPAIR ARMOR");
 			MovieClip(root).game.hero.repairArmor();
 		}
     }

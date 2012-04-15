@@ -147,10 +147,24 @@
 			*/
 		}
 		
+		protected function dieHook():void {
+			
+		}
+		
+		public function isOnScreen():Boolean {
+			var foo:Number = (this.x - 580) * -1; // TODO 580 is a magic number
+			if (game.BGMid.x < foo) { 
+				return true;
+			}
+			
+			return false;
+		}
+		
 		public function takeHit():void {
 			var theRootx:MovieClip = MovieClip(root); // TODO DI this?
 			this.hp -= theRootx.game.hero.power;
 			if(this.hp <= 0) {
+				this.dieHook();
 				theRootx.fcEnemies.kill(this);
 			} else {
 				this.filters = this.filterBW;

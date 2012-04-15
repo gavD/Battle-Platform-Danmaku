@@ -1,3 +1,5 @@
+Get rid of "doFrame" - rename it in all cases
+
 List items on a layer - we can see if things aren't deleted
 
 Refactor out all duplicateMovieClip to attachMovie? Will mean a few less symbols on the stage

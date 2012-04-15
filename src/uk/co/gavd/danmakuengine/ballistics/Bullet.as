@@ -16,7 +16,7 @@
         public var targetY:Number = 0; // TODO lock down?
         
         // info about this bullet
-        protected var damage:Number = 4;
+        protected var damage:Number = 5;
         protected var travel:Number = 750; // how many px this bullet can fly
 		
 		protected var lSpeed:Number = 2.5;

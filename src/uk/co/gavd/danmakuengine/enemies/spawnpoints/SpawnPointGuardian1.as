@@ -1,9 +1,9 @@
 ﻿package uk.co.gavd.danmakuengine.enemies.spawnpoints {
 	import flash.display.MovieClip;
 	
-	public class SpawnPointTurret extends MovieClip {
+	public class SpawnPointGuardian1 extends MovieClip {
 		
-		public function SpawnPointTurret() {
+		public function SpawnPointGuardian1() {
 			// constructor code
 		}
 		 

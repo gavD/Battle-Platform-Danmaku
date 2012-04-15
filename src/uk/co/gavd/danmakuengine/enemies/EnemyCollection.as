@@ -70,13 +70,20 @@
 					continue;
 				}
 				
-				if (bullet.hitZone.hitTestObject(enemy)) {
-					bullet.triggered = true;
-					
-					bullet.gotoAndPlay("explode");
-					
-					enemy.takeHit();
-					return; // no point in staying in the loop if we hit something!
+				if(enemy.hitZone) { // TODO sort out duplication
+					if (bullet.hitZone.hitTestObject(enemy.hitZone)) {
+						bullet.triggered = true;
+						bullet.gotoAndPlay("explode");
+						enemy.takeHit();
+						return; // no point in staying in the loop if we hit something!
+					}				
+				} else {
+					if (bullet.hitZone.hitTestObject(enemy)) {
+						bullet.triggered = true;
+						bullet.gotoAndPlay("explode");
+						enemy.takeHit();
+						return; // no point in staying in the loop if we hit something!
+					}
 				}
 			}
 		}

@@ -1,4 +1,4 @@
-﻿package uk.co.gavd.danmakuengine {
+﻿package uk.co.gavd.danmakuengine.enemies.spawnpoints {
 	
 	import flash.display.MovieClip;
 	

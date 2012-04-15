@@ -33,7 +33,7 @@
 			this.getNextBullet().fireAtAngle(-160);
 			this.getNextBullet().fireAtAngle(-180);
 			
-			return false; // TODO why?sd
+			return false; // TODO why?
 		}
 		
 		override protected function getNewBullet():Bullet {

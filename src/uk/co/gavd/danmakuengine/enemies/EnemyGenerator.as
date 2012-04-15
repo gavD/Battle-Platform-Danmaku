@@ -50,6 +50,9 @@
 				case 4:
 					t = new TurretSpinner(this.game);
 					break;
+				case 10:
+					t = new Guardian1(this.game);
+					break;
 				default:
 					t = new Turret(this.game);
 					break;

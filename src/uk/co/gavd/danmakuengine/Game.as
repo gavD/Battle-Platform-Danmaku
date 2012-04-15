@@ -34,7 +34,20 @@
 			}
 		}
 		
+		private var doScroll:Boolean = true;
+		
+		public function stopScrolling():void {
+			doScroll = false;
+		}
+		public function startScrolling():void {
+			doScroll = true;
+		}
+		
 		public function doFrame(event:Event):void {
+			var minScroll = -345;
+			if(!doScroll) {
+				return;
+			}
 			this.BGMid.x -= Config.SCROLL_SPEED;
 /*
 if(this.curLevel == 1 && this.BGMid.x < -4750) {
@@ -42,7 +55,11 @@ if(this.curLevel == 1 && this.BGMid.x < -4750) {
 				this.loadLevel(2);
 			}
 			*/
-			this.BGTiles.x -= Config.SCROLL_SPEED * 0.2;
+			
+			
+			
+				this.BGTiles.x -= Config.SCROLL_SPEED * 0.2;
+			
 		}
 	}
 }
