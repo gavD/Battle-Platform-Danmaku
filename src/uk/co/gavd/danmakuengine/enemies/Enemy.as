@@ -47,6 +47,10 @@
 			this.loadFilter();
 		}
 		
+		public function checkHit(bullet:Bullet):Boolean {
+			return bullet.hitZone.hitTestObject(this);
+		}
+		
 		private function loadFilter():void {
 			var color : AdjustColor;
 			var colorMatrix : ColorMatrixFilter;

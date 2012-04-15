@@ -1,3 +1,8 @@
+isOnScreen for turrets etc - can it be one method?
+	-> only fire or take hits if on screen
+
+What's "hitArea"? (comes up in intellisense for Guardian1)
+
 Get rid of "doFrame" - rename it in all cases
 
 List items on a layer - we can see if things aren't deleted

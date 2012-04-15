@@ -9,6 +9,8 @@
 		
 		public static const MOVEMENT_SPEED:int = 1;
 		
+		public var hitZone:MovieClip;
+		
 		private var yMovementPerFrame:int = MOVEMENT_SPEED;
 		protected var fireSound:Sound;
 		
@@ -22,9 +24,14 @@
 			
 			this.fireRange = 800;
 			this.scoreForKill = 400;
-			this.hp = 200;
+			this.hp = 150;
 			
 			this.fireSound = new BulletGuardian1Wav();
+			this.hitZone.visible = false;
+		}
+		
+		override public function checkHit(bullet:Bullet):Boolean {
+			return bullet.hitZone.hitTestObject(this.hitZone);
 		}
 		
 		// stub out methods that don't apply to turrets
