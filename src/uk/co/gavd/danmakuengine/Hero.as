@@ -2,7 +2,6 @@
     import flash.display.MovieClip;
 	import flash.display.Stage;
     import flash.events.Event;
-	import uk.co.gavd.danmakuengine.Filters;
     
     public class Hero extends MovieClip {
         
