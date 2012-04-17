@@ -19,7 +19,7 @@
     
         private var bInvincible:Boolean = false;
 
-        private var inertiaLimit:Number = 9; // TODO can these switch 
+        private var engineSpeed:Number = 9; // TODO can these switch 
     
         // inertia and speed
         private var lRatioVertical:Number = 0.2;
@@ -52,8 +52,8 @@
         
         public function applyMovement(lXDir:Number, lYDir:Number):void {
             this.setThrusters(lXDir, lYDir);
-			this.x += lXDir * inertiaLimit * lRatioVertical; 
-			this.y += lYDir * inertiaLimit * lRatioVertical;
+			this.x += lXDir * this.engineSpeed * lRatioVertical; 
+			this.y += lYDir * this.engineSpeed * lRatioVertical;
 			
 			if(this.y < SCREEN_BORDER) {
 				this.y = SCREEN_BORDER;
@@ -94,9 +94,9 @@
         public function reset():void {
 			trace("INSIDE HERO RESET");
 			this.lAction = Hero.OK;
-			//theRoot.fcBlinker.doInvincible();
 			this.lEnergy = this.lMaxEnergy;
 			this.gotoAndStop("ready");
+			this.hitTaker.takeHit(40);
         }
 
 		public function takeHit(lDamage:Number):void {

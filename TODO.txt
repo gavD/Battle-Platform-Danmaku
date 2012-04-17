@@ -1,15 +1,11 @@
 Can I get this game to build without the FLA? I don't want to commit the
 FLA, but a build script would be cool - maybe Flex is the answer?
 
-What's "hitArea"? (comes up in intellisense for Guardian1)
-
 Get rid of "doFrame" - rename it in all cases
 
 Score system
 
 Refactor out all duplicateMovieClip to attachMovie? Will mean a few less symbols on the stage
-
-Targeting code for reticle should just use the bullet code?
 
 Make sure the energy bar works
 
@@ -17,7 +13,7 @@ Reimplement loading bar
 
 combo meter needs re-implementing
 
-re-implement game over
+re-implement game overwd
 
 mobile hud flying ship in
 
@@ -26,5 +22,3 @@ multiplierText
 scoreText
 
 scoreFloaterText
-
-multiplierFloater[2]

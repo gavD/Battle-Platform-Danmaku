@@ -3,13 +3,13 @@
     import flash.events.*;
 	
     public class HealthBar extends MovieClip {
-        protected var hero:Hero;
-		
+        
 		public var green:MovieClip;
 		public var red:MovieClip;
 		
-		protected var barWidth:int = 100;
-
+		private var hero:Hero;
+		private var barWidth:int = 100;
+		
 		public function HealthBar(hero:Hero, barWidth:int) {
 			this.hero = hero;
 			this.width = barWidth;
@@ -18,7 +18,20 @@
 		}
 		
 		protected function doFrame(e:Event):void {
-			this.green.width = this.width * (this.hero.getEnergy() / this.hero.getMaxEnergy());
+			var desiredWidth:Number = this.width * (this.hero.getEnergy() / this.hero.getMaxEnergy());
+			if(this.green.width < desiredWidth) {
+				this.green.width += 7;
+				if(this.green.width > desiredWidth) {
+					this.green.width = desiredWidth;
+				}
+				return;
+			} else if (this.green.width > desiredWidth) {
+				this.green.width -= 2;
+				if(this.green.width < desiredWidth) {
+					this.green.width = desiredWidth;
+				}
+				return;
+			}
 		}
     }
 }
