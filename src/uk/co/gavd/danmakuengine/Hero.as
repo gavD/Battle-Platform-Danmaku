@@ -2,6 +2,7 @@
     import flash.display.MovieClip;
 	import flash.display.Stage;
     import flash.events.Event;
+	import uk.co.gavd.danmakuengine.Filters;
     
     public class Hero extends MovieClip {
         
@@ -33,6 +34,12 @@
 		
 		public var hitZone:MovieClip;
 		
+		private var hitTaker:HitTaker;
+		
+		public function Hero() {
+			this.hitTaker = new HitTaker(this);
+		}
+		
 		public function getMaxEnergy():int {
 			return this.lMaxEnergy;
 		}
@@ -40,6 +47,7 @@
 		public function getEnergy():int {
 			return this.lEnergy;
 		}
+		
 		
 		// the area the ship can't fly into around the sides
 		// of the screen
@@ -99,7 +107,9 @@
                 return;
             } else if (bInvincible && lDamage < 1500) {
                 return;
-            }
+            } else if (this.hitTaker.isFiltered()) {
+				return;
+			}
             
             this.lEnergy -= lDamage;
             
@@ -107,12 +117,13 @@
                 this.lAction = Hero.DYING;
                 this.gotoAndPlay("die");
             } else {
-				this.lAction = Hero.TAKING_HIT;
-                this.gotoAndPlay("takeHit");
+				this.hitTaker.takeHit(10);
             }
         }
 		
         public function doFrame(event:Event):void {
+			hitTaker.doFrame(); // TODO can we factor it out?
+			
 			if(this.lAction >= DYING) {
 				return;
 			}
