@@ -2,7 +2,6 @@
 	import flash.filters.ColorMatrixFilter;
 	import fl.motion.AdjustColor;
 	import flash.display.MovieClip;
-	import flash.events.Event;
 	import flash.media.Sound;
 	
 	public class HitTaker {

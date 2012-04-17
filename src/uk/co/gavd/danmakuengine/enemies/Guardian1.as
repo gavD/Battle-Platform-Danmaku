@@ -18,6 +18,10 @@
 										 false,false,false,false,false,false,false,false,false,false,
 										 true,false,false,true,false,false,true,false,false,true];
 		private var firePointer:int = 0;
+				
+		private var targetX:Number = 0;
+		private var targetY:Number = 0;
+		private var gameAffected:Boolean = false;
 		
 		public function Guardian1(game:Game) {
 			super(game);
@@ -42,24 +46,24 @@
 			} else if (this.y < 140) { // TODO magic number
 				this.yMovementPerFrame = MOVEMENT_SPEED;
 			}
-			
+		}
+		
+		override protected function getOnScreenMin():uint {
+			return 580;
 		}
 		
 		override protected function handleMovementX():void {}
 		
-		protected override function getNewBullet():Bullet {
+		override protected function getNewBullet():Bullet {
 			return new BulletFast(game);
 		}
 		
-		private var targetX:Number = 0;
-		private var targetY:Number = 0;
-		private var gameAffected:Boolean = false;
-		protected override function dieHook():void {
+		override protected function dieHook():void {
 			game.startScrolling();
 		}
 		
 		override protected function doFire (lTargetX:Number, distFromHero:Number):Boolean {
-			if(!gameAffected && this.isOnScreen()) {
+			if(!gameAffected) {
 				game.stopScrolling();
 				gameAffected = true;
 			}
@@ -97,6 +101,5 @@
 			
 			return true;
 		}
-
     }
 }

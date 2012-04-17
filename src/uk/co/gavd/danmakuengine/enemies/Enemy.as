@@ -34,9 +34,11 @@
 		}
 
 		public function process():void {
+			if(!this.isOnScreen()) {
+				return;
+			}
 			
 			if (game.hero.lAction != 0) {
-				//trace("game not in play");
 				return;
 			}
 
@@ -111,9 +113,13 @@
 			
 		}
 		
+		protected function getOnScreenMin():uint {
+			return 777;
+		}
+		
 		public function isOnScreen():Boolean {
-			var foo:Number = (this.x - 580) * -1; // TODO 580 is a magic number
-			if (game.BGMid.x < foo) { 
+			var fudgedNumber:Number = (this.x - this.getOnScreenMin()) * -1;
+			if (game.BGMid.x < fudgedNumber) { 
 				return true;
 			}
 			
