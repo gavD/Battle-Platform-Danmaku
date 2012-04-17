@@ -30,7 +30,7 @@
 		}
 		
 		public function checkHit(bullet:Bullet):Boolean {
-			return bullet.hitZone.hitTestObject(this);
+			return bullet.hitArea.hitTestObject(this);
 		}
 
 		public function process():void {

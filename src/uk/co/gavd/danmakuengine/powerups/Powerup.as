@@ -17,7 +17,7 @@
 			if(MovieClip(root).game.hero.lAction !== Hero.OK) {
 				return;
 			}
-            if (this.hitTestObject(MovieClip(root).game.hero.hitZone)) {
+            if (this.hitTestObject(MovieClip(root).game.hero.hitArea)) {
 				this.powerupWav.play();
 				this.removeEventListener(Event.ENTER_FRAME, this.doFrame, false);
                 this.upgrade();

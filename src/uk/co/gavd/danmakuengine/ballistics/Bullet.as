@@ -5,8 +5,6 @@
 	import uk.co.gavd.danmakuengine.Hero;
     
     public class Bullet extends MovieClip {
-		public var hitZone:MovieClip;
-		
         // dynamically calculated stuff
         public var triggered:Boolean = false;
         protected var framesToLive:int = 10000;
@@ -27,7 +25,7 @@
 		public function Bullet(game:Game) {
 			this.stop();
 			this.game = game;
-			this.hitZone.visible = false;
+			this.hitArea.visible = false;
 		}
         
         public function fireAtPoint(targetX:Number, targetY:Number):void {
@@ -110,7 +108,7 @@
 				return;
 			}
 			
-			if (this.hitZone.hitTestObject(game.hero.hitZone)) {
+			if (this.hitArea.hitTestObject(game.hero.hitArea)) {
 				this.triggered = true;
                 game.hero.takeHit(this.damage);
                 this.gotoAndPlay("explode");

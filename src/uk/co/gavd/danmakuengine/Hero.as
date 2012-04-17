@@ -31,8 +31,6 @@
 		public var thrusterTop:MovieClip;
 		public var thrusterBottom:MovieClip;
 		
-		public var hitZone:MovieClip;
-		
 		private var hitTaker:HitTaker;
 		
 		public function Hero() {
