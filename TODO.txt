@@ -1,11 +1,11 @@
-isOnScreen for turrets etc - can it be one method?
-	-> only fire or take hits if on screen
+Can I get this game to build without the FLA? I don't want to commit the
+FLA, but a build script would be cool - maybe Flex is the answer?
 
 What's "hitArea"? (comes up in intellisense for Guardian1)
 
 Get rid of "doFrame" - rename it in all cases
 
-List items on a layer - we can see if things aren't deleted
+Score system
 
 Refactor out all duplicateMovieClip to attachMovie? Will mean a few less symbols on the stage
 
@@ -15,19 +15,11 @@ Make sure the energy bar works
 
 Reimplement loading bar
 
-flasher0 should stop on spawn
-
-reimplement blinker
-
 combo meter needs re-implementing
 
 re-implement game over
 
-take hit animation
-
 mobile hud flying ship in
-
-movie clip deletion
 
 multiplierText
 

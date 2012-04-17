@@ -83,16 +83,7 @@
 			this.explodeWav.play();
 
 			enemy.lAction = Enemy.DYING;
-//			var scoreUp:Number = (enemy.scoreForKill * theRoot.hud.mobileHud.scoreCounter.comboMeter.multiplier);
-//			theRoot.score += scoreUp;
-/*
-var mcTmp:MovieClip = theRoot.game.BGMid.scoreFloaterTemplate.duplicateMovieClip("score" + this.scoreIndex, theRoot.game.BGMid.getNextHighestDepth());
-			//var mc :MovieClip = eval("theRoot.game.BGMid.score" + this.scoreIndex);
-			this.scoreIndex++; // TODO can remove?
-			mcTmp.x = enemy.x;
-			mcTmp.y = enemy.y;
-			mcTmp.score = scoreUp;
-*/
+
 			enemy.gotoAndPlay("die");
 		}
 		

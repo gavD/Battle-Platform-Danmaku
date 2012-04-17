@@ -102,11 +102,7 @@
 		}
 		
 		protected function muzzleFlash():void {
-			/*
-			var flasher:MovieClip = game.BGMid.flasher0.duplicateMovieClip("bulletEnemy_" + +
-			flasher.x = this.x;
-			flasher.y = this.y;
-			*/
+			// TODO
 		}
 		
 		protected function dieHook():void {

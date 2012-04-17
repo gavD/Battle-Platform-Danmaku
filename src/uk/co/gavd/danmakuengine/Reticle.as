@@ -61,16 +61,6 @@
 			
             b.addEventListener(Event.ENTER_FRAME, b.doFrame, false, 0, true);
 			cannonWav.play();
-    /*
-            var muzzle:MovieClip = game.BGMid.muzzleHero.duplicateMovieClip("muzzleHero" + lMuzzleIndex, game.BGMid.getNextHighestDepth());
-            //eval("game.BGMid.muzzleHero" + lMuzzleIndex++);
-            muzzle.x = b.x;
-            muzzle.y = b.y;
-            if(!game.hero.facingRight) {
-                muzzle.rotation = 180;
-            }
-            muzzle.gotoAndPlay(2);
-*/
         }
         
         public function doMouseDown(event:MouseEvent):void {
