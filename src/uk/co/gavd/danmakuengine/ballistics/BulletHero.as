@@ -1,10 +1,11 @@
 ﻿package uk.co.gavd.danmakuengine.ballistics {
     import flash.display.MovieClip;
     import uk.co.gavd.danmakuengine.Game;
+    import flash.events.Event;
 	
     public class BulletHero extends Bullet {
 
-		protected var fireDistance:int = 800;
+		protected var fireDistance:int = 900;
 		
 		public function BulletHero(game:Game) {
 			super(game);
@@ -12,23 +13,29 @@
 			this.lSpeed = 22;
 		}
 		
-		public function targetOn(targetX:Number, targetY:Number):void {
-            trace("TODO where called from?");
-            var myRadians:Number = Math.atan2(this.y - targetY, targetX - this.x);
-            myRadians += Math.PI/2; // rotate round 90' - needs that for some reason
-            this.targetX = this.x + Math.sin(myRadians) * fireDistance;
-            this.targetY = this.y + Math.cos(myRadians) * fireDistance;
-        }
-		
         override protected function checkForHits():void {
-			if(this.triggered) {
-				trace("#### TRIGGERED ### bail");
+			if(!this.isOnScreen()) {
 				return;
 			}
 			var theRootx:MovieClip = MovieClip(root); // TODO DI this?
-			
 			theRootx.fcEnemies.detectHits(this);
-
         }
+		
+		
+		protected function getOnScreenMin():uint {
+			return 748;
+		}
+		
+		// sOf copypasta from Enemy.as
+		apublic function isOnScreen():Boolean {
+			var fudgedNumber:Number = (this.x - this.getOnScreenMin()) * -1;
+			if (game.BGMid.x < fudgedNumber) { 
+				return true;
+			}
+			
+			return false;
+		}
+		// eOf copypasta from Enemy.as
+        
     }
 }

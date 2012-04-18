@@ -6,14 +6,16 @@
 	import flash.media.Sound;
     
     public class Reticle extends MovieClip {
-        private var lShotIndex:Number = 0;
-        private var lMuzzleIndex:Number = 0;
+        private var lShotIndex:uint = 0;
+        private var lMuzzleIndex:uint = 0;
         private var isMouseDown:Boolean = false;
-        private var framesBetweenShots:Number = 9;
-        private var clicksToNextShot:Number = 0;
+        private var framesBetweenShots:uint = 9;
+        private var clicksToNextShot:uint = 0;
         
 		private var game:Game;
 		private var config:Config;
+		
+		private const MIN_FRAMES_BETWEEN_SHOTS:uint = 3;
 		
 		private var cannonWav:Sound;
 
@@ -25,7 +27,7 @@
 		
 		public function powerupROF():void {
 			this.framesBetweenShots -= 3;
-			if(this.framesBetweenShots < 3) {
+			if(this.framesBetweenShots < MIN_FRAMES_BETWEEN_SHOTS) {
 				this.framesBetweenShots = 3;
 			}
 		}
@@ -49,8 +51,8 @@
                 var virtualCursorX:Number = this.x - game.x - game.BGMid.x;
 				var virtualCursorY:Number = this.y;
 				
-				virtualCursorX += (Math.floor(Math.random() * 50) - 25);
-				virtualCursorY += (Math.floor(Math.random() * 50) - 25);
+				//virtualCursorX += (Math.floor(Math.random() * 50) - 25);
+				//virtualCursorY += (Math.floor(Math.random() * 50) - 25);
 				
                 b.fireAtPoint(virtualCursorX, virtualCursorY);
                 var myRadians:Number = Math.atan2( b.y - b.targetY, b.x - b.targetX );
