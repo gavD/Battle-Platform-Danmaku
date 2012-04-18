@@ -88,6 +88,20 @@
             } else if (lYDir < 0) {
                 this.thrusterBottom.visible = true;
             }
+			
+			if(isFiring) {
+				this.thrusterRear.scaleX = this.thrusterRear.scaleY = 
+				this.thrusterFront.scaleX = this.thrusterFront.scaleY = 
+				this.thrusterTop.scaleX = this.thrusterTop.scaleY = 
+				this.thrusterBottom.scaleX = this.thrusterBottom.scaleY = 
+					0.8;
+			} else {
+				this.thrusterRear.scaleX = this.thrusterRear.scaleY = 
+				this.thrusterFront.scaleX = this.thrusterFront.scaleY = 
+				this.thrusterTop.scaleX = this.thrusterTop.scaleY = 
+				this.thrusterBottom.scaleX = this.thrusterBottom.scaleY = 
+					1;
+			}
         }
         
         
@@ -150,6 +164,11 @@
 		
 		public function repairArmor():void {
 			this.lEnergy = this.lMaxEnergy;
+		}
+		
+		public function powerupSpreadShot():void {
+			trace("SPREAD SHOT!!");
+			// TODO
 		}
     }
 }
