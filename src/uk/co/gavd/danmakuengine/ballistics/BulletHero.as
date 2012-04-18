@@ -27,7 +27,7 @@
 		}
 		
 		// sOf copypasta from Enemy.as
-		apublic function isOnScreen():Boolean {
+		public function isOnScreen():Boolean {
 			var fudgedNumber:Number = (this.x - this.getOnScreenMin()) * -1;
 			if (game.BGMid.x < fudgedNumber) { 
 				return true;

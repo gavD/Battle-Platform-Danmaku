@@ -1,3 +1,6 @@
+If bullets are not on screen, prevent them from hitting enemies
+
+
 Can I get this game to build without the FLA? I don't want to commit the
 FLA, but a build script would be cool - maybe Flex is the answer?
 

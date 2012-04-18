@@ -9,7 +9,7 @@
         private var lShotIndex:uint = 0;
         private var lMuzzleIndex:uint = 0;
         private var isMouseDown:Boolean = false;
-        private var framesBetweenShots:uint = 9;
+        private var framesBetweenShots:uint = 10;
         private var clicksToNextShot:uint = 0;
         
 		private var game:Game;
@@ -26,10 +26,11 @@
 		}
 		
 		public function powerupROF():void {
-			this.framesBetweenShots -= 3;
+			this.framesBetweenShots -= 2;
 			if(this.framesBetweenShots < MIN_FRAMES_BETWEEN_SHOTS) {
-				this.framesBetweenShots = 3;
+				this.framesBetweenShots = MIN_FRAMES_BETWEEN_SHOTS;
 			}
+			trace("ROF is now " + this.framesBetweenShots);
 		}
         
         public function fireShot(directional:Boolean):void {
@@ -51,8 +52,8 @@
                 var virtualCursorX:Number = this.x - game.x - game.BGMid.x;
 				var virtualCursorY:Number = this.y;
 				
-				//virtualCursorX += (Math.floor(Math.random() * 50) - 25);
-				//virtualCursorY += (Math.floor(Math.random() * 50) - 25);
+				virtualCursorX += (Math.floor(Math.random() * 50) - 25);
+				virtualCursorY += (Math.floor(Math.random() * 50) - 25);
 				
                 b.fireAtPoint(virtualCursorX, virtualCursorY);
                 var myRadians:Number = Math.atan2( b.y - b.targetY, b.x - b.targetX );
