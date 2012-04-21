@@ -11,7 +11,7 @@
 			
 			this.fireRange = 300;
 			this.rateOfFire = 14;
-			this.scoreForKill = 5;
+			this.scoreForKill = 20;
 			this.hp = 25;
 			
 			this.addEventListener ( Event.ENTER_FRAME, this.doFrame, false, 0, true);

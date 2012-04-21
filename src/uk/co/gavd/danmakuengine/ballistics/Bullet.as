@@ -121,8 +121,14 @@
                 game.hero.takeHit(this.damage);
                 this.gotoAndPlay("explode");
             } else {
-				this.sparks.visible = this.hitArea.hitTestObject(game.hero);
-				this.sparks.rotation += 2;
+				if(this.hitArea.hitTestObject(game.hero)) {
+					MovieClip(root).comboBar.ticksUp();
+					MovieClip(root).scoreDisplay.scoreUp(1); // TODO magic number
+					this.sparks.visible = true;
+					this.sparks.rotation += 2;
+				} else {
+					this.sparks.visible = false;
+				}
 			}
         }
 		

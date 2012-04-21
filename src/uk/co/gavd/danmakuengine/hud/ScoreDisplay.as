@@ -6,9 +6,16 @@
     public class ScoreDisplay extends MovieClip {
 		
 		public var tf:TextField;
+		
+		private var score:uint = 0;
         
 		public function ScoreDisplay() {
 
+		}
+		
+		public function scoreUp(up:uint):void {
+			score += up;
+			tf.text = score.toString(10);
 		}
     }
 }

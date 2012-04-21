@@ -6,18 +6,18 @@
 	import uk.co.gavd.danmakuengine.HitTaker;
 
     public class Enemy extends MovieClip {
-		protected var scoreForKill:int = 5;
+		protected var scoreForKill:uint = 5;
 		protected var fireRange:Number = 300;
 		
 		protected var hp:Number = 5;
 		
-		public static const NOTHING:int = 0;
-		public static const NORMAL:int = 1;
-		public static const DYING:int = 2;
-		public static const DEAD:int = 3;
+		public static const NOTHING:uint = 0;
+		public static const NORMAL:uint = 1;
+		public static const DYING:uint = 2;
+		public static const DEAD:uint = 3;
 		// TODO refactor eof
 		
-		public var lAction:int = 0;
+		public var lAction:uint = 0;
 		public var bFacingLeft:Boolean = true;
 		
 		protected var game:Game;
@@ -126,6 +126,7 @@
 			this.hp -= theRootx.game.hero.power;
 			if(this.hp <= 0) {
 				theRootx.comboBar.comboUp();
+				theRootx.scoreDisplay.scoreUp(this.scoreForKill * theRootx.comboBar.getCombo());
 				this.dieHook();
 				
 				theRootx.fcEnemies.kill(this);

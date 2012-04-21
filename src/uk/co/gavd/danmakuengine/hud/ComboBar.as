@@ -20,6 +20,13 @@
 			this.ticks = this.MAX_TICKS;
 		}
 		
+		public function ticksUp():void {
+			this.ticks+=2;
+			if(this.ticks > this.MAX_TICKS) {
+				this.ticks = this.MAX_TICKS;
+			}
+		}
+		
 		protected function doFrame(e:Event):void {
 			if(this.ticks > 0) {
 				this.green.width = this.width * (this.ticks / this.MAX_TICKS);
@@ -32,6 +39,10 @@
 		
 		protected function updateCombo():void {
 			tf.text = this.combo.toString(10);
+		}
+		
+		public function getCombo():uint {
+			return this.combo;
 		}
     }
 }
