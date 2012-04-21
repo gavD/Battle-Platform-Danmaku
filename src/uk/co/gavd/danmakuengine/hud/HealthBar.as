@@ -1,19 +1,14 @@
-﻿package uk.co.gavd.danmakuengine {
-    import flash.display.*;
+﻿package uk.co.gavd.danmakuengine.hud {
     import flash.events.*;
+    import uk.co.gavd.danmakuengine.Hero;
 	
-    public class HealthBar extends MovieClip {
+    public class HealthBar extends Bar {
         
-		public var green:MovieClip;
-		public var red:MovieClip;
-		
 		private var hero:Hero;
-		private var barWidth:int = 100;
 		
 		public function HealthBar(hero:Hero, barWidth:int) {
+			super(barWidth);
 			this.hero = hero;
-			this.width = barWidth;
-			this.alpha = .5;
 			this.addEventListener ( Event.ENTER_FRAME, this.doFrame, false, 0, true);
 		}
 		

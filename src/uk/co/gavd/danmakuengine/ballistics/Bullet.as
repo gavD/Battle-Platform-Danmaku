@@ -127,11 +127,7 @@
         }
 		
 		public function blam():void {
-			if(this.parent === null ) {
-				// TODO why does this still come up?!?!?! // trace("Already blammed");
-				return;
-			}
-			// TODO remove the event listener
+			this.removeEventListener(Event.ENTER_FRAME, this.doFrame);
 			this.parent.removeChild(this);
 			this.dispose();
 		}

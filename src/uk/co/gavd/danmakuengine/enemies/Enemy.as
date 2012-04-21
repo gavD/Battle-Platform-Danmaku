@@ -125,7 +125,9 @@
 			var theRootx:MovieClip = MovieClip(root); // TODO DI this?
 			this.hp -= theRootx.game.hero.power;
 			if(this.hp <= 0) {
+				theRootx.comboBar.comboUp();
 				this.dieHook();
+				
 				theRootx.fcEnemies.kill(this);
 			} else {
 				this.hitTaker.takeHit(10);

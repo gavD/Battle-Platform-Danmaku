@@ -1,4 +1,4 @@
-Bullets should appear above hero
+Sparks are inefficient
 
 If bullets are not on screen, prevent them from hitting enemies
 

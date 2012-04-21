@@ -2,6 +2,7 @@
 import flash.display.MovieClip;
 import flash.display.DisplayObject;
 import uk.co.gavd.danmakuengine.*;
+import uk.co.gavd.danmakuengine.hud.*;
 import uk.co.gavd.danmakuengine.enemies.*;
 import uk.co.gavd.diagnostics.*;
 
@@ -17,10 +18,20 @@ var enemyGenerator:EnemyGenerator = new EnemyGenerator(game, fcEnemies, conf);
 var reticle:Reticle = new Reticle(game, conf);
 stage.addChild(reticle);
 
+var comboBar:ComboBar = new ComboBar(Config.HEALTH_BAR_WIDTH);
+comboBar.x = 550;
+comboBar.y = 10;
+this.addChild(comboBar);
+
 var healthBar:HealthBar = new HealthBar(game.hero, Config.HEALTH_BAR_WIDTH);
-healthBar.x = 550;
+healthBar.x = 10;
 healthBar.y = 10;
 this.addChild(healthBar);
+
+var scoreDisplay:ScoreDisplay = new ScoreDisplay();
+scoreDisplay.x = 375;
+scoreDisplay.y = 10;
+this.addChild(scoreDisplay);
 
 stage.addEventListener ( MouseEvent.MOUSE_DOWN, reticle.doMouseDown, false, 0, true);
 stage.addEventListener ( MouseEvent.MOUSE_UP, reticle.doMouseUp, false, 0, true);
