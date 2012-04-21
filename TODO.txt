@@ -1,3 +1,5 @@
+Bullets should appear above hero
+
 If bullets are not on screen, prevent them from hitting enemies
 
 

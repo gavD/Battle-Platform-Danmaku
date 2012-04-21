@@ -11,6 +11,7 @@
 		public var hero:Hero;
 		public var BGTiles:MovieClip;
 		public var BGMid:MovieClip;
+		public var BGMidDeep:MovieClip;
 		
 		private var config:Config;
 		
@@ -49,6 +50,8 @@
 				return;
 			}
 			this.BGMid.x -= Config.SCROLL_SPEED;
+			this.BGMidDeep.x -= Config.SCROLL_SPEED;
+			this.BGTiles.x -= Config.SCROLL_SPEED * 0.2;
 /*
 if(this.curLevel == 1 && this.BGMid.x < -4750) {
 				trace("LEVEL UP"); // TODO tidy this up
@@ -58,7 +61,7 @@ if(this.curLevel == 1 && this.BGMid.x < -4750) {
 			
 			
 			
-				this.BGTiles.x -= Config.SCROLL_SPEED * 0.2;
+				
 			
 		}
 	}

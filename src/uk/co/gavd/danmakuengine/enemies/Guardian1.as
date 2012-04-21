@@ -47,7 +47,7 @@
 		}
 		
 		override protected function getOnScreenMin():uint {
-			return 580;
+			return 600;
 		}
 		
 		override protected function handleMovementX():void {}

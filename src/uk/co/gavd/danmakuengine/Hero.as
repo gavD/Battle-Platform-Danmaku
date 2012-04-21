@@ -11,15 +11,15 @@
 		
 		public var isFiring:Boolean = false;
         
-        public var lAction:Number = OK;
-		public static const OK:Number = 0;
-        public static const TAKING_HIT:Number = 1;
-		public static const DYING:Number = 2;
+        public var lAction:uint = OK;
+		public static const OK:uint = 0;
+        public static const TAKING_HIT:uint = 1;
+		public static const DYING:uint = 2;
 		
-    
         private var bInvincible:Boolean = false;
+		public var spreadShot:uint = 0;
 
-        private var engineSpeed:Number = 9; // TODO can these switch 
+        private var engineSpeed:Number = 9;
     
         // inertia and speed
         private var lRatioVertical:Number = 0.2;
@@ -165,10 +165,9 @@
 		public function repairArmor():void {
 			this.lEnergy = this.lMaxEnergy;
 		}
-		
+
 		public function powerupSpreadShot():void {
-			trace("SPREAD SHOT!!");
-			// TODO
+			this.spreadShot++;
 		}
     }
 }

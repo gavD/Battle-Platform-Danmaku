@@ -42,29 +42,43 @@
             // fire a bullet
             lShotIndex++;
 			
-			var b:BulletHero = new BulletHero(game);
+			var b:BulletHero = this.getNextBullet();
 			
-            b.x = game.hero.x - game.BGMid.x + 55;
-            b.y = game.hero.y + 12;
-			game.BGMid.addChild(b);    
             if(directional) {
-				
                 var virtualCursorX:Number = this.x - game.x - game.BGMid.x;
 				var virtualCursorY:Number = this.y;
 				
-				virtualCursorX += (Math.floor(Math.random() * 50) - 25);
-				virtualCursorY += (Math.floor(Math.random() * 50) - 25);
+				virtualCursorX += (Math.floor(Math.random() * 30) - 15);
+				virtualCursorY += (Math.floor(Math.random() * 30) - 15);
 				
-                b.fireAtPoint(virtualCursorX, virtualCursorY);
-                var myRadians:Number = Math.atan2( b.y - b.targetY, b.x - b.targetX );
-                b.rotation = (myRadians * (180 / Math.PI)) + 180;
+                b.fireAtPoint(virtualCursorX, virtualCursorY, true);
             } else { // straight line fire
                 b.fireAtPoint(b.x + 750, b.y);
             }
 			
-            b.addEventListener(Event.ENTER_FRAME, b.doFrame, false, 0, true);
 			cannonWav.play();
+			
+			if(game.hero.spreadShot > 0) {
+				var b2:BulletHero = this.getNextBullet();
+				b2.fireAtPoint(b2.x + 10, b2.y + 4, true);
+				
+				this.getNextBullet().fireAtPoint(b2.x + 10, b2.y - 4, true);
+				if(game.hero.spreadShot > 1) {
+					this.getNextBullet().fireAtPoint(b2.x + 10, b2.y + 1, true);
+					this.getNextBullet().fireAtPoint(b2.x + 10, b2.y - 1, true);
+				}
+			}
         }
+		
+		private function getNextBullet():BulletHero {
+			var b:BulletHero = new BulletHero(game);
+			
+            b.x = game.hero.x - game.BGMid.x + 55;
+            b.y = game.hero.y + 12;
+			game.BGMid.addChild(b); 
+			
+			return b;
+		}
         
         public function doMouseDown(event:MouseEvent):void {
             this.isMouseDown = true;

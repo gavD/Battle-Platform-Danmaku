@@ -5,6 +5,9 @@
 	import uk.co.gavd.danmakuengine.Hero;
     
     public class Bullet extends MovieClip {
+		
+		public var sparks:MovieClip;
+		
         // dynamically calculated stuff
         public var triggered:Boolean = false;
         protected var framesToLive:int = 10000;
@@ -26,9 +29,10 @@
 			this.stop();
 			this.game = game;
 			this.hitArea.visible = false;
+			this.addEventListener(Event.ENTER_FRAME, this.doFrame, false, 0, true);
 		}
         
-        public function fireAtPoint(targetX:Number, targetY:Number):void {
+        public function fireAtPoint(targetX:Number, targetY:Number, rotateToFace:Boolean = false):void {
             this.targetX = targetX;
 			this.targetY = targetY;// TODO remove
             var angle:Number = this.getAngleTo(targetX, targetY);
@@ -38,6 +42,11 @@
             
             this.calculateTravelPerFrame(adj, opp);
             this.calculateFramesToLive(adj, opp);
+			
+			if(rotateToFace) {
+				var myRadians:Number = Math.atan2( this.y - this.targetY, this.x - this.targetX );
+               	this.rotation = (myRadians * (180 / Math.PI)) + 180;
+			}
         }
         
         public function fireAtAngle(degrees:Number):void {
@@ -111,7 +120,10 @@
 				this.triggered = true;
                 game.hero.takeHit(this.damage);
                 this.gotoAndPlay("explode");
-            }
+            } else {
+				this.sparks.visible = this.hitArea.hitTestObject(game.hero);
+				this.sparks.rotation += 2;
+			}
         }
 		
 		public function blam():void {

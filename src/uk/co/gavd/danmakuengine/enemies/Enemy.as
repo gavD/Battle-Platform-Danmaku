@@ -97,7 +97,6 @@
 			clip.x = this.x;
 			clip.y = this.y;
 			game.BGMid.addChild(clip);
-			clip.addEventListener ( Event.ENTER_FRAME, clip.doFrame, false, 0, true);
 			return clip;
 		}
 		
