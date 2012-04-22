@@ -4,6 +4,7 @@
     import uk.co.gavd.danmakuengine.Game;
 	import flash.events.Event;
 	import uk.co.gavd.danmakuengine.HitTaker;
+	import uk.co.gavd.danmakuengine.hud.ScoreFloater;
 
     public class Enemy extends MovieClip {
 		protected var scoreForKill:uint = 5;
@@ -125,10 +126,17 @@
 			var theRootx:MovieClip = MovieClip(root); // TODO DI this?
 			this.hp -= theRootx.game.hero.power;
 			if(this.hp <= 0) {
-				theRootx.comboBar.comboUp();
-				theRootx.scoreDisplay.scoreUp(this.scoreForKill * theRootx.comboBar.getCombo());
-				this.dieHook();
+				var score:uint = this.scoreForKill + (this.scoreForKill * theRootx.comboBar.getCombo());
+				trace(this + "SCORE IS " + score);
+				var sf:ScoreFloater = new ScoreFloater(score);
+				sf.x = this.x;
+				sf.y = this.y;
+				this.game.BGMid.addChild(sf);
 				
+				theRootx.comboBar.comboUp();
+				theRootx.scoreDisplay.scoreUp(score);
+				
+				this.dieHook();
 				theRootx.fcEnemies.kill(this);
 			} else {
 				this.hitTaker.takeHit(10);
