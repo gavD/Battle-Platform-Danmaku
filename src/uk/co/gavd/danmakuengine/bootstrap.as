@@ -41,7 +41,7 @@ game.hero.addEventListener(Event.ENTER_FRAME,game.hero.doFrame, false, 0, true);
 stage.addEventListener(Event.ENTER_FRAME, fcEnemies.doFrame, false, 0, true);
 
 // sof diagnostics
-var frt:FramerateTracker = new FramerateTracker();
+var frt:FramerateTracker = new FramerateTracker(50);
 this.addChild(frt);
 
 function checkMemoryUsage():void {

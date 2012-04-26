@@ -6,8 +6,6 @@
     
     public class Bullet extends MovieClip {
 		
-		public var sparks:MovieClip;
-		
         // dynamically calculated stuff
         public var triggered:Boolean = false;
         protected var framesToLive:int = 10000;
@@ -124,10 +122,7 @@
 				if(this.hitArea.hitTestObject(game.hero)) {
 					MovieClip(root).comboBar.ticksUp();
 					MovieClip(root).scoreDisplay.scoreUp(1); // TODO magic number
-					this.sparks.visible = true;
-					this.sparks.rotation += 2;
-				} else {
-					this.sparks.visible = false;
+					// TODO hero sparks
 				}
 			}
         }

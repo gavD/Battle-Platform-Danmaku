@@ -13,7 +13,7 @@
 		protected var fireSound:Sound;
 		
 		private var firePattern:Array = [false,false,false,false,false,false,false,false,false,false,
-										 false,false,false,false,false,false,false,false,false,false,
+										 false,false,true,false,true,false,true,false,true,false,
 										 true,false,false,true,false,false,true,false,false,true];
 		private var firePointer:int = 0;
 				
@@ -69,7 +69,7 @@
 			if(++this.firePointer > this.firePattern.length) {
 				this.firePointer = 0;
 				
-				// only re-target when loop round the array
+				// only re-targetsa when loop round the array
 				targetX = game.hero.x - game.BGMid.x;
 				targetY = game.hero.y;
 				this.fireSound.play();

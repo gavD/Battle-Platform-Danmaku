@@ -9,24 +9,34 @@
 		
 		private var gameAffected:Boolean = false;
 		private var bulrot:int = 0;
-		private var rotrate:int = 2;
+		private var rotrate:int = 1;
 		
 		public function Guardian2(game:Game) {
-			trace("Guardian2::0");
 			super(game);
-			trace("Guardian2::1");
 			
 			this.fireRange = 800;
 			this.scoreForKill = 400;
-			this.rateOfFire = 10;
+			this.rateOfFire = 9;
 			this.hp = 250;
 			
 			this.fireSound = new BulletGuardian1Wav();
 		}
 		
+		override public function takeHit():void {
+			super.takeHit();
+			this.x--;
+			if(this.hp < 200) {
+				rotrate = 2;
+			} else if (this.hp < 100) {
+				rotrate = 3;
+			} else if (this.hp < 5) {
+				rotrate = 4;
+			}
+		}
+		
 		
 		override protected function getOnScreenMin():uint {
-			return 660;
+			return 670;
 		}
 		
 		override protected function getNewBullet():Bullet {
