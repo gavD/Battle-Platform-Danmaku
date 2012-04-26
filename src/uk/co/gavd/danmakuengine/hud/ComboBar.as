@@ -10,9 +10,9 @@
 		public var combo:uint = 0;
 		public var tf:TextField;
 
-		public function ComboBar(barWidth:uint) {
-			super(barWidth);
-			this.addEventListener ( Event.ENTER_FRAME, this.doFrame, false, 0, true);
+		public function ComboBar(initialWidth:uint) {
+			super(initialWidth);
+			this.addEventListener ( Event.ENTER_FRAME, this.onFrame, false, 0, true);
 		}
 		
 		public function comboUp():void {
@@ -27,7 +27,7 @@
 			}
 		}
 		
-		protected function doFrame(e:Event):void {
+		protected function onFrame(e:Event):void {
 			if(this.ticks > 0) {
 				this.green.width = this.width * (this.ticks / this.MAX_TICKS);
 				--this.ticks;

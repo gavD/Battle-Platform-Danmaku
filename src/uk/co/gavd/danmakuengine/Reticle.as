@@ -1,13 +1,11 @@
 ﻿package uk.co.gavd.danmakuengine {
     import flash.display.*;
     import flash.events.*;
-	import uk.co.gavd.danmakuengine.Hero;
 	import uk.co.gavd.danmakuengine.ballistics.*;
 	import flash.media.Sound;
     
     public class Reticle extends MovieClip {
         private var lShotIndex:uint = 0;
-        private var lMuzzleIndex:uint = 0;
         private var isMouseDown:Boolean = false;
         private var framesBetweenShots:uint = 10;
         private var clicksToNextShot:uint = 0;
@@ -45,11 +43,11 @@
 			var b:BulletHero = this.getNextBullet();
 			
             if(directional) {
-                var virtualCursorX:Number = this.x - game.x - game.BGMid.x;
-				var virtualCursorY:Number = this.y;
+                var virtualCursorX:uint = this.x - game.x - game.BGMid.x;
+				var virtualCursorY:uint= this.y;
 				
-				virtualCursorX += (Math.floor(Math.random() * 30) - 15);
-				virtualCursorY += (Math.floor(Math.random() * 30) - 15);
+				virtualCursorX += (Math.random() * 30) - 15;
+				virtualCursorY += (Math.random() * 30) - 15;
 				
                 b.fireAtPoint(virtualCursorX, virtualCursorY, true);
             } else { // straight line fire
@@ -88,7 +86,7 @@
             this.isMouseDown = false;
         }
         
-        public function doFrame(e:Event):void {
+        public function onFrame(e:Event):void {
 			this.x = game.parent.mouseX;
             this.y = game.parent.mouseY;
 			

@@ -26,12 +26,12 @@
 		override protected function handleMovementY():void {}
 		override protected function handleMovementX():void {}
 		
-		override protected function doFire (lTargetX:Number, distFromHero:Number):Boolean {
+		override protected function doFire (lTargetX:Number, distFromHero:Number):void {
 			
 			if(--this.clicksToFire <= 0) {
 				this.clicksToFire = this.rateOfFire;
 			} else {
-				return false;
+				return;
 			}
 			
 			this.fireSound.play();
@@ -39,7 +39,7 @@
 			var bul:Bullet = this.getNextBullet()
 			bul.fireAtTarget(game.hero);
 			
-			return true;
+			return;
 		}
 
     }

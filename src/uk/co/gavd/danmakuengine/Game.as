@@ -44,8 +44,7 @@
 			doScroll = true;
 		}
 		
-		public function doFrame(event:Event):void {
-			var minScroll = -345;
+		public function onFrame(event:Event):void {
 			if(!doScroll) {
 				return;
 			}

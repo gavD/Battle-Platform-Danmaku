@@ -7,10 +7,8 @@
 		public var green:MovieClip;
 		public var red:MovieClip;
 		
-		protected var barWidth:uint = 100;
-		
-		public function Bar(barWidth:uint) {
-			this.width = barWidth;
+		public function Bar(initialWidth:uint) {
+			this.width = initialWidth;
 			this.alpha = .5;
 		}
     }

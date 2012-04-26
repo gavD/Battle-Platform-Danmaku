@@ -47,7 +47,7 @@
 				return;
 			}
 			
-			hitTaker.doFrame(); // TODO can we factor it out?
+			hitTaker.onFrame(); // TODO can we factor it out?
 			
 			this.handleMovementAndShooting();
 		}
@@ -85,9 +85,7 @@
 			}
 		}
 		
-		protected function doFire (targetX:Number, distFromHero:Number):Boolean {
-			return false;
-		}
+		protected function doFire (targetX:Number, distFromHero:Number):void {}
 		
 		protected function getNewBullet():Bullet {
 			return new Bullet(game);

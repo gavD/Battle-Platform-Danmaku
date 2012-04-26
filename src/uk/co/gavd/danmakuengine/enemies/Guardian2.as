@@ -24,13 +24,15 @@
 		
 		override public function takeHit():void {
 			super.takeHit();
-			this.x--;
+			
 			if(this.hp < 200) {
 				rotrate = 2;
 			} else if (this.hp < 100) {
 				rotrate = 3;
 			} else if (this.hp < 5) {
 				rotrate = 4;
+			} else {
+				this.x--;
 			}
 		}
 		
@@ -47,7 +49,7 @@
 			game.startScrolling();
 		}
 		
-		override protected function doFire (lTargetX:Number, distFromHero:Number):Boolean {
+		override protected function doFire (lTargetX:Number, distFromHero:Number):void {
 			if(!gameAffected) {
 				game.stopScrolling();
 				gameAffected = true;
@@ -56,7 +58,7 @@
 			if(--this.clicksToFire <= 0) {
 				this.clicksToFire = this.rateOfFire;
 			} else {
-				return false;
+				return;
 			}
 			
 			if(bulrot > 46) {
@@ -64,9 +66,7 @@
 			} else if (bulrot < 0) {
 				rotrate *= -1;
 			}
-			
 			bulrot += rotrate;
-			
 			
 			this.getNextBullet().fireAtAngle(0 + bulrot);
 			this.getNextBullet().fireAtAngle(20 + bulrot);
@@ -87,24 +87,6 @@
 			this.getNextBullet().fireAtAngle(-120 + bulrot);
 			this.getNextBullet().fireAtAngle(-140 + bulrot);
 			this.getNextBullet().fireAtAngle(-160 + bulrot);
-			
-			/*
-			var bul2:Bullet = this.getNextBullet()
-			bul2.fireAtPoint(targetX, targetY);
-			bul2.y -= 65;
-			
-			var bul3:Bullet = this.getNextBullet()
-			bul3.fireAtPoint(targetX, targetY);
-			
-			var bul4:Bullet = this.getNextBullet()
-			bul4.fireAtPoint(targetX, targetY);
-			bul4.y += 125;
-			
-			var bul5:Bullet = this.getNextBullet()
-			bul5.fireAtPoint(targetX, targetY);
-			bul5.y -= 95;
-			*/
-			return true;
 		}
     }
 }

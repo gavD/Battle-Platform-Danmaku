@@ -6,13 +6,13 @@
         
 		private var hero:Hero;
 		
-		public function HealthBar(hero:Hero, barWidth:int) {
-			super(barWidth);
+		public function HealthBar(hero:Hero, initialWidth:int) {
+			super(initialWidth);
 			this.hero = hero;
-			this.addEventListener ( Event.ENTER_FRAME, this.doFrame, false, 0, true);
+			this.addEventListener ( Event.ENTER_FRAME, this.onFrame, false, 0, true);
 		}
 		
-		protected function doFrame(e:Event):void {
+		protected function onFrame(e:Event):void {
 			var desiredWidth:Number = this.width * (this.hero.getEnergy() / this.hero.getMaxEnergy());
 			if(this.green.width < desiredWidth) {
 				this.green.width += 7;

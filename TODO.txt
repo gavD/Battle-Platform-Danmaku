@@ -24,3 +24,19 @@ multiplierText
 scoreText
 
 scoreFloaterText
+
+
+C:\Users\Gavin\Downloads\flex-pmd-all-in-one-bundle-1.2>java -Xmx256m -jar flex-pmd-command-line-1.2.jar -s "C:\Users\Ga
+vin\Documents\fla\BattlePlatforms\src" -o "C:\Users\Gavin\Documents\fla\BattlePlatforms\o"
+26-Apr-2012 22:02:37 com.adobe.ac.pmd.engines.AbstractFlexPmdEngine loadRuleset
+INFO: Ruleset: C:\Users\Gavin\AppData\Local\Temp\default_flex933517847674332598.xml
+26-Apr-2012 22:02:37 com.adobe.ac.pmd.engines.AbstractFlexPmdEngine loadRuleset
+INFO: Rules number in the ruleSet: 107
+26-Apr-2012 22:02:38 com.adobe.ac.pmd.engines.AbstractFlexPmdEngine computeViolations
+INFO: It took 1080ms to compute violations
+26-Apr-2012 22:02:38 com.adobe.ac.pmd.engines.AbstractFlexPmdEngine computeViolationNumber
+INFO: Violations number found: 99
+26-Apr-2012 22:02:38 com.adobe.ac.pmd.engines.FlexPmdXmlEngine writeReport
+INFO: Creating report in <C:\Users\Gavin\Documents\fla\BattlePlatforms\o\pmd.xml>
+26-Apr-2012 22:02:38 com.adobe.ac.pmd.engines.AbstractFlexPmdEngine writeAnyReport
+INFO: It took 76ms to write the Xml report

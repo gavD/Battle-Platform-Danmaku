@@ -60,7 +60,7 @@
 			game.startScrolling();
 		}
 		
-		override protected function doFire (lTargetX:Number, distFromHero:Number):Boolean {
+		override protected function doFire (lTargetX:Number, distFromHero:Number):void {
 			if(!gameAffected) {
 				game.stopScrolling();
 				gameAffected = true;
@@ -75,7 +75,7 @@
 				this.fireSound.play();
 			}
 			if(!this.firePattern[this.firePointer]) {
-				return false;
+				return;
 			}
 			
 			var bul:Bullet = this.getNextBullet()
@@ -96,8 +96,6 @@
 			var bul5:Bullet = this.getNextBullet()
 			bul5.fireAtPoint(targetX, targetY);
 			bul5.y -= 95;
-			
-			return true;
 		}
     }
 }

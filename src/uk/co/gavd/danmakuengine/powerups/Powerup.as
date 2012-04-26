@@ -10,16 +10,16 @@
 		
 		public function Powerup() {
 			this.powerupWav = new PowerupROFWav();
-			this.addEventListener ( Event.ENTER_FRAME, this.doFrame, false, 0, true);
+			this.addEventListener ( Event.ENTER_FRAME, this.onFrame, false, 0, true);
 		}
 		
-		public function doFrame(e:Event) {
+		public function onFrame(e:Event):void {
 			if(MovieClip(root).game.hero.lAction !== Hero.OK) {
 				return;
 			}
             if (this.hitTestObject(MovieClip(root).game.hero)) {
 				this.powerupWav.play();
-				this.removeEventListener(Event.ENTER_FRAME, this.doFrame, false);
+				this.removeEventListener(Event.ENTER_FRAME, this.onFrame, false);
                 this.upgrade();
 				parent.removeChild(this); // TODO seriously, why is it so hard to delete things in AS3?
             	delete this;		      //      I'm not at all convinced this is actually removed...

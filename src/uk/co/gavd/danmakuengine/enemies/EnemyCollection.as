@@ -27,8 +27,8 @@
 		public function killAll():void {
 			theRoot.fcGameOver.readyForRestart = true;
 			for(var i:Number = 0; i < this.arEnemies.length; i++) {
-				var tmp = this.arEnemies[i];
-				theRoot.absDelete(tmp);
+				kill(this.arEnemies[i]);
+				this.arEnemies[i] = null
 			}
 			this.arEnemies = new Array();
 		}
@@ -95,8 +95,8 @@
 			return Math.abs(this.getDistanceFromHeroRaw(enemy));
 		}
 	
-		public function doFrame(e:Event):void {
-			//trace("DOFRAME" + this.arEnemies.length);
+		public function onFrame(e:Event):void {
+			//trace("onFrame" + this.arEnemies.length);
 		
 			for (var i:Number = 0; i < this.arEnemies.length; i++) {
 				if(this.arEnemies[i] == null) {

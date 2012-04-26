@@ -1,6 +1,5 @@
 ﻿package uk.co.gavd.danmakuengine.enemies {
 	import uk.co.gavd.danmakuengine.Game;
-	import uk.co.gavd.danmakuengine.enemies.Turret;
 	import uk.co.gavd.danmakuengine.ballistics.Bullet;
 	import uk.co.gavd.danmakuengine.ballistics.BulletSlow;
 	import flash.events.Event;
@@ -18,11 +17,11 @@
 			this.fireSound = new ShotgunWav();
 		}
     
-		override protected function doFire (lTargetX:Number, distFromHero:Number):Boolean {
+		override protected function doFire (lTargetX:Number, distFromHero:Number):void {
 			if(--this.clicksToFire <= 0) {
 				this.clicksToFire = this.rateOfFire;
 			} else {
-				return false;
+				return;
 			}
 			
 			this.fireSound.play();
@@ -33,7 +32,7 @@
 			this.getNextBullet().fireAtAngle(-160);
 			this.getNextBullet().fireAtAngle(-180);
 			
-			return false; // TODO why?
+			return; // TODO why?
 		}
 		
 		override protected function getNewBullet():Bullet {

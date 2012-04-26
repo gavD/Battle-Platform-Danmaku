@@ -11,8 +11,6 @@
         protected var framesToLive:int = 10000;
         protected var xTravel:Number = 0;
         protected var yTravel:Number = 0;
-        public var targetX:Number = 0; // TODO lock down?
-        public var targetY:Number = 0; // TODO lock down?
         
         // info about this bullet
         protected var damage:Number = 5;
@@ -27,22 +25,20 @@
 			this.stop();
 			this.game = game;
 			this.hitArea.visible = false;
-			this.addEventListener(Event.ENTER_FRAME, this.doFrame, false, 0, true);
+			this.addEventListener(Event.ENTER_FRAME, this.onFrame, false, 0, true);
 		}
         
         public function fireAtPoint(targetX:Number, targetY:Number, rotateToFace:Boolean = false):void {
-            this.targetX = targetX;
-			this.targetY = targetY;// TODO remove?
             var angle:Number = this.getAngleTo(targetX, targetY);
             
             var opp:Number = Math.sin(angle) * travel; // opp = h * s
             var adj:Number = Math.cos(angle) * travel; // adj = h * c
             
             this.calculateTravelPerFrame(adj, opp);
-            this.calculateFramesToLive(adj, opp);
+            this.calculateFramesToLive(targetY);
 			
 			if(rotateToFace) {
-				var myRadians:Number = Math.atan2( this.y - this.targetY, this.x - this.targetX );
+				var myRadians:Number = Math.atan2( this.y - targetY, this.x - targetX );
                	this.rotation = (myRadians * (180 / Math.PI)) + 180;
 			}
         }
@@ -58,8 +54,8 @@
             this.fireAtPoint(target.x - game.BGMid.x, target.y);
 		}
         
-        private function getAngleTo(x2:Number, y2:Number):Number {
-            return Math.atan2(y2 - this.y, x2 - this.x);
+        private function getAngleTo(aimAtX:Number, aimAtY:Number):Number {
+            return Math.atan2(aimAtY - this.y, aimAtX- this.x);
         }
         
         private function calculateTravelPerFrame(xRem:Number, yRem:Number):void {
@@ -68,10 +64,10 @@
             this.yTravel = this.lSpeed - Math.abs(xTravel);
         }
         
-        private function calculateFramesToLive(xRem:Number, yRem:Number):void {
+        private function calculateFramesToLive(targetY:Number):void {
             // work out how long this bullet has to live
-            var defaultFramesToLive:Number = Math.round(this.travel / this.lSpeed);
-            var ticksToOutOfY:Number = defaultFramesToLive;
+            var defaultFramesToLive:uint = this.travel / this.lSpeed;
+            var ticksToOutOfY:uint = defaultFramesToLive;
     
             if (targetY < y) {
                 ticksToOutOfY = (y + 50) / yTravel;
@@ -101,7 +97,7 @@
             }
         }
         
-        public function doFrame(e:Event):void {
+        public function onFrame(e:Event):void {
             this.moveTowardsTarget();
             if(this.triggered) {
                 return;
@@ -128,7 +124,7 @@
         }
 		
 		public function blam():void {
-			this.removeEventListener(Event.ENTER_FRAME, this.doFrame);
+			this.removeEventListener(Event.ENTER_FRAME, this.onFrame);
 			this.parent.removeChild(this);
 			this.dispose();
 		}

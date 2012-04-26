@@ -104,7 +104,6 @@
 			}
         }
         
-        
         public function reset():void {
 			trace("INSIDE HERO RESET");
 			this.lAction = Hero.OK;
@@ -132,8 +131,8 @@
             }
         }
 		
-        public function doFrame(event:Event):void {
-			hitTaker.doFrame(); // TODO can we factor it out?
+        public function onFrame(event:Event):void {
+			hitTaker.onFrame(); // TODO can we factor it out?
 			
 			if(this.lAction >= DYING) {
 				return;

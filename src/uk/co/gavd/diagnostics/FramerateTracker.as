@@ -20,17 +20,23 @@
         
         public function FramerateTracker(fps:uint)
         {
+			this.init(fps);
+			addEventListener(Event.ENTER_FRAME, this.onGetFps);
+        }
+		
+		private function init(fps:uint):void
+		{
+			this.fps_txt = new TextField();
+            addChild(this.fps_txt);
+			
 			this.fps_log = [];
 			for(var i:uint = 0; i < fps; i++) {
 				this.fps_log.push(fps);
 			}
-            this.fps_txt = new TextField();
-            addChild(this.fps_txt);
             
-            addEventListener(Event.ENTER_FRAME, this.getFps);
-        }
+		}
         
-        private function getFps(e:Event):void
+        private function onGetFps(e:Event):void
         {
             this.time = getTimer();
 			this.fps_log.shift();
@@ -41,7 +47,7 @@
 			for(var i:uint = 0; i < l; i++) {
 				total += this.fps_log[i];
 			}
-			var fps:Number = Math.round(total / this.fps_log.length);
+			var fps:uint = total / this.fps_log.length;
             this.fps_txt.text = "fps: " + fps;
             this.prevTime = getTimer();
         }

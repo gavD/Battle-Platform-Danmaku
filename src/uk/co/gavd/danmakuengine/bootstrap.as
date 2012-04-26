@@ -35,13 +35,13 @@ this.addChild(scoreDisplay);
 
 stage.addEventListener ( MouseEvent.MOUSE_DOWN, reticle.doMouseDown, false, 0, true);
 stage.addEventListener ( MouseEvent.MOUSE_UP, reticle.doMouseUp, false, 0, true);
-reticle.addEventListener ( Event.ENTER_FRAME, reticle.doFrame, false, 0, true);
-game.addEventListener ( Event.ENTER_FRAME, game.doFrame, false, 0, true);
-game.hero.addEventListener(Event.ENTER_FRAME,game.hero.doFrame, false, 0, true);
-stage.addEventListener(Event.ENTER_FRAME, fcEnemies.doFrame, false, 0, true);
+reticle.addEventListener ( Event.ENTER_FRAME, reticle.onFrame, false, 0, true);
+game.addEventListener ( Event.ENTER_FRAME, game.onFrame, false, 0, true);
+game.hero.addEventListener(Event.ENTER_FRAME,game.hero.onFrame, false, 0, true);
+stage.addEventListener(Event.ENTER_FRAME, fcEnemies.onFrame, false, 0, true);
 
 // sof diagnostics
-var frt:FramerateTracker = new FramerateTracker(50);
+var frt:FramerateTracker = new FramerateTracker(40);
 this.addChild(frt);
 
 function checkMemoryUsage():void {

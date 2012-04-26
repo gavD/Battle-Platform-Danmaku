@@ -11,7 +11,7 @@
 		
 		protected var config:Config;
 		
-		public function EnemyGenerator(game:Game, fcEnemies:EnemyCollection, config:Config):void {
+		public function EnemyGenerator(game:Game, fcEnemies:EnemyCollection, config:Config) {
 			this.game = game;
 			this.fcEnemies = fcEnemies;
 			this.config = config;

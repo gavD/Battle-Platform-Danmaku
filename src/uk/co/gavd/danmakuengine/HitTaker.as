@@ -18,7 +18,7 @@
 			this.takeHitWav = new TakehitWav();
 		}
 		
-		public function doFrame():void {
+		public function onFrame():void {
 			if(this.resetFilterCountdown > 0) {
 				if(--resetFilterCountdown <= 0) {
 					clip.filters = [];
@@ -37,10 +37,9 @@
 		}
 		
 		private function loadBWFilter():Array {
-			var color : AdjustColor;
-			var colorMatrix : ColorMatrixFilter;
-			var matrix : Array;
-			var filterBW : Array;
+			var color: AdjustColor;
+			var colorMatrix: ColorMatrixFilter;
+			var matrix: Array;
 			 
 			color = new AdjustColor();
 			color.brightness = 100;

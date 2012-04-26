@@ -11,11 +11,11 @@
 			trace("Score " + score);
 			this.scoreUpField.text = score.toString(10);
 			this.alpha = 1;
-			this.addEventListener(Event.ENTER_FRAME, doFrame, false, 0, true);
+			this.addEventListener(Event.ENTER_FRAME, onFrame, false, 0, true);
 			
 		}
 		
-		private function doFrame(e:Event) {
+		private function onFrame(e:Event):void {
 			trace(this + "Score floater");
 			this.y--;
 			this.alpha -= .1;
@@ -26,7 +26,7 @@
 		
 		public function blam():void {
 			trace(this + " BLAM");
-			this.removeEventListener(Event.ENTER_FRAME, this.doFrame);
+			this.removeEventListener(Event.ENTER_FRAME, this.onFrame);
 			this.parent.removeChild(this);
 			//this.dispose();
 		}
