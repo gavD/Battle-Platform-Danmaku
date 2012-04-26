@@ -24,14 +24,20 @@
 		
 		override public function takeHit():void {
 			super.takeHit();
-			
-			if(this.hp < 200) {
-				rotrate = 2;
+			if (this.hp < 50dss) {
+				trace("HULK 4");
+				rotrate = 10;
 			} else if (this.hp < 100) {
-				rotrate = 3;
-			} else if (this.hp < 5) {
+				trace("HULK 3");
+				rotrate = 6;
+			}else if (this.hp < 150) {
+				trace("HULK 2");
 				rotrate = 4;
+			} else if(this.hp < 200) {
+				trace("HULK 1");
+				rotrate = 2;
 			} else {
+				trace("HULK 0");
 				this.x--;
 			}
 		}
