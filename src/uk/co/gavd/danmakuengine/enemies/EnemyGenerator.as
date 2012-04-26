@@ -53,6 +53,9 @@
 				case 10:
 					t = new Guardian1(this.game);
 					break;
+				case 11:
+					t = new Guardian2(this.game);
+					break;
 				default:
 					t = new Turret(this.game);
 					break;

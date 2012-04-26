@@ -34,7 +34,7 @@
         
         public function fireAtPoint(targetX:Number, targetY:Number, rotateToFace:Boolean = false):void {
             this.targetX = targetX;
-			this.targetY = targetY;// TODO remove
+			this.targetY = targetY;// TODO remove?
             var angle:Number = this.getAngleTo(targetX, targetY);
             
             var opp:Number = Math.sin(angle) * travel; // opp = h * s
