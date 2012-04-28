@@ -31,18 +31,15 @@
 		}
         
         public function fireAtPoint(targetX:Number, targetY:Number, rotateToFace:Boolean = false):void {
-            trace("Fire at " + targetX + "," + targetY);
-			
-			var angle:Number = this.getAngleTo(targetX, targetY);
-            
-            var opp:Number = Math.sin(angle) * travel; // opp = h * s
-            var adj:Number = Math.cos(angle) * travel; // adj = h * c
+            var radians:Number = this.getAngleTo(targetX, targetY);
+            var opp:Number = Math.sin(radians) * travel; // opp = h * s
+            var adj:Number = Math.cos(radians) * travel; // adj = h * c
             
             this.calculateTravelPerFrame(adj, opp);
             this.calculateFramesToLive(targetY);
 			
 			if(rotateToFace) {
-				this.rotation = (angle * (ONEEIGHTY_OVER_PI));
+				this.rotation = (radians * (ONEEIGHTY_OVER_PI));
 				trace(this.rotation);
 			}
         }
