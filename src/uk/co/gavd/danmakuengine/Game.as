@@ -49,7 +49,7 @@
 				return;
 			}
 			this.BGMid.x -= Config.SCROLL_SPEED;
-			this.BGMidDeep.x -= Config.SCROLL_SPEED;
+			this.BGMidDeep.x = this.BGMid.x;
 			this.BGTiles.x -= Config.SCROLL_SPEED * 0.2;
 /*
 if(this.curLevel == 1 && this.BGMid.x < -4750) {

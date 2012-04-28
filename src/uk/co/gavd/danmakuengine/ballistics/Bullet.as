@@ -29,7 +29,9 @@
 		}
         
         public function fireAtPoint(targetX:Number, targetY:Number, rotateToFace:Boolean = false):void {
-            var angle:Number = this.getAngleTo(targetX, targetY);
+            trace("Fire at " + targetX + "," + targetY);
+			
+			var angle:Number = this.getAngleTo(targetX, targetY);
             
             var opp:Number = Math.sin(angle) * travel; // opp = h * s
             var adj:Number = Math.cos(angle) * travel; // adj = h * c
@@ -38,8 +40,9 @@
             this.calculateFramesToLive(targetY);
 			
 			if(rotateToFace) {
-				var myRadians:Number = Math.atan2( this.y - targetY, this.x - targetX );
-               	this.rotation = (myRadians * (180 / Math.PI)) + 180;
+				//var myRadians:Number = Math.atan2( this.y - targetY, this.x - targetX );
+               	this.rotation = (angle * (180 / Math.PI));
+				trace(this.rotation);
 			}
         }
         
@@ -47,8 +50,10 @@
             var radians:Number = degrees * Math.PI / 180;
             var opp:Number = Math.sin(radians) * travel; // opp = h * s
             var adj:Number = Math.cos(radians) * travel; // adj = h * c
+
 			this.fireAtPoint(this.x + opp, this.y + adj, rotateToFace);
         }
+		
         
         public function fireAtTarget(target:MovieClip):void {
             this.fireAtPoint(target.x - game.BGMid.x, target.y);

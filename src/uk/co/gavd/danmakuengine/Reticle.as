@@ -43,8 +43,8 @@
 			var b:BulletHero = this.getNextBullet();
 			
             if(directional) {
-                var virtualCursorX:uint = this.x - game.x - game.BGMid.x;
-				var virtualCursorY:uint= this.y;
+                var virtualCursorX:int = this.x - game.x - game.BGMid.x;
+				var virtualCursorY:int = this.y;
 				
 				virtualCursorX += (Math.random() * 30) - 15;
 				virtualCursorY += (Math.random() * 30) - 15;

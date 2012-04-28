@@ -87,14 +87,6 @@
 			enemy.gotoAndPlay("die");
 		}
 		
-		public function getDistanceFromHeroRaw(enemy:MovieClip):Number {
-			return (theRoot.game.hero.x - theRoot.game.BGMid.x) - enemy.x
-		}
-		
-		public function getDistanceFromHero(enemy:MovieClip):Number {
-			return Math.abs(this.getDistanceFromHeroRaw(enemy));
-		}
-	
 		public function onFrame(e:Event):void {
 			//trace("onFrame" + this.arEnemies.length);
 		
