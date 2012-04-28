@@ -24,7 +24,7 @@
 		
 		override public function takeHit():void {
 			super.takeHit();
-			if (this.hp < 50dss) {
+			if (this.hp < 50) {
 				trace("HULK 4");
 				rotrate = 10;
 			} else if (this.hp < 100) {
