@@ -20,6 +20,8 @@
 		
 		protected var game:Game;
 		
+		protected static const ONEEIGHTY_OVER_PI:Number = (180/Math.PI);
+		
 		
 		public function Bullet(game:Game) {
 			this.stop();
@@ -40,8 +42,7 @@
             this.calculateFramesToLive(targetY);
 			
 			if(rotateToFace) {
-				//var myRadians:Number = Math.atan2( this.y - targetY, this.x - targetX );
-               	this.rotation = (angle * (180 / Math.PI));
+				this.rotation = (angle * (ONEEIGHTY_OVER_PI));
 				trace(this.rotation);
 			}
         }
