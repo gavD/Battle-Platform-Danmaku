@@ -48,8 +48,7 @@
 			
 			this.fireSound.play();
 			
-			var bul:Bullet = this.getNextBullet()
-			bul.fireAtTarget(game.hero);
+			this.getNextBullet().fireAtTarget(game.hero, true);
 			
 			return;
 		}

@@ -21,7 +21,7 @@
 		// TODO refactor eof
 		
 		public var lAction:uint = 0;
-		public var bFacingLeft:Boolean = true;
+		public var facingLeft:Boolean = true;
 		
 		protected var game:Game;
 		
@@ -85,14 +85,14 @@
 		
 		private function turnAndFace(targetX:Number):void
 		{
-			if (this.bFacingLeft && targetX > this.x)
+			if (this.facingLeft && targetX > this.x)
 			{
-				this.bFacingLeft = false;
+				this.facingLeft = false;
 				this.scaleX = -1;
 			}
-			else if (!this.bFacingLeft && targetX < this.x)
+			else if (!this.facingLeft && targetX < this.x)
 			{
-				this.bFacingLeft = true;
+				this.facingLeft = true;
 				this.scaleX = 1;
 			}
 		}
@@ -116,7 +116,7 @@
 		
 		protected function getNewBullet():Bullet
 		{
-			return new Bullet(game);
+			return new BulletLong20pxPink(game);
 		}
 		
 		protected function getNextBullet():Bullet

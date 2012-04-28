@@ -26,17 +26,19 @@
 			
 			this.fireSound.play();
 			
-			this.getNextBullet().fireAtAngle(-90);
-			this.getNextBullet().fireAtAngle(-110);
-			this.getNextBullet().fireAtAngle(-135);
-			this.getNextBullet().fireAtAngle(-160);
-			this.getNextBullet().fireAtAngle(-180);
-			
-			return; // TODO why?
-		}
-		
-		override protected function getNewBullet():Bullet {
-			return new BulletSlow(game);
+			if(this.facingLeft) {
+				this.getNextBullet().fireAtAngleRadians(3.4, true);
+				this.getNextBullet().fireAtAngleRadians(3.6, true);
+				this.getNextBullet().fireAtAngleRadians(3.8, true);
+				this.getNextBullet().fireAtAngleRadians(4, true);
+			} else {
+				
+				this.getNextBullet().fireAtAngleRadians(2.0, true);
+				this.getNextBullet().fireAtAngleRadians(2.2, true);
+				this.getNextBullet().fireAtAngleRadians(2.4, true);
+				this.getNextBullet().fireAtAngleRadians(2.6, true);
+				
+			}
 		}
     }
 }

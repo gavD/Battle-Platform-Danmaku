@@ -30,19 +30,19 @@
 			this.fireSound.play();
             
 			var bul:Bullet = this.getNextBullet();
-			bul.fireAtPoint(this.x, this.y - this.fireRange );
+			bul.fireAtPoint(this.x, this.y - this.fireRange, true );
 			bul.y += BARREL_LENGTH;
 			
 			var bul2:Bullet = this.getNextBullet();
-			bul2.fireAtPoint(this.x, this.y + this.fireRange );
+			bul2.fireAtPoint(this.x, this.y + this.fireRange, true );
 			bul.y -= BARREL_LENGTH;
 			
 			var bul3:Bullet = this.getNextBullet();
-			bul3.fireAtPoint(this.x + this.fireRange, this.y );
+			bul3.fireAtPoint(this.x + this.fireRange, this.y, true);
 			bul.x += BARREL_LENGTH;
 			
 			var bul4:Bullet = this.getNextBullet();
-			bul4.fireAtPoint(this.x - this.fireRange, this.y );
+			bul4.fireAtPoint(this.x - this.fireRange, this.y, true );
 			bul.x -= BARREL_LENGTH;
             
             return;

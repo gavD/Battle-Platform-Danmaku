@@ -40,21 +40,24 @@
 			
 			if(rotateToFace) {
 				this.rotation = (radians * (ONEEIGHTY_OVER_PI));
-				trace(this.rotation);
 			}
         }
         
         public function fireAtAngle(degrees:Number, rotateToFace:Boolean = false):void {
             var radians:Number = degrees * Math.PI / 180;
+			this.fireAtAngleRadians(radians, rotateToFace);
+		}
+		
+		public function fireAtAngleRadians(radians:Number, rotateToFace:Boolean = false):void {
+
             var opp:Number = Math.sin(radians) * travel; // opp = h * s
             var adj:Number = Math.cos(radians) * travel; // adj = h * c
 
 			this.fireAtPoint(this.x + opp, this.y + adj, rotateToFace);
         }
-		
         
-        public function fireAtTarget(target:MovieClip):void {
-            this.fireAtPoint(target.x - game.BGMid.x, target.y);
+        public function fireAtTarget(target:MovieClip, rotateToFace:Boolean = false):void {
+            this.fireAtPoint(target.x - game.BGMid.x, target.y, rotateToFace);
 		}
         
         private function getAngleTo(aimAtX:Number, aimAtY:Number):Number {

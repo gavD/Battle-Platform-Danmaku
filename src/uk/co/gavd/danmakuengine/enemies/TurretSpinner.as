@@ -29,8 +29,7 @@
 			
 			this.fireSound.play();
 			
-			var bul:Bullet = this.getNextBullet()
-			bul.fireAtAngle(this.rotation*-1 );
+			this.getNextBullet().fireAtAngle(this.rotation*-1, true);
 			
 			return;
 		}
