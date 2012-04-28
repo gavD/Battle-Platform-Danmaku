@@ -6,8 +6,8 @@
 
     public class TurretScatter extends Turret  {
     
-		public function TurretScatter(game:Game) {
-			super(game);
+		public function TurretScatter() {
+			super();
 			
 			this.fireRange = 600;
 			this.rateOfFire = 110;

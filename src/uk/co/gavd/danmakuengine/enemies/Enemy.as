@@ -1,12 +1,14 @@
-﻿package uk.co.gavd.danmakuengine.enemies {
+﻿package uk.co.gavd.danmakuengine.enemies
+{
 	import flash.display.MovieClip;
 	import uk.co.gavd.danmakuengine.ballistics.*;
-    import uk.co.gavd.danmakuengine.Game;
+	import uk.co.gavd.danmakuengine.Game;
 	import flash.events.Event;
 	import uk.co.gavd.danmakuengine.HitTaker;
 	import uk.co.gavd.danmakuengine.hud.ScoreFloater;
-
-    public class Enemy extends MovieClip {
+	
+	public class Enemy extends MovieClip
+	{
 		protected var scoreForKill:uint = 5;
 		protected var fireRange:Number = 300;
 		
@@ -25,34 +27,45 @@
 		
 		private var hitTaker:HitTaker;
 		
-		public function Enemy(game:Game) {
-			this.game = game;
+		public function Enemy()
+		{
 			this.hitTaker = new HitTaker(this);
 		}
 		
-		public function checkHit(bullet:Bullet):Boolean {
+			
+		public function setGame(game:Game):void {
+			this.game = game;
+		}
+		
+		public function checkHit(bullet:Bullet):Boolean
+		{
 			return bullet.hitArea.hitTestObject(this);
 		}
-
-		public function process():void {
-			if(!this.isOnScreen()) {
+		
+		public function process():void
+		{
+			hitTaker.onFrame();
+			
+			if (!this.isOnScreen())
+			{
 				return;
 			}
 			
-			if (game.hero.lAction != 0) {
-				return;
-			}
-
-			if (this.lAction == Enemy.DYING) {
+			if (game.hero.lAction != 0)
+			{
 				return;
 			}
 			
-			hitTaker.onFrame(); // TODO can we factor it out?
+			if (this.lAction == Enemy.DYING)
+			{
+				return;
+			}
 			
 			this.handleMovementAndShooting();
 		}
 		
-		private function handleMovementAndShooting():void {
+		private function handleMovementAndShooting():void
+		{
 			this.handleMovementX();
 			this.handleMovementY();
 			
@@ -62,36 +75,52 @@
 			this.handleFiring(targetX);
 		}
 		
-		protected function handleMovementX():void {}
-		protected function handleMovementY():void {}
+		protected function handleMovementX():void
+		{
+		}
 		
-		private function turnAndFace(targetX:Number):void {
-			if (this.bFacingLeft && targetX > this.x) {
+		protected function handleMovementY():void
+		{
+		}
+		
+		private function turnAndFace(targetX:Number):void
+		{
+			if (this.bFacingLeft && targetX > this.x)
+			{
 				this.bFacingLeft = false;
 				this.scaleX = -1;
-			} else if (!this.bFacingLeft && targetX < this.x) {
+			}
+			else if (!this.bFacingLeft && targetX < this.x)
+			{
 				this.bFacingLeft = true;
-				this.scaleX= 1;
+				this.scaleX = 1;
 			}
 		}
 		
-		private function handleFiring(targetX:Number):void {
+		private function handleFiring(targetX:Number):void
+		{
 			var distFromHero:Number = targetX - this.x;
 			var lDistX:Number = Math.abs(distFromHero);
-			if (lDistX <= this.fireRange) { // within firing range
-				if(this.doFire(targetX, distFromHero)) {
+			if (lDistX <= this.fireRange)
+			{ // within firing range
+				if (this.doFire(targetX, distFromHero))
+				{
 					this.muzzleFlash();
 				}
 			}
 		}
 		
-		protected function doFire (targetX:Number, distFromHero:Number):void {}
+		protected function doFire(targetX:Number, distFromHero:Number):void
+		{
+		}
 		
-		protected function getNewBullet():Bullet {
+		protected function getNewBullet():Bullet
+		{
 			return new Bullet(game);
 		}
 		
-		protected function getNextBullet():Bullet {
+		protected function getNextBullet():Bullet
+		{
 			var clip:Bullet = this.getNewBullet();
 			clip.x = this.x;
 			clip.y = this.y;
@@ -99,31 +128,38 @@
 			return clip;
 		}
 		
-		protected function muzzleFlash():void {
+		protected function muzzleFlash():void
+		{
 			// TODO
 		}
 		
-		protected function dieHook():void {
-			
+		protected function dieHook():void
+		{
+		
 		}
 		
-		protected function getOnScreenMin():uint {
+		protected function getOnScreenMin():uint
+		{
 			return 777;
 		}
 		
-		public function isOnScreen():Boolean {
+		public function isOnScreen():Boolean
+		{
 			var fudgedNumber:Number = (this.x - this.getOnScreenMin()) * -1;
-			if (game.BGMid.x < fudgedNumber) { 
+			if (game.BGMid.x < fudgedNumber)
+			{
 				return true;
 			}
 			
 			return false;
 		}
 		
-		public function takeHit():void {
+		public function takeHit():void
+		{
 			var theRootx:MovieClip = MovieClip(root); // TODO DI this?
 			this.hp -= theRootx.game.hero.power;
-			if(this.hp <= 0) {
+			if (this.hp <= 0)
+			{
 				var score:uint = this.scoreForKill + (this.scoreForKill * theRootx.comboBar.getCombo());
 				trace(this + "SCORE IS " + score);
 				var sf:ScoreFloater = new ScoreFloater(score);
@@ -136,9 +172,11 @@
 				
 				this.dieHook();
 				theRootx.fcEnemies.kill(this);
-			} else {
+			}
+			else
+			{
 				this.hitTaker.takeHit(10);
 			}
 		}
-    }
+	}
 }

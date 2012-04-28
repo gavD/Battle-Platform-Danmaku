@@ -20,7 +20,10 @@
 		public var spreadShot:uint = 0;
 
         private var engineSpeed:Number = 9;
-    
+		
+		public var sparks:MovieClip;
+		public var sparkHitZone:MovieClip;
+		
         // inertia and speed
         private var lRatioVertical:Number = 0.2;
         private var lMaxEnergy:int = 40;
@@ -132,6 +135,8 @@
         }
 		
         public function onFrame(event:Event):void {
+			this.sparks.visible = false;
+			
 			hitTaker.onFrame(); // TODO can we factor it out?
 			
 			if(this.lAction >= DYING) {

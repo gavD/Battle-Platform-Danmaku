@@ -15,6 +15,8 @@ var conf:Config = new Config();
 game.setConfig(conf);
 var fcEnemies:EnemyCollection = new EnemyCollection(theRoot, conf);
 var enemyGenerator:EnemyGenerator = new EnemyGenerator(game, fcEnemies, conf);
+
+enemyGenerator.detectEnemies();
 var reticle:Reticle = new Reticle(game, conf);
 stage.addChild(reticle);
 
@@ -46,10 +48,11 @@ this.addChild(frt);
 
 function checkMemoryUsage():void {
 	trace("== MEM: " + System.totalMemory + "==");
-	trace("== OBJECTS: ==");TimelineUtils.dispTree(game, 0);
+	//trace("== OBJECTS: ==");TimelineUtils.dispTree(game, 0);
+	trace("== GAME SIZE: ==" + getSize(game));
 }
 // enable the next line to track memory usage
-//var checkMemoryIntervalID:uint = setInterval(checkMemoryUsage,1000);
+var checkMemoryIntervalID:uint = setInterval(checkMemoryUsage,1000);
 // eof
 
 stop();

@@ -8,8 +8,8 @@
 		
 		private const BARREL_LENGTH:int = 30;
 		
-		public function Turret4Way(game:Game) {
-			super(game);
+		public function Turret4Way() {
+			super();
 			
 			this.fireRange = 400;
 			this.scoreForKill = 20;

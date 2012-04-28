@@ -5,8 +5,8 @@
 
     public class TurretSpinner extends Turret {
 		
-		public function TurretSpinner(game:Game) {
-			super(game);
+		public function TurretSpinner() {
+			super();
 			
 			this.fireRange = 300;
 			this.rateOfFire = 14;

@@ -43,11 +43,11 @@
 			}
         }
         
-        public function fireAtAngle(degrees:Number):void {
+        public function fireAtAngle(degrees:Number, rotateToFace:Boolean = false):void {
             var radians:Number = degrees * Math.PI / 180;
             var opp:Number = Math.sin(radians) * travel; // opp = h * s
             var adj:Number = Math.cos(radians) * travel; // adj = h * c
-            this.fireAtPoint(this.x + opp, this.y + adj);
+			this.fireAtPoint(this.x + opp, this.y + adj, rotateToFace);
         }
         
         public function fireAtTarget(target:MovieClip):void {
@@ -67,7 +67,7 @@
         private function calculateFramesToLive(targetY:Number):void {
             // work out how long this bullet has to live
             var defaultFramesToLive:uint = this.travel / this.lSpeed;
-            var ticksToOutOfY:uint = defaultFramesToLive;
+			var ticksToOutOfY:uint = defaultFramesToLive;
     
             if (targetY < y) {
                 ticksToOutOfY = (y + 50) / yTravel;
@@ -75,9 +75,7 @@
             } else if (targetY > y) {
                 ticksToOutOfY = ((this.stage.stageHeight + 50) - y) / yTravel;
             }
-            
-            this.framesToLive = (ticksToOutOfY < defaultFramesToLive) ? ticksToOutOfY : defaultFramesToLive;
-            
+            this.framesToLive = (ticksToOutOfY !== 0 && (ticksToOutOfY < defaultFramesToLive)) ? ticksToOutOfY : defaultFramesToLive;
             //trace("ticksToOutOfY=" + ticksToOutOfY + ", default=" + Math.round(this.travel / this.getSpeed()) + " : Final ticks are " + framesToLive);
         }
         
@@ -115,9 +113,10 @@
                 game.hero.takeHit(this.damage);
                 this.gotoAndPlay("explode");
             } else {
-				if(this.hitArea.hitTestObject(game.hero)) {
+				if(this.hitArea.hitTestObject(game.hero.sparkHitZone)) {
 					MovieClip(root).comboBar.ticksUp();
 					MovieClip(root).scoreDisplay.scoreUp(1); // TODO magic number
+					game.hero.sparks.visible = true;
 					// TODO hero sparks
 				}
 			}
