@@ -1,6 +1,7 @@
 ﻿package uk.co.gavd.danmakuengine.ballistics {
     import flash.display.MovieClip;
     import flash.events.Event;
+	import flash.text.engine.BreakOpportunity;
     import uk.co.gavd.danmakuengine.Game;
 	import uk.co.gavd.danmakuengine.Hero;
     
@@ -16,7 +17,7 @@
         protected var damage:Number = 5;
         protected var travel:Number = 750; // how many px this bullet can fly
 		
-		protected var lSpeed:Number = 2.5;
+		protected var lSpeed:Number = 2;
 		
 		protected var game:Game;
 		
@@ -42,12 +43,18 @@
 		
 		public function fireAtAngleRadians(radians:Number, rotateToFace:Boolean = false):void {
 
-            var opp:Number = Math.sin(radians) * travel; // opp = h * s
-            var adj:Number = Math.cos(radians) * travel; // adj = h * c
+			this.xTravel = lSpeed * Math.cos(radians);
+			this.yTravel = lSpeed * Math.sin(radians);
+/*
+trace("xTravel actual is " + this.xTravel);
+trace("yTravel actual is " + this.yTravel);	
+trace("Travel is " + (Math.abs(this.xTravel) + Math.abs(this.yTravel)));
+trace("Speed is " + lSpeed);
+So why is it that lSpeed and travel don't match?
+*/
+ 			var opp:Number = Math.sin(radians) * travel; // opp = h * s
+			this.calculateFramesToLive(this.y + opp);
 
-			this.calculateTravelPerFrame(adj, opp);
-            this.calculateFramesToLive(this.y + opp);
-			
 			if(rotateToFace) {
 				this.rotation = (radians * (ONEEIGHTY_OVER_PI));
 			}
@@ -61,25 +68,18 @@
             return Math.atan2(aimAtY - this.y, aimAtX- this.x);
         }
         
-        private function calculateTravelPerFrame(xRem:Number, yRem:Number):void {
-            // calculate speed of movement per frame
-            this.xTravel = this.lSpeed * (xRem / (Math.abs(xRem) + Math.abs(yRem)));
-            this.yTravel = this.lSpeed - Math.abs(xTravel);
-        }
-        
         private function calculateFramesToLive(targetY:Number):void {
             // work out how long this bullet has to live
             var defaultFramesToLive:uint = this.travel / this.lSpeed;
+			
 			var ticksToOutOfY:uint = defaultFramesToLive;
     
             if (targetY < y) {
-                ticksToOutOfY = (y + 50) / yTravel;
-                this.yTravel *= -1;
+				ticksToOutOfY = (y + 50) / Math.abs(yTravel);
             } else if (targetY > y) {
-                ticksToOutOfY = ((this.stage.stageHeight + 50) - y) / yTravel;
+				ticksToOutOfY = ((this.stage.stageHeight + 50) - y) / yTravel;
             }
             this.framesToLive = (ticksToOutOfY !== 0 && (ticksToOutOfY < defaultFramesToLive)) ? ticksToOutOfY : defaultFramesToLive;
-            //trace("ticksToOutOfY=" + ticksToOutOfY + ", default=" + Math.round(this.travel / this.getSpeed()) + " : Final ticks are " + framesToLive);
         }
         
         private function moveTowardsTarget():void {

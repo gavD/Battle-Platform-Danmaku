@@ -6,7 +6,6 @@
 			super(game);
 			
 			this.lSpeed = 3;
-			this.damage = 10;
 		}
     }
 }

@@ -5,7 +5,7 @@
     	public function BulletLong20pxYellow(game:Game) {
 			super(game);
 			
-			this.lSpeed = 6;
+			this.lSpeed = 5;
 		}
     }
 }

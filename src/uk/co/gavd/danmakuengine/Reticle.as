@@ -65,7 +65,7 @@
 			var b:BulletHero = new BulletHero(game);
 			
             b.x = game.hero.x - game.BGMid.x + 55;
-            b.y = game.hero.y + 12;
+            b.y = game.hero.y + 14;
 			game.BGMid.addChild(b); 
 			
 			return b;
