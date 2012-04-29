@@ -5,7 +5,6 @@
 	import flash.media.Sound;
     
     public class Reticle extends MovieClip {
-        private var lShotIndex:uint = 0;
         private var isMouseDown:Boolean = false;
         private var framesBetweenShots:uint = 10;
         private var clicksToNextShot:uint = 0;
@@ -38,24 +37,12 @@
             }
             
             // fire a bullet
-            lShotIndex++;
-			
-			var b:BulletHero = this.getNextBullet();
+            var b:BulletHero = this.getNextBullet();
 			
             if(directional) {
                 var virtualCursorX:int = this.x - game.x - game.BGMid.x;
-				var virtualCursorY:int = this.y;
-				
-				trace("VC=" + virtualCursorX + "," + virtualCursorY);
-				trace("BL=" + b.x + "," + b.y);
-				
-				var radians:Number = Math.atan2(virtualCursorY - b.y, virtualCursorX - b.x);
-				//trace("Rads is " + radians);
-				//virtualCursorX += (Math.random() * 30) - 15;
-				//virtualCursorY += (Math.random() * 30) - 15;
-			
+				var radians:Number = Math.atan2(this.y - b.y, virtualCursorX - b.x);
 				b.fireAtAngleRadians(radians, true);
-				//b.fireAtAngleRadians(radians, true);
             } else { // straight line fire
                 b.fireAtPoint(b.x + 750, b.y);
             }
