@@ -46,10 +46,16 @@
                 var virtualCursorX:int = this.x - game.x - game.BGMid.x;
 				var virtualCursorY:int = this.y;
 				
-				virtualCursorX += (Math.random() * 30) - 15;
-				virtualCursorY += (Math.random() * 30) - 15;
+				trace("VC=" + virtualCursorX + "," + virtualCursorY);
+				trace("BL=" + b.x + "," + b.y);
 				
-                b.fireAtPoint(virtualCursorX, virtualCursorY, true);
+				var radians:Number = Math.atan2(virtualCursorY - b.y, virtualCursorX - b.x);
+				//trace("Rads is " + radians);
+				//virtualCursorX += (Math.random() * 30) - 15;
+				//virtualCursorY += (Math.random() * 30) - 15;
+			
+				b.fireAtAngleRadians(radians, true);
+				//b.fireAtAngleRadians(radians, true);
             } else { // straight line fire
                 b.fireAtPoint(b.x + 750, b.y);
             }

@@ -35,7 +35,6 @@
 			0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 		];
 		
-		
 		public function Guardian3() {
 			super();
 			
@@ -47,6 +46,8 @@
 			this.fireSound = new BulletGuardian1Wav();
 		}
 		
+		override protected function turnAndFace(targetX:Number):void
+		{}
 		
 		override protected function getOnScreenMin():uint {
 			return 570;

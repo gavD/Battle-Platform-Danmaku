@@ -83,7 +83,7 @@
 		{
 		}
 		
-		private function turnAndFace(targetX:Number):void
+		protected function turnAndFace(targetX:Number):void
 		{
 			if (this.facingLeft && targetX > this.x)
 			{

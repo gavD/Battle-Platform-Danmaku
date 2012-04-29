@@ -25,6 +25,9 @@
 			this.fireSound = new BulletGuardian1Wav();
 		}
 		
+		override protected function turnAndFace(targetX:Number):void
+		{}
+		
 		override public function takeHit():void
 		{
 			super.takeHit();

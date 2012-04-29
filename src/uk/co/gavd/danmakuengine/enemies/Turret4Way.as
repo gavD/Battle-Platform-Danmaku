@@ -19,6 +19,9 @@
 			this.fireSound = new FourWayWav();
 		}
 		
+		override protected function turnAndFace(targetX:Number):void
+		{}
+		
 		override protected function doFire (lTargetX:Number, distFromHero:Number):void {
 		
             if(--this.clicksToFire <= 0) {

@@ -32,12 +32,10 @@
 				this.getNextBullet().fireAtAngleRadians(3.8, true);
 				this.getNextBullet().fireAtAngleRadians(4, true);
 			} else {
-				
-				this.getNextBullet().fireAtAngleRadians(2.0, true);
-				this.getNextBullet().fireAtAngleRadians(2.2, true);
-				this.getNextBullet().fireAtAngleRadians(2.4, true);
-				this.getNextBullet().fireAtAngleRadians(2.6, true);
-				
+				this.getNextBullet().fireAtAngleRadians(5.2, true);
+				this.getNextBullet().fireAtAngleRadians(5.4, true);
+				this.getNextBullet().fireAtAngleRadians(5.6, true);
+				this.getNextBullet().fireAtAngleRadians(5.8, true);
 			}
 		}
     }

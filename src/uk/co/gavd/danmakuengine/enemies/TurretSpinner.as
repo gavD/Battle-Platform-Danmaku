@@ -16,6 +16,9 @@
 			this.addEventListener ( Event.ENTER_FRAME, this.onFrame, false, 0, true);
 		}
 		
+		override protected function turnAndFace(targetX:Number):void
+		{}
+		
 		private function onFrame(e:Event):void {
 			this.rotation++;
 		}
@@ -29,7 +32,7 @@
 			
 			this.fireSound.play();
 			
-			this.getNextBullet().fireAtAngle(this.rotation*-1, true);
+			this.getNextBullet().fireAtAngle(this.rotation, true);
 			
 			return;
 		}
