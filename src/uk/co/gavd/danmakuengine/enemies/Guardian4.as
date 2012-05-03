@@ -1,12 +1,12 @@
 ﻿package uk.co.gavd.danmakuengine.enemies {
-	import uk.co.gavd.danmakuengine.ballistics.firingpatterns.Circle;
-	import uk.co.gavd.danmakuengine.ballistics.firingpatterns.FiringPattern;
+	import uk.co.gavd.danmakuengine.ballistics.firingstrategies.Circle;
+	import uk.co.gavd.danmakuengine.ballistics.firingstrategies.FiringPattern;
 	import uk.co.gavd.danmakuengine.Game;
 	import uk.co.gavd.danmakuengine.ballistics.*;
 	import flash.display.*;
 	import flash.events.Event;
 	import flash.media.Sound;
-	import uk.co.gavd.danmakuengine.ballistics.firingpatterns.SpinTriplet;
+	import uk.co.gavd.danmakuengine.ballistics.firingstrategies.SpinTriplet;
 
     public class Guardian4 extends Turret {
 		
