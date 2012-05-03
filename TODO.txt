@@ -17,6 +17,9 @@ Reimplement loading bar
 
 combo meter needs re-implementing
 
+can fly off bottom?
+
+
 re-implement game overwd
 
 mobile hud flying ship in

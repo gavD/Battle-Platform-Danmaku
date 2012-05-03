@@ -9,20 +9,20 @@
 		
         // dynamically calculated stuff
         public var triggered:Boolean = false;
-        protected var framesToLive:int = 10000;
+        protected var framesToLive:int = 1000;
         protected var xTravel:Number = 0;
         protected var yTravel:Number = 0;
         
         // info about this bullet
-        protected var damage:Number = 5;
-        protected var travel:Number = 750; // how many px this bullet can fly
+        protected var damage:Number = 1;
+        protected var travel:Number = 800; // how many px this bullet can fly
 		
 		protected var lSpeed:Number = 2;
 		
 		protected var game:Game;
+		protected var rotateToFace:Boolean = false;
 		
 		protected static const ONEEIGHTY_OVER_PI:Number = (180/Math.PI);
-		
 		
 		public function Bullet(game:Game) {
 			this.stop();
@@ -31,17 +31,17 @@
 			this.addEventListener(Event.ENTER_FRAME, this.onFrame, false, 0, true);
 		}
         
-        public function fireAtPoint(targetX:Number, targetY:Number, rotateToFace:Boolean = false):void {
+        public function fireAtPoint(targetX:Number, targetY:Number):void {
             var radians:Number = this.getAngleTo(targetX, targetY);			
-			this.fireAtAngleRadians(radians, rotateToFace);
+			this.fireAtAngleRadians(radians);
         }
         
-        public function fireAtAngle(degrees:Number, rotateToFace:Boolean = false):void {
+        public function fireAtAngle(degrees:Number):void {
             var radians:Number = degrees * Math.PI / 180;
-			this.fireAtAngleRadians(radians, rotateToFace);
+			this.fireAtAngleRadians(radians);
 		}
 		
-		public function fireAtAngleRadians(radians:Number, rotateToFace:Boolean = false):void {
+		public function fireAtAngleRadians(radians:Number):void {
 
 			this.xTravel = lSpeed * Math.cos(radians);
 			this.yTravel = lSpeed * Math.sin(radians);
@@ -55,13 +55,13 @@ So why is it that lSpeed and travel don't match?
  			var opp:Number = Math.sin(radians) * travel; // opp = h * s
 			this.calculateFramesToLive(this.y + opp);
 
-			if(rotateToFace) {
+			if(this.rotateToFace) {
 				this.rotation = (radians * (ONEEIGHTY_OVER_PI));
 			}
         }
         
-        public function fireAtTarget(target:MovieClip, rotateToFace:Boolean = false):void {
-            this.fireAtPoint(target.x - game.BGMid.x, target.y, rotateToFace);
+        public function fireAtTarget(target:MovieClip):void {
+            this.fireAtPoint(target.x - game.BGMid.x, target.y);
 		}
         
         private function getAngleTo(aimAtX:Number, aimAtY:Number):Number {
@@ -107,10 +107,11 @@ So why is it that lSpeed and travel don't match?
         }
         
         protected function checkForHits():void {
+
 			if( game.hero.lAction != Hero.OK ) {
 				return;
 			}
-			
+
 			if (this.hitArea.hitTestObject(game.hero.hitArea)) {
 				this.triggered = true;
                 game.hero.takeHit(this.damage);

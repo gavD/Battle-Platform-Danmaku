@@ -19,14 +19,13 @@
         private var bInvincible:Boolean = false;
 		public var spreadShot:uint = 0;
 
-        private var engineSpeed:Number = 9;
+        private var engineSpeed:Number = 3;
 		
 		public var sparks:MovieClip;
 		public var sparkHitZone:MovieClip;
 		
         // inertia and speed
-        private var lRatioVertical:Number = 0.2;
-        private var lMaxEnergy:int = 40;
+        private var lMaxEnergy:int = 10;
 		public var lEnergy:Number = lMaxEnergy;
 		
 		public var thrusterRear:MovieClip;
@@ -55,8 +54,8 @@
         
         public function applyMovement(lXDir:Number, lYDir:Number):void {
             this.setThrusters(lXDir, lYDir);
-			this.x += lXDir * this.engineSpeed * lRatioVertical; 
-			this.y += lYDir * this.engineSpeed * lRatioVertical;
+			this.x += lXDir * this.engineSpeed; 
+			this.y += lYDir * this.engineSpeed;
 			
 			if(this.y < SCREEN_BORDER) {
 				this.y = SCREEN_BORDER;

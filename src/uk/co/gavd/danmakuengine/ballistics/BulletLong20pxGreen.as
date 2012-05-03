@@ -6,6 +6,7 @@
 			super(game);
 			
 			this.lSpeed = 8;
+			this.rotateToFace = true;
 		}
     }
 }

@@ -43,7 +43,7 @@ game.hero.addEventListener(Event.ENTER_FRAME,game.hero.onFrame, false, 0, true);
 stage.addEventListener(Event.ENTER_FRAME, fcEnemies.onFrame, false, 0, true);
 
 // sof diagnostics
-var frt:FramerateTracker = new FramerateTracker(40);
+var frt:FramerateTracker = new FramerateTracker(stage.frameRate);
 this.addChild(frt);
 
 function checkMemoryUsage():void {
@@ -52,7 +52,7 @@ function checkMemoryUsage():void {
 	trace("== GAME SIZE: ==" + getSize(game));
 }
 // enable the next line to track memory usage
-var checkMemoryIntervalID:uint = setInterval(checkMemoryUsage,1000);
+var checkMemoryIntervalID:uint = setInterval(checkMemoryUsage,10000);
 // eof
 
 stop();

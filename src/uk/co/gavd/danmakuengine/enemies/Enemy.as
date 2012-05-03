@@ -32,7 +32,7 @@
 			this.hitTaker = new HitTaker(this);
 		}
 		
-			
+		// TODO rename to initialise or something	
 		public function setGame(game:Game):void {
 			this.game = game;
 		}
@@ -103,10 +103,7 @@
 			var lDistX:Number = Math.abs(distFromHero);
 			if (lDistX <= this.fireRange)
 			{ // within firing range
-				if (this.doFire(targetX, distFromHero))
-				{
-					this.muzzleFlash();
-				}
+				this.doFire(targetX, distFromHero);
 			}
 		}
 		
@@ -119,18 +116,20 @@
 			return new BulletLong20pxPink(game);
 		}
 		
-		protected function getNextBullet():Bullet
+		// TODO bullet factory?
+		public function getNextBullet(bullet:Bullet = null):Bullet
 		{
-			var clip:Bullet = this.getNewBullet();
+			
+			var clip:Bullet;
+			if(bullet == null) {
+				clip = this.getNewBullet();
+			} else {
+				clip = bullet;
+			}
 			clip.x = this.x;
 			clip.y = this.y;
 			game.BGMid.addChild(clip);
 			return clip;
-		}
-		
-		protected function muzzleFlash():void
-		{
-			// TODO
 		}
 		
 		protected function dieHook():void

@@ -5,7 +5,8 @@
     	public function BulletLong20pxPink(game:Game) {
 			super(game);
 			
-			this.lSpeed = 4;
+			this.lSpeed = 3;
+			this.rotateToFace = true;
 		}
     }
 }

@@ -11,7 +11,7 @@
 			this.fireRange = 300;
 			this.rateOfFire = 14;
 			this.scoreForKill = 20;
-			this.hp = 25;
+			this.hp = 7;
 			
 			this.addEventListener ( Event.ENTER_FRAME, this.onFrame, false, 0, true);
 		}
@@ -30,9 +30,9 @@
 				return;
 			}
 			
-			this.fireSound.play();
+//			this.fireSound.play();
 			
-			this.getNextBullet().fireAtAngle(this.rotation, true);
+			this.getNextBullet().fireAtAngle(this.rotation);
 			
 			return;
 		}

@@ -42,7 +42,7 @@
             if(directional) {
                 var virtualCursorX:int = this.x - game.x - game.BGMid.x;
 				var radians:Number = Math.atan2(this.y - b.y, virtualCursorX - b.x);
-				b.fireAtAngleRadians(radians, true);
+				b.fireAtAngleRadians(radians);
             } else { // straight line fire
                 b.fireAtPoint(b.x + 750, b.y);
             }
@@ -50,13 +50,19 @@
 			cannonWav.play();
 			
 			if(game.hero.spreadShot > 0) {
-				var b2:BulletHero = this.getNextBullet();
-				b2.fireAtPoint(b2.x + 10, b2.y + 4, true);
-				
-				this.getNextBullet().fireAtPoint(b2.x + 10, b2.y - 4, true);
-				if(game.hero.spreadShot > 1) {
-					this.getNextBullet().fireAtPoint(b2.x + 10, b2.y + 1, true);
-					this.getNextBullet().fireAtPoint(b2.x + 10, b2.y - 1, true);
+				this.getNextBullet().fireAtAngle( -5);
+				this.getNextBullet().fireAtAngle(5);
+				if (game.hero.spreadShot > 1) {
+					this.getNextBullet().fireAtAngle(-12);
+					this.getNextBullet().fireAtAngle(12);
+					if(game.hero.spreadShot > 2) {
+						this.getNextBullet().fireAtAngle(-25);
+						this.getNextBullet().fireAtAngle(25);
+						if(game.hero.spreadShot > 3) {
+							this.getNextBullet().fireAtAngle(-35);
+							this.getNextBullet().fireAtAngle(35);
+						}
+					}
 				}
 			}
         }

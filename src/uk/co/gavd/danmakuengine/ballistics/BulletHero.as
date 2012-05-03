@@ -10,7 +10,8 @@
 		public function BulletHero(game:Game) {
 			super(game);
 			
-			this.lSpeed = 19;
+			this.lSpeed = 18;
+			this.rotateToFace = true;
 		}
 		
         override protected function checkForHits():void {

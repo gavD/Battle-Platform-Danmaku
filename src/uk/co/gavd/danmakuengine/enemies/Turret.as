@@ -20,7 +20,7 @@
 			
 			this.fireRange = 600;
 			this.scoreForKill = 4;
-			this.hp = 10;
+			this.hp = 3;
 			
 			this.fireSound = new TurretWav();
 		}
@@ -46,9 +46,9 @@
 				return;
 			}
 			
-			this.fireSound.play();
+// TODO			this.fireSound.play();
 			
-			this.getNextBullet().fireAtTarget(game.hero, true);
+			this.getNextBullet().fireAtTarget(game.hero);
 			
 			return;
 		}

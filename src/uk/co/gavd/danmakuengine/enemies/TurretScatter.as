@@ -12,7 +12,7 @@
 			this.fireRange = 600;
 			this.rateOfFire = 110;
 			this.scoreForKill = 10;
-			this.hp = 11;
+			this.hp = 3;
 			
 			this.fireSound = new ShotgunWav();
 		}
@@ -24,18 +24,18 @@
 				return;
 			}
 			
-			this.fireSound.play();
+//			this.fireSound.play();
 			
 			if(this.facingLeft) {
-				this.getNextBullet().fireAtAngleRadians(3.4, true);
-				this.getNextBullet().fireAtAngleRadians(3.6, true);
-				this.getNextBullet().fireAtAngleRadians(3.8, true);
-				this.getNextBullet().fireAtAngleRadians(4, true);
+				this.getNextBullet().fireAtAngleRadians(3.4);
+				this.getNextBullet().fireAtAngleRadians(3.6);
+				this.getNextBullet().fireAtAngleRadians(3.8);
+				this.getNextBullet().fireAtAngleRadians(4);
 			} else {
-				this.getNextBullet().fireAtAngleRadians(5.2, true);
-				this.getNextBullet().fireAtAngleRadians(5.4, true);
-				this.getNextBullet().fireAtAngleRadians(5.6, true);
-				this.getNextBullet().fireAtAngleRadians(5.8, true);
+				this.getNextBullet().fireAtAngleRadians(5.2);
+				this.getNextBullet().fireAtAngleRadians(5.4);
+				this.getNextBullet().fireAtAngleRadians(5.6);
+				this.getNextBullet().fireAtAngleRadians(5.8);
 			}
 		}
     }

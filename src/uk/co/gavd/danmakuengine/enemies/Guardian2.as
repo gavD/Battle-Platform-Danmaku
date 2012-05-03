@@ -20,7 +20,7 @@
 			this.fireRange = 800;
 			this.scoreForKill = 400;
 			this.rateOfFire = 9;
-			this.hp = 250;
+			this.hp = 300;
 			
 			this.fireSound = new BulletGuardian1Wav();
 		}
@@ -47,7 +47,7 @@
 				trace("HULK 2");
 				rotrate = 4;
 			}
-			else if (this.hp < 200)
+			else if (this.hp < 270)
 			{
 				trace("HULK 1");
 				rotrate = 2;

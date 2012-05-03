@@ -41,7 +41,7 @@
 			this.fireRange = 800;
 			this.scoreForKill = 400;
 			this.rateOfFire = 9;
-			this.hp = 300;
+			this.hp = 400;
 			
 			this.fireSound = new BulletGuardian1Wav();
 		}
@@ -71,11 +71,11 @@
 		
 		override public function takeHit():void {
 			super.takeHit();
-			if (this.hp < 100) {
+			if (this.hp < 70) {
 				bulletCloudDensity = 5.625;
-			}else if (this.hp < 200) {
+			}else if (this.hp < 300) {
 				bulletCloudDensity = 11.25;
-			} else if(this.hp < 250) {
+			} else if(this.hp < 350) {
 				bulletCloudDensity = 22.5;
 			} else {
 				trace("HULK 0");
@@ -88,6 +88,16 @@
 			if(!gameAffected) {
 				game.stopScrolling();
 				gameAffected = true;
+			}
+			
+			if (this.hp < 300 && shotPtr % 5 == 0) { // TODO magic number
+				
+				var clip:Bullet = new BulletFast(game);
+				clip.x = this.x;
+				clip.y = this.y;
+				game.BGMid.addChild(clip);
+				clip.fireAtTarget(game.hero);
+					
 			}
 			
 			if(++shotPtr > shotFrames.length) {
@@ -104,8 +114,10 @@
 			bulrot += rotrate;
 			
 			for(var i:int = -180; i < 180; i = i + bulletCloudDensity) {
-				this.getNextBullet().fireAtAngle(i + bulrot, true);
+				this.getNextBullet().fireAtAngle(i + bulrot);
 			}
+			
+			
 		}
     }
 }
