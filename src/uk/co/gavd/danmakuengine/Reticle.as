@@ -5,6 +5,7 @@
 	import flash.media.Sound;
     
     public class Reticle extends MovieClip {
+        
         private var isMouseDown:Boolean = false;
         private var framesBetweenShots:uint = 10;
         private var clicksToNextShot:uint = 0;
@@ -90,8 +91,8 @@
             this.y = game.parent.mouseY;
 			
 			game.hero.isFiring = this.isMouseDown;
-            
-            if(this.isMouseDown) {
+            if (this.isMouseDown) {
+				
                 if(--this.clicksToNextShot <= 0) {
                     this.fireShot(true);
                     this.clicksToNextShot = this.framesBetweenShots;

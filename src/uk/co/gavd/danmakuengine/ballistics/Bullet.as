@@ -31,12 +31,16 @@
 			this.addEventListener(Event.ENTER_FRAME, this.onFrame, false, 0, true);
 		}
         
+		public function fireAtTarget(target:MovieClip):void {
+            this.fireAtPoint(target.x - game.BGMid.x, target.y);
+		}
+		      
         public function fireAtPoint(targetX:Number, targetY:Number):void {
             var radians:Number = this.getAngleTo(targetX, targetY);			
 			this.fireAtAngleRadians(radians);
         }
-        
-        public function fireAtAngle(degrees:Number):void {
+                
+		public function fireAtAngle(degrees:Number):void {
             var radians:Number = degrees * Math.PI / 180;
 			this.fireAtAngleRadians(radians);
 		}
@@ -60,12 +64,8 @@ So why is it that lSpeed and travel don't match?
 			}
         }
         
-        public function fireAtTarget(target:MovieClip):void {
-            this.fireAtPoint(target.x - game.BGMid.x, target.y);
-		}
-        
-        private function getAngleTo(aimAtX:Number, aimAtY:Number):Number {
-            return Math.atan2(aimAtY - this.y, aimAtX- this.x);
+        protected function getAngleTo(aimAtX:Number, aimAtY:Number):Number {
+            return Math.atan2(aimAtY - this.y, aimAtX - this.x);
         }
         
         private function calculateFramesToLive(targetY:Number):void {
@@ -82,7 +82,7 @@ So why is it that lSpeed and travel don't match?
             this.framesToLive = (ticksToOutOfY !== 0 && (ticksToOutOfY < defaultFramesToLive)) ? ticksToOutOfY : defaultFramesToLive;
         }
         
-        private function moveTowardsTarget():void {
+        protected function moveTowardsTarget():void {
             
             this.x += this.xTravel;
             this.y += this.yTravel;

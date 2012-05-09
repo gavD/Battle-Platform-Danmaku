@@ -3,7 +3,7 @@
 		// game tweaks
 		public static const DEBUG_MODE:Boolean = true;
 		public static const ANGLED_SHOTS:Boolean = true;
-		public static const SCROLL_SPEED:Number = 1;
+		public static const SCROLL_SPEED:Number = 0.4;// 1;
 		public static const MAX_ENEMIES:int = 50;
 		
 		// game boundaries

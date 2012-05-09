@@ -9,7 +9,7 @@
 	public class Turret extends Enemy
 	{
 		
-		protected var rateOfFire:int = 44;
+		protected var rateOfFire:int = 120;
 		protected var clicksToFire:int = 0;
 		
 		protected var fireSound:Sound;
@@ -45,13 +45,16 @@
 			{
 				return;
 			}
-			
 // TODO			this.fireSound.play();
 			
 			this.getNextBullet().fireAtTarget(game.hero);
 			
 			return;
 		}
-	
+			
+		override protected function getNewBullet():Bullet
+		{
+			return new Bullet(game);
+		}
 	}
 }
