@@ -13,7 +13,7 @@ package uk.co.gavd.danmakuengine.ballistics.firingstrategies
 			var clip:Bullet = new BulletFast(game);
 			clip.x = this.enemy.x;
 			clip.y = this.enemy.y;
-			game.BGMid.addChild(clip);
+			game.artifacts.addChild(clip);
 			clip.fireAtTarget(game.hero);
 		}
 	}

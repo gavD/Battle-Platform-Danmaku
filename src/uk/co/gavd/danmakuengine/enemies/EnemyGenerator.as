@@ -21,9 +21,9 @@
 		}
 		
 		public function detectEnemies():void {
-			var len:uint = game.BGMid.numChildren;
+			var len:uint = game.artifacts.numChildren;
 			for (var i:uint = 0; i < len; i++) {  
-				var display:DisplayObject = game.BGMid.getChildAt(i);  
+				var display:DisplayObject = game.artifacts.getChildAt(i);  
 				
 				if (display is Enemy) {
 					Enemy(display).setGame(this.game);

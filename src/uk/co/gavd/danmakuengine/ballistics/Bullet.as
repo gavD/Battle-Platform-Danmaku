@@ -32,7 +32,7 @@
 		}
         
 		public function fireAtTarget(target:MovieClip):void {
-            this.fireAtPoint(target.x - game.BGMid.x, target.y);
+            this.fireAtPoint(target.x - game.artifacts.x, target.y);
 		}
 		      
         public function fireAtPoint(targetX:Number, targetY:Number):void {

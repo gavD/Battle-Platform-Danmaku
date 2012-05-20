@@ -95,7 +95,7 @@
 				var clip:Bullet = new BulletFast(game);
 				clip.x = this.x;
 				clip.y = this.y;
-				game.BGMid.addChild(clip);
+				game.artifacts.addChild(clip);
 				clip.fireAtTarget(game.hero);
 					
 			}

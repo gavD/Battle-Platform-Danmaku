@@ -69,7 +69,7 @@
 			this.handleMovementX();
 			this.handleMovementY();
 			
-			var targetX:Number = game.hero.x - game.BGMid.x;
+			var targetX:Number = game.hero.x - game.artifacts.x;
 			
 			this.turnAndFace(targetX);
 			this.handleFiring(targetX);
@@ -128,7 +128,7 @@
 			}
 			clip.x = this.x;
 			clip.y = this.y;
-			game.BGMid.addChild(clip);
+			game.artifacts.addChild(clip);
 			return clip;
 		}
 		
@@ -145,7 +145,7 @@
 		public function isOnScreen():Boolean
 		{
 			var fudgedNumber:Number = (this.x - this.getOnScreenMin()) * -1;
-			if (game.BGMid.x < fudgedNumber)
+			if (game.artifacts.x < fudgedNumber)
 			{
 				return true;
 			}
@@ -164,7 +164,7 @@
 				var sf:ScoreFloater = new ScoreFloater(score);
 				sf.x = this.x;
 				sf.y = this.y;
-				this.game.BGMid.addChild(sf);
+				this.game.artifacts.addChild(sf);
 				
 				theRootx.comboBar.comboUp();
 				theRootx.scoreDisplay.scoreUp(score);

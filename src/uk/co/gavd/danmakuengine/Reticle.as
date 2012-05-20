@@ -10,7 +10,7 @@
         private var isMouseDown:Boolean = false;
         private var framesBetweenShots:uint = 10;
         private var clicksToNextShot:uint = 0;
-		private var missileRof:uint = 20;
+		private var missileRof:uint = 50;
 		private var clicksToNextMissile:int = 0;
         
 		private var game:Game;
@@ -45,14 +45,14 @@
 		private function fireMissileAtNearestFrontEnemy():void {
 			
 			
-			var len:uint = game.BGMid.numChildren;
+			var len:uint = game.artifacts.numChildren;
 			var closest:Number = 99999;
 			var nearestEnemy:Enemy = null;
 			for (var i:uint = 0; i < len; i++) {  
-				var display:DisplayObject = game.BGMid.getChildAt(i);  
+				var display:DisplayObject = game.artifacts.getChildAt(i);  
 				
 				if (display is Enemy) {
-					var heroX:Number = game.hero.x - game.BGMid.x;
+					var heroX:Number = game.hero.x - game.artifacts.x;
 					var heroY:Number = game.hero.y;
 					
 					var distX = display.x - heroX;
@@ -87,7 +87,7 @@
             var b:BulletHero = this.getNextBullet();
 			
             if(directional) {
-                var virtualCursorX:int = this.x - game.x - game.BGMid.x;
+                var virtualCursorX:int = this.x - game.x - game.artifacts.x;
 				var radians:Number = Math.atan2(this.y - b.y, virtualCursorX - b.x);
 				b.fireAtAngleRadians(radians);
             } else { // straight line fire
@@ -127,9 +127,9 @@
 		}
 		
 		private function initBullet(b:Bullet):void {
-            b.x = game.hero.x - game.BGMid.x + 55;
+            b.x = game.hero.x - game.artifacts.x + 55;
             b.y = game.hero.y + 14;
-			game.BGMid.addChild(b); 
+			game.artifacts.addChild(b); 
 		}
         
         public function doMouseDown(event:MouseEvent):void {

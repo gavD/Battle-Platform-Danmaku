@@ -84,7 +84,7 @@
 				this.firePointer = 0;
 				
 				// only re-targetsa when loop round the array
-				targetX = game.hero.x - game.BGMid.x;
+				targetX = game.hero.x - game.artifacts.x;
 				targetY = game.hero.y;
 //				this.fireSound.play();
 			}

@@ -18,7 +18,7 @@
 		
         override public function fireAtTarget(target:MovieClip):void {
 			this.target = target;
-			var radians:Number = this.getAngleTo(target.x - game.BGMid.x, target.y);
+			var radians:Number = this.getAngleTo(target.x - game.artifacts.x, target.y);
 			this.rotation = (radians * (ONEEIGHTY_OVER_PI));
         }
 		
@@ -48,7 +48,7 @@
 				return;
 			}
 			
-			var targetRadians:Number = this.getAngleTo(target.x - game.BGMid.x, target.y);
+			var targetRadians:Number = this.getAngleTo(target.x - game.artifacts.x, target.y);
 			var targetRotation:Number = (targetRadians * (ONEEIGHTY_OVER_PI));
 			
 			var diff:Number  = targetRotation - this.rotation;

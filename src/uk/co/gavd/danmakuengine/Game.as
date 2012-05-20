@@ -9,19 +9,20 @@
 		private var curLevel:Number = 0;
 		protected var theRoot:MovieClip = MovieClip(root);
 		public var hero:Hero;
-		public var BGTiles:MovieClip;
-		public var BGMid:MovieClip;
-		public var BGMidDeep:MovieClip;
+		public var deep:MovieClip;
+		public var mid:MovieClip;
+		public var artifacts:MovieClip;
+		private var doScroll:Boolean = true;
 		
 		private var config:Config;
 		
 		public function Game() {
-			this.initBGTiles = this.BGTiles.x;
-			this.initBGMidX = this.BGMid.x;
+			this.initBGTiles = this.deep.x;
+			this.initBGMidX = this.mid.x;
 			this.loadLevel(1);
 		}
 		
-		public function setConfig(config:Config) {
+		public function setConfig(config:Config):void {
 			this.config = config;
 		}
 		
@@ -35,8 +36,6 @@
 			}
 		}
 		
-		private var doScroll:Boolean = true;
-		
 		public function stopScrolling():void {
 			doScroll = false;
 		}
@@ -48,20 +47,15 @@
 			if(!doScroll) {
 				return;
 			}
-			this.BGMid.x -= Config.SCROLL_SPEED;
-			this.BGMidDeep.x = this.BGMid.x;
-			this.BGTiles.x -= Config.SCROLL_SPEED * 0.2;
+			this.artifacts.x -= Config.SCROLL_SPEED;
+			this.mid.x = this.artifacts.x;
+			this.deep.x -= Config.SCROLL_SPEED * 0.2;
 /*
-if(this.curLevel == 1 && this.BGMid.x < -4750) {
+if(this.curLevel == 1 && this.artifacts.x < -4750) {
 				trace("LEVEL UP"); // TODO tidy this up
 				this.loadLevel(2);
 			}
 			*/
-			
-			
-			
-				
-			
 		}
 	}
 }
