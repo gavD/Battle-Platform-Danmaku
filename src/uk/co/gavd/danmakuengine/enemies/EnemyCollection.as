@@ -1,6 +1,7 @@
 ﻿package uk.co.gavd.danmakuengine.enemies {
 	import flash.display.MovieClip;
     import flash.events.Event;
+	import uk.co.gavd.danmakuengine.ballistics.Bullet;
     import uk.co.gavd.danmakuengine.Config;
     import flash.media.Sound;
     import uk.co.gavd.danmakuengine.ballistics.BulletHero;
@@ -57,7 +58,7 @@
 			}
 		}
 		
-		public function detectHits(bullet:BulletHero):void {
+		public function detectHits(bullet:Bullet):void {
 			for (var i:Number = 0; i < this.arEnemies.length; i++) {
 				
 				if (this.arEnemies[i] == null) { 
@@ -73,7 +74,7 @@
 				if(enemy.checkHit(bullet)) {
 					bullet.triggered = true;
 					bullet.gotoAndPlay("explode");
-					enemy.takeHit();
+					enemy.takeHit(bullet.damage);
 					return; // no point in staying in the loop if we hit something!
 				}
 			}

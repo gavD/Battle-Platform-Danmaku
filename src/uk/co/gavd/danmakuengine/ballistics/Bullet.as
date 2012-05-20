@@ -14,7 +14,7 @@
         protected var yTravel:Number = 0;
         
         // info about this bullet
-        protected var damage:Number = 1;
+        public var damage:Number = 1;
         protected var travel:Number = 800; // how many px this bullet can fly
 		
 		protected var lSpeed:Number = 2;

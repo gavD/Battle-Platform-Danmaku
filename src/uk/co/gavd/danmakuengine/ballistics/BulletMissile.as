@@ -4,14 +4,14 @@
 	
     public class BulletMissile extends Bullet {
 		
-		private var turn:Number = 2;
+		protected var turn:Number = 2;
 		
     	public function BulletMissile(game:Game) {
 			super(game);
 			
 			this.lSpeed = 5;
 			this.rotateToFace = true;
-			this.framesToLive = 420;
+			this.framesToLive = 120;
 		}
 		
 		protected var target:MovieClip = null;
@@ -41,6 +41,12 @@
 			var curRadians = this.rotation / ONEEIGHTY_OVER_PI;
 			this.xTravel = lSpeed * Math.cos(curRadians);
 			this.yTravel = lSpeed * Math.sin(curRadians);
+			//trace("go towards " + this.target + "[" + this.target.lAction + "]");
+			if (this.target === null
+				|| this.target.lAction !== 0) {
+				//trace("Missile target is null - don't adjust course!");
+				return;
+			}
 			
 			var targetRadians:Number = this.getAngleTo(target.x - game.BGMid.x, target.y);
 			var targetRotation:Number = (targetRadians * (ONEEIGHTY_OVER_PI));

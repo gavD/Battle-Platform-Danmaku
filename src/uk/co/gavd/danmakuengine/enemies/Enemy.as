@@ -153,10 +153,10 @@
 			return false;
 		}
 		
-		public function takeHit():void
+		public function takeHit(damage:uint):void
 		{
 			var theRootx:MovieClip = MovieClip(root); // TODO DI this?
-			this.hp -= theRootx.game.hero.power;
+			this.hp -= damage;
 			if (this.hp <= 0)
 			{
 				var score:uint = this.scoreForKill + (this.scoreForKill * theRootx.comboBar.getCombo());

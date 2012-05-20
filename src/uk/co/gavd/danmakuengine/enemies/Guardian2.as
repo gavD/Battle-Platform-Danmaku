@@ -28,9 +28,9 @@
 		override protected function turnAndFace(targetX:Number):void
 		{}
 		
-		override public function takeHit():void
+		override public function takeHit(damage:uint):void
 		{
-			super.takeHit();
+			super.takeHit(damage);
 			if (this.hp < 50)
 			{
 				trace("HULK 4");

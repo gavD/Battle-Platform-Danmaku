@@ -69,8 +69,8 @@
 			game.startScrolling();
 		}
 		
-		override public function takeHit():void {
-			super.takeHit();
+		override public function takeHit(damage:uint):void {
+			super.takeHit(damage);
 			if (this.hp < 70) {
 				bulletCloudDensity = 5.625;
 			}else if (this.hp < 300) {

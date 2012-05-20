@@ -16,7 +16,6 @@
 		}
 		
 		private function onFrame(e:Event):void {
-			trace(this + "Score floater");
 			this.y--;
 			this.alpha -= .1;
 			if(this.alpha <= 0) {

@@ -4,14 +4,12 @@
     import flash.events.Event;
 	
     public class BulletHero extends Bullet {
-
-		protected var fireDistance:int = 900;
 		
 		public function BulletHero(game:Game) {
 			super(game);
 			
 			this.lSpeed = 18;
-			this.rotateToFace = true;
+			this.rotateToFace = true; // TODO is this needed?
 		}
 		
         override protected function checkForHits():void {
