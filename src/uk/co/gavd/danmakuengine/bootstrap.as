@@ -12,14 +12,15 @@ var theRoot:MovieClip = MovieClip(root); // TODO perhaps factor this out entirel
 
 var game:Game = new Game();
 this.addChild(game);
-game.loadLevel(1);
 
 var conf:Config = new Config();
 game.setConfig(conf);
 var fcEnemies:EnemyCollection = new EnemyCollection(theRoot, conf);
 var enemyGenerator:EnemyGenerator = new EnemyGenerator(game, fcEnemies, conf);
+game.setEnemyGenerator(enemyGenerator);
 
-enemyGenerator.detectEnemies();
+game.loadLevel(1);
+
 var reticle:Reticle = new Reticle(game, conf);
 stage.addEventListener(KeyboardEvent.KEY_DOWN, reticle.handleKeyDown);
 stage.addEventListener(KeyboardEvent.KEY_UP, reticle.handleKeyUp);
