@@ -160,7 +160,6 @@
 			if (this.hp <= 0)
 			{
 				var score:uint = this.scoreForKill + (this.scoreForKill * theRootx.comboBar.getCombo());
-				trace(this + "SCORE IS " + score);
 				var sf:ScoreFloater = new ScoreFloater(score);
 				sf.x = this.x;
 				sf.y = this.y;

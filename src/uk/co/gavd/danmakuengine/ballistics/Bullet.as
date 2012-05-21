@@ -49,13 +49,7 @@
 
 			this.xTravel = lSpeed * Math.cos(radians);
 			this.yTravel = lSpeed * Math.sin(radians);
-/*
-trace("xTravel actual is " + this.xTravel);
-trace("yTravel actual is " + this.yTravel);	
-trace("Travel is " + (Math.abs(this.xTravel) + Math.abs(this.yTravel)));
-trace("Speed is " + lSpeed);
-So why is it that lSpeed and travel don't match?
-*/
+			
  			var opp:Number = Math.sin(radians) * travel; // opp = h * s
 			this.calculateFramesToLive(this.y + opp);
 

@@ -6,10 +6,13 @@ import uk.co.gavd.danmakuengine.hud.*;
 import uk.co.gavd.danmakuengine.enemies.*;
 import uk.co.gavd.diagnostics.*;
 
-include "Controls.as"
 		
 stage.quality = StageQuality.LOW;
 var theRoot:MovieClip = MovieClip(root); // TODO perhaps factor this out entirely
+
+var game:Game = new Game();
+this.addChild(game);
+game.loadLevel(1);
 
 var conf:Config = new Config();
 game.setConfig(conf);
@@ -18,6 +21,9 @@ var enemyGenerator:EnemyGenerator = new EnemyGenerator(game, fcEnemies, conf);
 
 enemyGenerator.detectEnemies();
 var reticle:Reticle = new Reticle(game, conf);
+stage.addEventListener(KeyboardEvent.KEY_DOWN, reticle.handleKeyDown);
+stage.addEventListener(KeyboardEvent.KEY_UP, reticle.handleKeyUp);
+
 stage.addChild(reticle);
 
 var comboBar:ComboBar = new ComboBar(Config.HEALTH_BAR_WIDTH);

@@ -1,4 +1,6 @@
-Refactor "Fire at angle"
+Move the game implementation code out of the engine
+
+Set up the game implementation and engine separately and set up as Git externals
 
 Sparks are inefficient
 
@@ -7,28 +9,7 @@ FLA, but a build script would be cool - maybe Flex is the answer?
 
 Get rid of "doFrame" - rename it in all cases
 
-Score system
-
-Refactor out all duplicateMovieClip to attachMovie? Will mean a few less symbols on the stage
-
-Make sure the energy bar works
-
-Reimplement loading bar
-
-combo meter needs re-implementing
-
-can fly off bottom?
-
-
-re-implement game overwd
-
 mobile hud flying ship in
-
-multiplierText
-
-scoreText
-
-scoreFloaterText
 
 
 C:\Users\Gavin\Downloads\flex-pmd-all-in-one-bundle-1.2>java -Xmx256m -jar flex-pmd-command-line-1.2.jar -s "C:\Users\Ga

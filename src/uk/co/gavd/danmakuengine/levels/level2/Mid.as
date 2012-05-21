@@ -1,4 +1,4 @@
-﻿package uk.co.gavd.danmakuengine.levels.level1 
+﻿package uk.co.gavd.danmakuengine.levels.level2 
 {
 	import uk.co.gavd.danmakuengine.levels.layers.Mid;
 	import flash.display.Loader;

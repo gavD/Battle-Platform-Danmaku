@@ -3,10 +3,13 @@
     import flash.events.Event;
     import flash.media.Sound;
 	import uk.co.gavd.danmakuengine.Hero;
+	import uk.co.gavd.danmakuengine.Game;
+	import uk.co.gavd.danmakuengine.levels.Level;
     
     public class Powerup extends MovieClip {
 		
 		protected var powerupWav:Sound;
+		protected var game:Game;
 		
 		public function Powerup() {
 			this.powerupWav = new PowerupROFWav();
@@ -14,10 +17,13 @@
 		}
 		
 		public function onFrame(e:Event):void {
-			if(MovieClip(root).game.hero.lAction !== Hero.OK) {
+			
+			var hero:Hero = Level(this.parent.parent).hero;
+			if(hero.lAction !== Hero.OK) {
 				return;
 			}
-            if (this.hitTestObject(MovieClip(root).game.hero.sparkHitZone)) {
+			
+			if (this.hitTestObject(hero.sparkHitZone)) {
 				this.powerupWav.play();
 				this.removeEventListener(Event.ENTER_FRAME, this.onFrame, false);
                 this.upgrade();

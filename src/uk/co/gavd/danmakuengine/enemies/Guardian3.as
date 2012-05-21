@@ -78,7 +78,6 @@
 			} else if(this.hp < 350) {
 				bulletCloudDensity = 22.5;
 			} else {
-				trace("HULK 0");
 				this.x--;
 			}
 		}

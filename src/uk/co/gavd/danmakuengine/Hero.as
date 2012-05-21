@@ -107,7 +107,6 @@
         }
         
         public function reset():void {
-			trace("INSIDE HERO RESET");
 			this.lAction = Hero.OK;
 			this.lEnergy = this.lMaxEnergy;
 			this.gotoAndStop("ready");
@@ -138,31 +137,6 @@
 			
 			hitTaker.onFrame(); // TODO can we factor it out?
 			
-			if(this.lAction >= DYING) {
-				return;
-			}
-            //if (theRoot.bGamePaused) { return; } // TODO
-            //else if (lAction == DYING) { return; }
-    
-            var lXDir:Number = 0;
-            var lYDir:Number = 0;
-            
-            if (theRoot.isKeyPressed(68)) { // d
-                lXDir = 1;
-            } else if (theRoot.isKeyPressed(65)) { // a
-                lXDir = -1;
-            }
-            if (theRoot.isKeyPressed(87)) { // w
-                lYDir = -1;
-            } else if (theRoot.isKeyPressed(83)) { //s
-                lYDir = 1;
-            }
-			//if(!theRoot.isKeyPressed(16)) { // shift
-			if(!this.isFiring) { // shift
-				lXDir *= 2;
-				lYDir *= 2;
-			}
-            this.applyMovement(lXDir,lYDir);
         }
 		
 		public function repairArmor():void {

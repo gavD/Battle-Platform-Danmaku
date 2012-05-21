@@ -14,7 +14,6 @@ package uk.co.gavd.danmakuengine.ballistics.firingstrategies
 	{	
 		public function SpinTriplet(g:Game, e:Enemy, rateOfFire:uint = 5, rotationRate:int = 2, yoffset:int = 0) 
 		{
-			trace("New triplet at " + rotationRate);
 			super(g, e, rateOfFire, rotationRate, yoffset);
 		}
 		

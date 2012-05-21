@@ -41,10 +41,9 @@
 			var curRadians = this.rotation / ONEEIGHTY_OVER_PI;
 			this.xTravel = lSpeed * Math.cos(curRadians);
 			this.yTravel = lSpeed * Math.sin(curRadians);
-			//trace("go towards " + this.target + "[" + this.target.lAction + "]");
-			if (this.target === null
-				|| this.target.lAction !== 0) {
-				//trace("Missile target is null - don't adjust course!");
+			
+			if (this.target === null || this.target.lAction !== 0)
+			{
 				return;
 			}
 			

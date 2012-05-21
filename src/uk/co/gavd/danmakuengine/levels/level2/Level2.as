@@ -1,4 +1,4 @@
-package uk.co.gavd.danmakuengine.levels.level1 
+package uk.co.gavd.danmakuengine.levels.level2 
 {
 	import uk.co.gavd.danmakuengine.Game;
 	import uk.co.gavd.danmakuengine.levels.Level;
@@ -7,10 +7,10 @@ package uk.co.gavd.danmakuengine.levels.level1
 	 * ...
 	 * @author Gavin Davies
 	 */
-	public class Level1 extends uk.co.gavd.danmakuengine.levels.Level
+	public class Level2 extends uk.co.gavd.danmakuengine.levels.Level
 	{
 		
-		public function Level1() 
+		public function Level2() 
 		{
 			this.deep = new Deep();
 			this.mid = new Mid();

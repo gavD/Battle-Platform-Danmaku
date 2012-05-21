@@ -13,7 +13,6 @@ package uk.co.gavd.danmakuengine.ballistics.firingstrategies
 		protected var game:Game;
 		public function FiringPattern(g:Game, e:Enemy) 
 		{
-			trace("Created firing pattern with game " + g + " and enemy " + e);
 			this.game = g;
 			this.enemy = e;
 		}

@@ -8,11 +8,9 @@
 		public var scoreUpField:TextField;
 		
 		public function ScoreFloater(score:uint) {
-			trace("Score " + score);
 			this.scoreUpField.text = score.toString(10);
 			this.alpha = 1;
 			this.addEventListener(Event.ENTER_FRAME, onFrame, false, 0, true);
-			
 		}
 		
 		private function onFrame(e:Event):void {
@@ -24,7 +22,6 @@
 		}
 		
 		public function blam():void {
-			trace(this + " BLAM");
 			this.removeEventListener(Event.ENTER_FRAME, this.onFrame);
 			this.parent.removeChild(this);
 			//this.dispose();

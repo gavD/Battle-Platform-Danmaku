@@ -22,6 +22,9 @@
         {
 			this.init(fps);
 			addEventListener(Event.ENTER_FRAME, this.onGetFps);
+			
+			this.graphics.beginFill(0xFFE303);
+			this.graphics.drawRect(0, 0, 40, 20);
         }
 		
 		private function init(fps:uint):void

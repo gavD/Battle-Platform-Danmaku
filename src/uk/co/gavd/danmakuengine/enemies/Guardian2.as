@@ -33,28 +33,23 @@
 			super.takeHit(damage);
 			if (this.hp < 50)
 			{
-				trace("HULK 4");
 				rotrate = 6;
 				this.rateOfFire = 8;
 			}
 			else if (this.hp < 100)
 			{
-				trace("HULK 3");
 				rotrate = 5;
 			}
 			else if (this.hp < 150)
 			{
-				trace("HULK 2");
 				rotrate = 4;
 			}
 			else if (this.hp < 270)
 			{
-				trace("HULK 1");
 				rotrate = 2;
 			}
 			else
 			{
-				trace("HULK 0");
 				this.x--;
 			}
 		}

@@ -4,6 +4,7 @@
 	import uk.co.gavd.danmakuengine.ballistics.*;
 	import flash.media.Sound;
 	import uk.co.gavd.danmakuengine.enemies.Enemy;
+	import flash.ui.Keyboard;
     
     public class Reticle extends MovieClip {
         
@@ -32,18 +33,14 @@
 			if(this.framesBetweenShots < MIN_FRAMES_BETWEEN_SHOTS) {
 				this.framesBetweenShots = MIN_FRAMES_BETWEEN_SHOTS;
 			}
-			trace("ROF is now " + this.framesBetweenShots);
 		}
         
-		
 		private var missiles:Boolean = false;
 		public function powerupMissiles():void {
 			this.missiles = true;
-			trace("Missile systems ENGAGED!");
 		}
         
 		private function fireMissileAtNearestFrontEnemy():void {
-			
 			
 			var len:uint = game.artifacts.numChildren;
 			var closest:Number = 99999;
@@ -75,10 +72,7 @@
 				} else {
 					b.rotation = 90;
 				}
-			} else {
-				trace("No valid target for a missile");
-			}
-			
+			} // else there is no valid missile target
 		}
 		
 		private function fireBullet(directional):void {
@@ -148,12 +142,34 @@
 				return;
 			}
 			
-			game.hero.isFiring = this.isMouseDown;
+            //if (theRoot.bGamePaused) { return; } // TODO
+            //else if (lAction == DYING) { return; }
+    
+            var lXDir:Number = 0;
+            var lYDir:Number = 0;
+			
+            if (this.isKeyPressed(Keyboard.D) || this.isKeyPressed(Keyboard.RIGHT)) { // d
+                lXDir = 1;
+            } else if (this.isKeyPressed(Keyboard.A) || this.isKeyPressed(Keyboard.LEFT)) { // a
+                lXDir = -1;
+            }
+            if (this.isKeyPressed(Keyboard.W) || this.isKeyPressed(Keyboard.UP)) { // w
+                lYDir = -1;
+            } else if (this.isKeyPressed(Keyboard.S) || this.isKeyPressed(Keyboard.DOWN)) { //s
+                lYDir = 1;
+            }
+			if(!game.hero.isFiring) {
+				lXDir *= 2;
+				lYDir *= 2;
+			}
+            game.hero.applyMovement(lXDir,lYDir);
+			
+			game.hero.isFiring = this.isMouseDown || isKeyPressed(Keyboard.SPACE);
 			
 			if(this.missiles && this.clicksToNextMissile > 0) {
 				--this.clicksToNextMissile;
 			}
-            if (this.isMouseDown) {
+            if (this.isMouseDown || isKeyPressed(Keyboard.SPACE)) {
 				
                 if(--this.clicksToNextShot <= 0) {
                     this.fireBullet(false);
@@ -166,5 +182,27 @@
 				}
             }
         }
+		
+		
+		private var _keys:Array = new Array();
+		public function handleKeyDown(evt:KeyboardEvent):void {
+			if (_keys.indexOf(evt.keyCode) == -1) {
+				_keys.push(evt.keyCode);
+			}
+		}
+
+		public function handleKeyUp(evt:KeyboardEvent):void {
+			var i:int = _keys.indexOf(evt.keyCode);
+
+			if (i > -1) {
+				_keys.splice(i, 1);
+			}
+		}
+
+		public function isKeyPressed(key:int):Boolean {
+			return _keys.indexOf(key) > -1;
+		}
     }
+	
+	
 }

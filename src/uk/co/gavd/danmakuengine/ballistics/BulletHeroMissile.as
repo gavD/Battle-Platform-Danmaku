@@ -14,7 +14,6 @@
 		override protected function checkForHits():void {
 			var theRootx:MovieClip = MovieClip(root); // TODO DI this?
 			theRootx.fcEnemies.detectHits(this);
-			//trace(this + " frames to live=" + this.framesToLive);
         }
     }
 }

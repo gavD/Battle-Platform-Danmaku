@@ -18,8 +18,6 @@ package uk.co.gavd.danmakuengine.ballistics.firingstrategies
 		}
 		
 		override public function fire():void {
-			trace("this.rotation=" + this.rotation + " from rate " + this.rotationRate + " on " + this + " of " + this.enemy);
-			
 			for (var i:int = -180; i < 180; i = i + density) {
 				enemy.getNextBullet(new BulletSlow(game)).fireAtAngle(i + this.rotation);
 			}
