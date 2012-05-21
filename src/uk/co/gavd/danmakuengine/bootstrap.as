@@ -18,6 +18,7 @@ game.setConfig(conf);
 var fcEnemies:EnemyCollection = new EnemyCollection(theRoot, conf);
 var enemyGenerator:EnemyGenerator = new EnemyGenerator(game, fcEnemies, conf);
 game.setEnemyGenerator(enemyGenerator);
+game.setEnemyCollection(fcEnemies);
 
 game.loadLevel(1);
 

@@ -26,8 +26,12 @@
 		}
 		
 		public function killAll():void {
-			theRoot.fcGameOver.readyForRestart = true;
-			for(var i:Number = 0; i < this.arEnemies.length; i++) {
+			for (var i:Number = 0; i < this.arEnemies.length; i++) {
+				trace("Kill " + this.arEnemies[i]);
+				if (this.arEnemies[i] === null) {
+					trace("...skip");
+					continue;
+				}
 				kill(this.arEnemies[i]);
 				this.arEnemies[i] = null
 			}

@@ -1,6 +1,7 @@
 ﻿package uk.co.gavd.danmakuengine {
 	import flash.display.*;
     import flash.events.*;
+	import uk.co.gavd.danmakuengine.enemies.EnemyCollection;
 	import uk.co.gavd.danmakuengine.enemies.EnemyGenerator;
 	import uk.co.gavd.danmakuengine.levels.Level;
 	import uk.co.gavd.danmakuengine.levels.level1.Level1;
@@ -47,7 +48,8 @@
 			this.mid = this.lvl.mid;
 			this.artifacts = this.lvl.artifacts;
 			
-			enemyGenerator.detectEnemies();
+			enemyGenerator.detectEnemies(); // TODO is this in the right place? Should it it be called earlier?
+			// well, at least, fcEnemies should be told to killAll earlier, right?
 		}
 		
 		public function stopScrolling():void {
@@ -56,6 +58,10 @@
 		private var enemyGenerator:EnemyGenerator; // TODO tidy this up
 		public function setEnemyGenerator(enemyGenerator:EnemyGenerator) {
 			this.enemyGenerator = enemyGenerator;
+		}
+		private var enemyCollection:EnemyCollection; // TODO tidy this up
+		public function setEnemyCollection(enemyCollection:EnemyCollection) {
+			this.enemyCollection = enemyCollection;
 		}
 		
 		public function startScrolling():void {
@@ -73,13 +79,14 @@
 			if (this.lvl.deep.x < (this.lvl.deep.tileWidth * -1)) {
 				this.lvl.deep.x += this.lvl.deep.tileWidth;
 			}
-			trace("this.lvl.mid.x=" + this.lvl.mid.x);
-			if (this.lvl.mid.x < -50) {
-				trace("OK blam level!");
+			if (todoremovethis && this.lvl.mid.x < -200) {
+todoremovethis = false;				
 				this.removeChild(this.lvl);
-				
+				this.enemyCollection.killAll();
 				this.loadLevel(2);
 			}
 		}
+		
+		private var todoremovethis:Boolean = true;
 	}
 }
