@@ -1,3 +1,8 @@
+Between levels, make sure all listeners are removed, and all bullets are removed - I think
+the listeners on the bullets are still there so between levels there are still bullets trying
+to hit test on an absent hero. It sorts itself out in the end when the bullet expires but it
+would be best to fix that.
+
 Move the game implementation code out of the engine
 
 Set up the game implementation and engine separately and set up as Git externals
