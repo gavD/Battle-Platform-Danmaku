@@ -20,5 +20,10 @@ package uk.co.gavd.danmakuengine.levels.level2
 			this.addChild(this.deep);
 			this.addChild(this.mid);
 		}
+		
+		
+		override public function isComplete():Boolean {
+			return false;
+		}
 	}
 }

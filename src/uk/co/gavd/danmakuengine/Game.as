@@ -1,6 +1,7 @@
 ﻿package uk.co.gavd.danmakuengine {
 	import flash.display.*;
     import flash.events.*;
+	import uk.co.gavd.danmakuengine.ballistics.Bullet;
 	import uk.co.gavd.danmakuengine.enemies.EnemyCollection;
 	import uk.co.gavd.danmakuengine.enemies.EnemyGenerator;
 	import uk.co.gavd.danmakuengine.levels.Level;
@@ -9,6 +10,8 @@
 	import uk.co.gavd.danmakuengine.levels.layers.Artifacts;
 	import uk.co.gavd.danmakuengine.levels.layers.Deep;
 	import uk.co.gavd.danmakuengine.levels.level2.Level2;
+	import uk.co.gavd.danmakuengine.powerups.Powerup;
+	import uk.co.gavd.diagnostics.TimelineUtils;
 	
     public class Game extends MovieClip {
 		
@@ -48,7 +51,7 @@
 			this.mid = this.lvl.mid;
 			this.artifacts = this.lvl.artifacts;
 			
-			enemyGenerator.detectEnemies(); // TODO is this in the right place? Should it it be called earlier?
+			enemyGenerator.detectEnemies(this.lvl.artifacts); // TODO is this in the right place? Should it it be called earlier?
 			// well, at least, fcEnemies should be told to killAll earlier, right?
 		}
 		
@@ -73,20 +76,19 @@
 				return;
 			}
 			
-			this.lvl.artifacts.x -= Config.SCROLL_SPEED;
-			this.lvl.mid.x = this.artifacts.x;
-			this.lvl.deep.x -= Config.SCROLL_SPEED * 5.2;
-			if (this.lvl.deep.x < (this.lvl.deep.tileWidth * -1)) {
-				this.lvl.deep.x += this.lvl.deep.tileWidth;
-			}
-			if (todoremovethis && this.lvl.mid.x < -200) {
-todoremovethis = false;				
-				this.removeChild(this.lvl);
-				this.enemyCollection.killAll();
-				this.loadLevel(2);
+			this.lvl.scroll();
+			
+			if (this.lvl.isComplete()) {
+				this.levelUp();
 			}
 		}
 		
-		private var todoremovethis:Boolean = true;
+		private function levelUp():void {
+			this.enemyCollection.killAll(true);
+			this.lvl.clearAll();
+			this.removeChild(this.lvl);
+			this.loadLevel(2);
+		}
+		
 	}
 }

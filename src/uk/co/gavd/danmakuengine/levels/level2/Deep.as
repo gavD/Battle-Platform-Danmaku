@@ -12,7 +12,7 @@
 		public function Deep() 
 		{
 			this.tileWidth = 960;
-			this.graphicsPath = "/graphics/bg/starfield_lrg_2.jpg"; // TODO this should load upfront
+			this.graphicsPath = "./graphics/bg/starfield_lrg_2.jpg"; // TODO this should load upfront
 			
 			this.loadGraphics();
 		}	

@@ -55,12 +55,14 @@ var frt:FramerateTracker = new FramerateTracker(stage.frameRate);
 this.addChild(frt);
 
 function checkMemoryUsage():void {
-	trace("== MEM: " + System.totalMemory + "==");
+	//trace("== MEM: " + System.totalMemory + "==");
 	//trace("== OBJECTS: ==");TimelineUtils.dispTree(game, 0);
-	trace("== GAME SIZE: ==" + getSize(game));
+	trace("== OBJECTS: ==");
+	trace(TimelineUtils.countTree(game));
+	//trace("== GAME SIZE: ==" + getSize(game));
 }
 // enable the next line to track memory usage
-var checkMemoryIntervalID:uint = setInterval(checkMemoryUsage,10000);
+var checkMemoryIntervalID:uint = setInterval(checkMemoryUsage,1000);
 // eof
 
 stop();

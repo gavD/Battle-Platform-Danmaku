@@ -1,4 +1,4 @@
-﻿package uk.co.gavd.danmakuengine.enemies {
+﻿dpackage uk.co.gavd.danmakuengine.enemies {
 	import flash.display.MovieClip;
     import flash.events.Event;
 	import uk.co.gavd.danmakuengine.ballistics.Bullet;
@@ -8,8 +8,7 @@
     
     public class EnemyCollection {
 		
-		public var scoreIndex:int = 0;
-		public var arEnemies:Array;
+		public var arEnemies:Array; // TODO private
 		
 		protected var theRoot:MovieClip;
 		
@@ -25,14 +24,16 @@
 			this.explodeWav = new ExplodeWav();
 		}
 		
-		public function killAll():void {
+		public function killAll(now:Boolean = false ):void {
 			for (var i:Number = 0; i < this.arEnemies.length; i++) {
-				trace("Kill " + this.arEnemies[i]);
 				if (this.arEnemies[i] === null) {
-					trace("...skip");
 					continue;
 				}
-				kill(this.arEnemies[i]);
+				if (now) {
+					killNow(this.arEnemies[i]);
+				} else {
+					kill(this.arEnemies[i]);
+				}
 				this.arEnemies[i] = null
 			}
 			this.arEnemies = new Array();
@@ -85,11 +86,19 @@
 		}
 		
 		public function kill(enemy:MovieClip):void {
+			trace("Kill " + enemy);
 			this.explodeWav.play();
 
 			enemy.lAction = Enemy.DYING;
 
 			enemy.gotoAndPlay("die");
+		}
+		
+		public function killNow(enemy:Enemy) {
+			trace("Remove " + enemy + " from " + enemy.parent);
+			enemy.parent.removeChild(enemy);
+			trace("REMOVED");
+			enemy = null;
 		}
 		
 		public function onFrame(e:Event):void {
@@ -103,9 +112,9 @@
 				
 				var enemy:Enemy = this.arEnemies[i];
 				
-				if(enemy.lAction == Enemy.DEAD) {
-					enemy.parent.removeChild(enemy);
-					enemy = null;
+				if (enemy.lAction == Enemy.DEAD) {
+					trace(enemy + " is dead, clear it");
+					killNow(enemy);
 					this.arEnemies[i] = null;
 					continue;
 				}

@@ -14,7 +14,9 @@
 		public function Mid() 
 		{
 			var loader:Loader = new Loader();
-			var url:URLRequest = new URLRequest("/graphics/bg/ship1.png");
+			trace("fetch /graphics/bg/ship1.png");
+			var url:URLRequest = new URLRequest("./graphics/bg/ship1.png");
+			trace("done");
 			this.addChild(loader);
 			loader.load(url);
 			loader.x = 300;

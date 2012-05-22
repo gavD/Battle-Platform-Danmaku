@@ -21,11 +21,13 @@ package uk.co.gavd.danmakuengine.levels.layers
 			
 			for (var i = 0; i < 2; i++) {
 				var loader:Loader = new Loader();
+				trace("load gra[z : " + this.graphicsPath);
 				var url:URLRequest = new URLRequest(this.graphicsPath);
 				this.addChild(loader);
 				loader.load(url);
 				loader.x = i * this.tileWidth;
 			}
+			trace("Done");
 		}
 		
 	}
