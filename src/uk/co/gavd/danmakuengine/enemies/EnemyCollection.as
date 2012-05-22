@@ -1,4 +1,4 @@
-﻿dpackage uk.co.gavd.danmakuengine.enemies {
+﻿package uk.co.gavd.danmakuengine.enemies {
 	import flash.display.MovieClip;
     import flash.events.Event;
 	import uk.co.gavd.danmakuengine.ballistics.Bullet;
