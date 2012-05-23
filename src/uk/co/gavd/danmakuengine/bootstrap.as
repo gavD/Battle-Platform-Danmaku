@@ -1,16 +1,23 @@
 ﻿import flash.system.System;
 import flash.display.MovieClip;
 import flash.display.DisplayObject;
+import uk.co.gavd.battleplatforms.levels.level1.Level1;
+import uk.co.gavd.battleplatforms.levels.level2.Level2;
 import uk.co.gavd.danmakuengine.*;
 import uk.co.gavd.danmakuengine.hud.*;
 import uk.co.gavd.danmakuengine.enemies.*;
+import uk.co.gavd.danmakuengine.levels.LevelCollection;
 import uk.co.gavd.diagnostics.*;
 
 		
 stage.quality = StageQuality.LOW;
 var theRoot:MovieClip = MovieClip(root); // TODO perhaps factor this out entirely
 
-var game:Game = new Game();
+var levels:LevelCollection = new LevelCollection();
+levels.addLevel(Level1);
+levels.addLevel(Level2);
+
+var game:Game = new Game(levels);
 this.addChild(game);
 
 var conf:Config = new Config();

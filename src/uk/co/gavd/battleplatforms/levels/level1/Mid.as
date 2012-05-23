@@ -1,4 +1,4 @@
-﻿package uk.co.gavd.danmakuengine.levels.level2 
+﻿package uk.co.gavd.battleplatforms.levels.level1 
 {
 	import uk.co.gavd.danmakuengine.levels.layers.Mid;
 	import flash.display.Loader;
@@ -14,7 +14,9 @@
 		public function Mid() 
 		{
 			var loader:Loader = new Loader();
-			var url:URLRequest = new URLRequest("./graphics/bg/battlestar.png");
+			trace("fetch /graphics/bg/ship1.png");
+			var url:URLRequest = new URLRequest("./graphics/bg/ship1.png");
+			trace("done");
 			this.addChild(loader);
 			loader.load(url);
 			loader.x = 300;

@@ -1,4 +1,4 @@
-package uk.co.gavd.danmakuengine.levels.level2 
+package uk.co.gavd.battleplatforms.levels.level1 
 {
 	import uk.co.gavd.danmakuengine.Game;
 	import uk.co.gavd.danmakuengine.levels.Level;
@@ -7,23 +7,19 @@ package uk.co.gavd.danmakuengine.levels.level2
 	 * ...
 	 * @author Gavin Davies
 	 */
-	public class Level2 extends uk.co.gavd.danmakuengine.levels.Level
+	public class Level1 extends uk.co.gavd.danmakuengine.levels.Level
 	{
 		
-		public function Level2() 
+		public function Level1() 
 		{
 			this.deep = new Deep();
 			this.mid = new Mid();
 			
 			this.artifacts = new Artifacts();
+			trace("Artifacts now made " + this.artifacts);
 			
 			this.addChild(this.deep);
 			this.addChild(this.mid);
-		}
-		
-		
-		override public function isComplete():Boolean {
-			return false;
 		}
 	}
 }

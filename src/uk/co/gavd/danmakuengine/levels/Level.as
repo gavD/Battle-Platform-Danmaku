@@ -50,6 +50,7 @@ package uk.co.gavd.danmakuengine.levels
 					toRemove.push(tmp);
 				}
 			}
+			
 			for (i = 0; i < toRemove.length; i++ ) {
 				var tmp2:MovieClip = toRemove[i];
 				if(tmp2 is Bullet) {
@@ -60,21 +61,19 @@ package uk.co.gavd.danmakuengine.levels
 					this.artifacts.removeChild(tmp2);
 				}
 			}
-			
-			trace("After remove bullets: " + TimelineUtils.countTree(this));
 		}
 		
 		public function scroll():void {
 			this.artifacts.x -= Config.SCROLL_SPEED;
 			this.mid.x = this.artifacts.x;
-			this.deep.x -= Config.SCROLL_SPEED * 5.2;
+			this.deep.x -= Config.SCROLL_SPEED * 0.2;
 			if (this.deep.x < (this.deep.tileWidth * -1)) {
 				this.deep.x += this.deep.tileWidth;
 			}
 		}
 		
 		public function isComplete():Boolean {
-			return this.mid.x < -100;
+			return this.mid.x < -3500;
 		}
 		
 	}

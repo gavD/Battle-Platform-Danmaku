@@ -1,4 +1,4 @@
-﻿package uk.co.gavd.danmakuengine.levels.level2 
+﻿package uk.co.gavd.battleplatforms.levels.level2 
 {
 	import uk.co.gavd.danmakuengine.levels.layers.Artifacts;
 

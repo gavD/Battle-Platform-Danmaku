@@ -5,11 +5,13 @@
 	import uk.co.gavd.danmakuengine.enemies.EnemyCollection;
 	import uk.co.gavd.danmakuengine.enemies.EnemyGenerator;
 	import uk.co.gavd.danmakuengine.levels.Level;
-	import uk.co.gavd.danmakuengine.levels.level1.Level1;
+	import uk.co.gavd.battleplatforms.levels.level1.Level1;
+	import uk.co.gavd.danmakuengine.levels.LevelCollection;
 	import uk.co.gavd.danmakuengine.levels.layers.Mid;
 	import uk.co.gavd.danmakuengine.levels.layers.Artifacts;
 	import uk.co.gavd.danmakuengine.levels.layers.Deep;
-	import uk.co.gavd.danmakuengine.levels.level2.Level2;
+	import uk.co.gavd.battleplatforms.levels.level2.Level2;
+	import uk.co.gavd.danmakuengine.levels.LevelCollection;
 	import uk.co.gavd.danmakuengine.powerups.Powerup;
 	import uk.co.gavd.diagnostics.TimelineUtils;
 	
@@ -28,8 +30,11 @@
 		
 		private var config:Config;
 		
-		public function Game() {
+		private var levelCollection:LevelCollection;
+		
+		public function Game(levels:LevelCollection) {
 			this.hero = new Hero();
+			this.levelCollection = levels;
 		}
 		
 		public function setConfig(config:Config):void {
@@ -37,12 +42,7 @@
 		}
 		
 		public function loadLevel(level:uint):void {
-			trace("Load level " + level);
-			if(level === 1) {
-				this.lvl = new Level1();
-			} else {
-				this.lvl = new Level2();
-			}
+			this.lvl = this.levelCollection.getLevelAt(level -1);			
 			
 			this.addChild(this.lvl);
 			this.lvl.setHero(this.hero);

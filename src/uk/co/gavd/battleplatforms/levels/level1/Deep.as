@@ -1,4 +1,4 @@
-﻿package uk.co.gavd.danmakuengine.levels.level2 
+﻿package uk.co.gavd.battleplatforms.levels.level1 
 {
 	import uk.co.gavd.danmakuengine.levels.layers.Deep;
 	
@@ -11,8 +11,8 @@
 		
 		public function Deep() 
 		{
-			this.tileWidth = 960;
-			this.graphicsPath = "./graphics/bg/starfield_lrg_2.jpg"; // TODO this should load upfront
+			this.tileWidth = 1020;
+			this.graphicsPath = "./graphics/bg/starfield_lrg.jpg"; // TODO this should load upfront
 			
 			this.loadGraphics();
 		}	

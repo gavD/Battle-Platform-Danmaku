@@ -10,12 +10,11 @@
 		
 		public var arEnemies:Array; // TODO private
 		
-		protected var theRoot:MovieClip;
+		private var theRoot:MovieClip;
 		
-		protected var config:Config;
+		private var config:Config;
 		
 		private var explodeWav:Sound;		
-		
 		
 		public function EnemyCollection(theRoot:MovieClip, config:Config) {
 			this.arEnemies = new Array();
