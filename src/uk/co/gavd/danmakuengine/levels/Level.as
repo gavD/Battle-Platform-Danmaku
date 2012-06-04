@@ -73,7 +73,12 @@ package uk.co.gavd.danmakuengine.levels
 		}
 		
 		public function isComplete():Boolean {
-			return this.mid.x < -3500;
+			// TODO some kind of check on the width?
+			return this.mid.x <
+			-100
+				//-1500
+				//-3500
+			;
 		}
 		
 	}

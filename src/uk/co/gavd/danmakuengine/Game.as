@@ -32,24 +32,40 @@
 		
 		private var levelCollection:LevelCollection;
 		
+		private var interstitials:Interstitials;
+		
 		public function Game(levels:LevelCollection) {
 			this.hero = new Hero();
 			this.levelCollection = levels;
+			this.interstitials = new Interstitials();
+			this.addChild(this.interstitials);
 		}
 		
 		public function setConfig(config:Config):void {
 			this.config = config;
 		}
 		
-		public function loadLevel(level:uint):void {
-			this.lvl = this.levelCollection.getLevelAt(level -1);			
+		private var curLevel:uint = 1; // TODO move to level collection
+		
+		public function loadLevel():void {
 			
-			this.addChild(this.lvl);
+			this.lvl = this.levelCollection.getLevelAt(this.curLevel - 1);	
+			this.interstitials.gotoAndStop(this.curLevel);
+			// after an initial delay of 3 seconds, interstitital fades to alpha:0 over 2 seconds
+			
+			var interstitialsFadeInRate:uint = 300;
+			this.interstitials.fadeIn(interstitialsFadeInRate);
+			this.addChildAt(this.lvl, 0);
 			this.lvl.setHero(this.hero);
 			
 			this.deep = this.lvl.deep;
 			this.mid = this.lvl.mid;
+			
 			this.artifacts = this.lvl.artifacts;
+			
+			this.mid.x += (interstitialsFadeInRate * .5) + 760;  	// TODO remove? space for the interstitial
+			this.artifacts.x += (interstitialsFadeInRate * .5) + 760;// TODO remove?
+			
 			
 			enemyGenerator.detectEnemies(this.lvl.artifacts); // TODO is this in the right place? Should it it be called earlier?
 			// well, at least, fcEnemies should be told to killAll earlier, right?
@@ -87,7 +103,8 @@
 			this.enemyCollection.killAll(true);
 			this.lvl.clearAll();
 			this.removeChild(this.lvl);
-			this.loadLevel(2);
+			++this.curLevel;
+			this.loadLevel();
 		}
 		
 	}

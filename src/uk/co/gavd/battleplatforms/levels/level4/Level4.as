@@ -1,4 +1,4 @@
-package uk.co.gavd.battleplatforms.levels.level2 
+package uk.co.gavd.battleplatforms.levels.level4 
 {
 	import uk.co.gavd.danmakuengine.Game;
 	import uk.co.gavd.danmakuengine.levels.Level;
@@ -7,10 +7,10 @@ package uk.co.gavd.battleplatforms.levels.level2
 	 * ...
 	 * @author Gavin Davies
 	 */
-	public class Level2 extends uk.co.gavd.danmakuengine.levels.Level
+	public class Level4 extends uk.co.gavd.danmakuengine.levels.Level
 	{
 		
-		public function Level2() 
+		public function Level4() 
 		{
 			this.deep = new Deep();
 			this.mid = new Mid();
@@ -19,6 +19,10 @@ package uk.co.gavd.battleplatforms.levels.level2
 			
 			this.addChild(this.deep);
 			this.addChild(this.mid);
+		}
+
+		override public function isComplete():Boolean {
+			return false; // TODO some way of completing the game
 		}
 	}
 }

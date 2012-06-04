@@ -3,6 +3,8 @@ import flash.display.MovieClip;
 import flash.display.DisplayObject;
 import uk.co.gavd.battleplatforms.levels.level1.Level1;
 import uk.co.gavd.battleplatforms.levels.level2.Level2;
+import uk.co.gavd.battleplatforms.levels.level3.Level3;
+import uk.co.gavd.battleplatforms.levels.level4.Level4;
 import uk.co.gavd.danmakuengine.*;
 import uk.co.gavd.danmakuengine.hud.*;
 import uk.co.gavd.danmakuengine.enemies.*;
@@ -16,6 +18,8 @@ var theRoot:MovieClip = MovieClip(root); // TODO perhaps factor this out entirel
 var levels:LevelCollection = new LevelCollection();
 levels.addLevel(Level1);
 levels.addLevel(Level2);
+levels.addLevel(Level3);
+levels.addLevel(Level4);
 
 var game:Game = new Game(levels);
 this.addChild(game);
@@ -27,7 +31,7 @@ var enemyGenerator:EnemyGenerator = new EnemyGenerator(game, fcEnemies, conf);
 game.setEnemyGenerator(enemyGenerator);
 game.setEnemyCollection(fcEnemies);
 
-game.loadLevel(1);
+game.loadLevel();
 
 var reticle:Reticle = new Reticle(game, conf);
 stage.addEventListener(KeyboardEvent.KEY_DOWN, reticle.handleKeyDown);
