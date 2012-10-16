@@ -1,3 +1,6 @@
 [submodule "src/uk/co/gavd/danmakuengine"]
 	path = src/uk/co/gavd/danmakuengine
 	url = git@github.com:gavD/danmaku-engine.git
+[submodule "src/uk/co/gavd/diagnostics"]
+	path = src/uk/co/gavd/diagnostics
+	url = git@github.com:gavD/actionscript-diagnostics.git
