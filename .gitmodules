@@ -1,0 +1,3 @@
+[submodule "src/uk/co/gavd/danmakuengine"]
+	path = src/uk/co/gavd/danmakuengine
+	url = git@github.com:gavD/danmaku-engine.git
