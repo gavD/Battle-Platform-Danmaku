@@ -135,15 +135,14 @@
         }
         
         public function onFrame(e:Event):void {
-			this.x = game.parent.mouseX;
-            this.y = game.parent.mouseY;
-			
-			if(game.hero.lAction != Hero.OK) {
+			if (game.isPaused()
+			 || game.hero.lAction != Hero.OK
+			) {
 				return;
 			}
 			
-            //if (theRoot.bGamePaused) { return; } // TODO
-            //else if (lAction == DYING) { return; }
+			this.x = game.parent.mouseX;
+            this.y = game.parent.mouseY;
     
             var lXDir:Number = 0;
             var lYDir:Number = 0;

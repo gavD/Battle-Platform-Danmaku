@@ -24,7 +24,15 @@ package uk.co.gavd.danmakuengine.levels
 		public var artifacts:Artifacts;
 		public var hero:Hero;
 		
+		private var scrollSpeed = 30;
+		private var targetScrollSpeed = Config.SCROLL_SPEED;
+		
 		public function Level() {
+		}
+		
+		public function setScrollSpeed(newSpeed:uint) {
+			trace("LEVEL : set speed to " + newSpeed);
+			this.targetScrollSpeed = newSpeed;
 		}
 		
 		public function setHero(h:Hero):void {
@@ -64,20 +72,27 @@ package uk.co.gavd.danmakuengine.levels
 		}
 		
 		public function scroll():void {
-			this.artifacts.x -= Config.SCROLL_SPEED;
+			if (this.scrollSpeed > this.targetScrollSpeed) {
+				this.scrollSpeed -= Config.SCROLL_ACCEL;
+			} else if (this.scrollSpeed < this.targetScrollSpeed)  {
+				this.scrollSpeed += Config.SCROLL_ACCEL;
+			}
+			
+			if (this.scrollSpeed < Config.SCROLL_ACCEL) {
+				this.scrollSpeed = 0;
+			}
+			
+			this.artifacts.x -= this.scrollSpeed;
 			this.mid.x = this.artifacts.x;
-			this.deep.x -= Config.SCROLL_SPEED * 0.2;
+			this.deep.x -= this.scrollSpeed * 0.2;
 			if (this.deep.x < (this.deep.tileWidth * -1)) {
 				this.deep.x += this.deep.tileWidth;
 			}
 		}
 		
 		public function isComplete():Boolean {
-			// TODO some kind of check on the width?
 			return this.mid.x <
-			-100
-				//-1500
-				//-3500
+				((-1 * (this.mid.width)) - 800)
 			;
 		}
 		

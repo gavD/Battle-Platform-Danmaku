@@ -65,10 +65,6 @@
 			}
 		}
 		
-		override protected function dieHook():void {
-			game.startScrolling();
-		}
-		
 		override public function takeHit(damage:uint):void {
 			super.takeHit(damage);
 			if (this.hp < 70) {

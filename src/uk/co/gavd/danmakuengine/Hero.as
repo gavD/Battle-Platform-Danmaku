@@ -75,7 +75,6 @@
 		}
         
         private function setThrusters(lXDir:Number, lYDir:Number):void {
-            // TDODO if (theRoot.bGamePaused) {return;}
             this.thrusterRear.visible = false;
             this.thrusterFront.visible = false;
             this.thrusterTop.visible = false;

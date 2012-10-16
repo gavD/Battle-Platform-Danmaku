@@ -85,7 +85,7 @@
 		}
 		
 		public function kill(enemy:MovieClip):void {
-			trace("Kill " + enemy);
+			//trace("Kill " + enemy);
 			this.explodeWav.play();
 
 			enemy.lAction = Enemy.DYING;
@@ -94,9 +94,9 @@
 		}
 		
 		public function killNow(enemy:Enemy) {
-			trace("Remove " + enemy + " from " + enemy.parent);
+			//trace("Remove " + enemy + " from " + enemy.parent);
 			enemy.parent.removeChild(enemy);
-			trace("REMOVED");
+			//trace("REMOVED");
 			enemy = null;
 		}
 		
@@ -112,7 +112,7 @@
 				var enemy:Enemy = this.arEnemies[i];
 				
 				if (enemy.lAction == Enemy.DEAD) {
-					trace(enemy + " is dead, clear it");
+					//trace(enemy + " is dead, clear it");
 					killNow(enemy);
 					this.arEnemies[i] = null;
 					continue;

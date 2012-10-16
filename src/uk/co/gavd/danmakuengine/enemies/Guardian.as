@@ -1,6 +1,8 @@
 package uk.co.gavd.danmakuengine.enemies 
 {
 	import uk.co.gavd.danmakuengine.Game;
+	import uk.co.gavd.danmakuengine.Config;
+	
 	/**
 	 * ...
 	 * @author Gavin Davies
@@ -37,9 +39,8 @@ package uk.co.gavd.danmakuengine.enemies
 		}
 		
 		override protected function dieHook():void {
-			game.startScrolling();
+			game.setScrollingSpeed(Config.SCROLL_SPEED_FAST);
 		}
-		
 	}
 
 }

@@ -1,6 +1,7 @@
 ﻿package uk.co.gavd.danmakuengine.enemies
 {
 	import uk.co.gavd.danmakuengine.Game;
+	import uk.co.gavd.danmakuengine.Config;
 	import uk.co.gavd.danmakuengine.ballistics.*;
 	import flash.display.*;
 	import flash.events.Event;
@@ -62,11 +63,6 @@
 		override protected function getNewBullet():Bullet
 		{
 			return new BulletWhite(game);
-		}
-		
-		override protected function dieHook():void
-		{
-			game.startScrolling();
 		}
 		
 		override protected function doFire(lTargetX:Number, distFromHero:Number):void

@@ -22,22 +22,22 @@
 		}
 		
 		public function detectEnemies(artifacts:Artifacts):void {
-			trace("Detecting enemies,. Current array:" );
-			trace(this.fcEnemies.arEnemies);
+			//trace("Detecting enemies,. Current array:" );
+			//trace(this.fcEnemies.arEnemies);
 			var len:uint = artifacts.numChildren;
 			for (var i:uint = 0; i < len; i++) {  
 				var display:DisplayObject = artifacts.getChildAt(i);  
 				
 				if (display is Enemy) {
-					trace("Setting up an enemy " + display);
+					//trace("Setting up an enemy " + display);
 					Enemy(display).setGame(this.game);
 					Enemy(display).stop();
 					fcEnemies.registerEnemy(Enemy(display));
 				}
 			}  
 			
-			trace("Detecting enemies COMPLETE. Current array:" );
-			trace(this.fcEnemies.arEnemies);
+			//trace("Detecting enemies COMPLETE. Current array:" );
+			//trace(this.fcEnemies.arEnemies);
 		}
 	}
 }

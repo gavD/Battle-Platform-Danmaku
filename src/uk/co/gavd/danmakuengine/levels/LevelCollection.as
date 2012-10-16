@@ -13,11 +13,6 @@ package uk.co.gavd.danmakuengine.levels
 		}
 		
 		public function addLevel(level:Class):void {
-			if (level is Level) {
-				trace("IS LEVEL");
-			} else {
-				trace("NOT LEVEL");
-			}
 			this.levels.push(level);
 		}
 		

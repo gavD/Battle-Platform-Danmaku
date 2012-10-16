@@ -11,11 +11,11 @@ import uk.co.gavd.danmakuengine.enemies.*;
 import uk.co.gavd.danmakuengine.levels.LevelCollection;
 import uk.co.gavd.diagnostics.*;
 
-		
 stage.quality = StageQuality.LOW;
 var theRoot:MovieClip = MovieClip(root); // TODO perhaps factor this out entirely
 
 var levels:LevelCollection = new LevelCollection();
+
 levels.addLevel(Level1);
 levels.addLevel(Level2);
 levels.addLevel(Level3);
@@ -62,9 +62,6 @@ game.hero.addEventListener(Event.ENTER_FRAME,game.hero.onFrame, false, 0, true);
 stage.addEventListener(Event.ENTER_FRAME, fcEnemies.onFrame, false, 0, true);
 
 // sof diagnostics
-var frt:FramerateTracker = new FramerateTracker(stage.frameRate);
-this.addChild(frt);
-
 function checkMemoryUsage():void {
 	//trace("== MEM: " + System.totalMemory + "==");
 	//trace("== OBJECTS: ==");TimelineUtils.dispTree(game, 0);
@@ -72,8 +69,13 @@ function checkMemoryUsage():void {
 	trace(TimelineUtils.countTree(game));
 	//trace("== GAME SIZE: ==" + getSize(game));
 }
-// enable the next line to track memory usage
-var checkMemoryIntervalID:uint = setInterval(checkMemoryUsage,1000);
+
+if(Config.DIAGNOSTICS) {
+	var frt:FramerateTracker = new FramerateTracker(stage.frameRate);
+	this.addChild(frt);
+	// enable the next line to track memory usage
+	var checkMemoryIntervalID:uint = setInterval(checkMemoryUsage,1000);
+}
 // eof
 
 stop();

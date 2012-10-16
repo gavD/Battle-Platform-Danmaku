@@ -12,7 +12,7 @@
 		public function Deep() 
 		{
 			this.tileWidth = 1920;
-			this.graphicsPath = "./graphics/bg/space_stars_desktop_1920x1080_wallpaper-123172.jpeg.jpg"; // TODO this should load upfront
+			this.graphicsPath = "./graphics/bg/space_stars_desktop_1920x1080_wallpaper-123172.jpeg"; // TODO this should load upfront
 			
 			this.loadGraphics();
 		}	
